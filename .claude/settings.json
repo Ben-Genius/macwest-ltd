@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yarn typecheck *)",
+      "WebSearch",
+      "WebFetch(domain:openasset.com)",
+      "WebFetch(domain:www.awwwards.com)",
+      "WebFetch(domain:blacksmith.agency)",
+      "WebFetch(domain:www.turnerconstruction.com)",
+      "WebFetch(domain:www.arup.com)",
+      "WebFetch(domain:www.macegroup.com)",
+      "WebFetch(domain:www.skanska.com)",
+      "WebFetch(domain:www.bechtel.com)",
+      "WebFetch(domain:www.aecom.com)",
+      "WebFetch(domain:cavalloagency.com)"
+    ]
+  }
+}

@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   MACWEST LIMITED — Design Token System 
+   Premium civil engineering & construction · Accra, Ghana
+   Palette: Blueprint light architecture, Burgundy & Gold
+   ═══════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Fonts ──────────────────────────────────────────────────── */
+  --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-body:    var(--font-inter),      ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    var(--font-geist-mono), ui-monospace, "Cascadia Code", monospace;
+
+  /* ── Brand: Macwest Burgundy (#8B0B03) ──────────────────────── */
+  --color-brand-50:  oklch(97% 0.010 22);
+  --color-brand-100: oklch(93% 0.024 22);
+  --color-brand-200: oklch(86% 0.050 22);
+  --color-brand-300: oklch(76% 0.090 22);
+  --color-brand-400: oklch(63% 0.140 22);
+  --color-brand-500: oklch(51% 0.175 22);
+  --color-brand-600: oklch(42% 0.175 22); /* Target Burgundy */
+  --color-brand-700: oklch(35% 0.160 22);
+  --color-brand-800: oklch(28% 0.130 22);
+  --color-brand-900: oklch(22% 0.100 22);
+  --color-brand-950: oklch(16% 0.065 22);
+
+  /* ── Navy: Deep Slate (#12161E) ──────────────────────────────── */
+  --color-navy-50:  oklch(97% 0.008 248);
+  --color-navy-100: oklch(93% 0.016 248);
+  --color-navy-200: oklch(86% 0.030 248);
+  --color-navy-300: oklch(74% 0.058 248);
+  --color-navy-400: oklch(60% 0.094 248);
+  --color-navy-500: oklch(48% 0.116 248);
+  --color-navy-600: oklch(38% 0.098 248);
+  --color-navy-700: oklch(29% 0.072 248);
+  --color-navy-800: oklch(21% 0.048 248);
+  --color-navy-900: oklch(15% 0.028 248);
+  --color-navy-950: oklch(10% 0.016 248);
+
+  /* ── Accent: Ghanaian Gold (#C5A55A) ─────────────────────────── */
+  --color-gold-50:   oklch(98% 0.014 80);
+  --color-gold-100:  oklch(95% 0.034 80);
+  --color-gold-200:  oklch(90% 0.066 78);
+  --color-gold-300:  oklch(83% 0.098 76);
+  --color-gold-400:  oklch(74% 0.112 74);
+  --color-gold-500:  oklch(65% 0.108 72);
+  --color-gold-600:  oklch(55% 0.096 70);
+  --color-gold-700:  oklch(44% 0.080 68);
+  --color-gold-800:  oklch(34% 0.060 66);
+  --color-gold-900:  oklch(24% 0.040 64);
+  --color-gold-950:  oklch(16% 0.024 62);
+
+  /* ── Sand: Warm Neutral (#F5F0E8) ────────────────────────────── */
+  --color-sand-50:   #F5F0E8; /* Setting perfect Sand here */
+  --color-sand-100:  oklch(94% 0.016 78);
+  --color-sand-200:  oklch(89% 0.022 78);
+  --color-sand-300:  oklch(82% 0.026 76);
+  --color-sand-400:  oklch(72% 0.024 75);
+  --color-sand-500:  oklch(60% 0.018 74);
+  --color-sand-600:  oklch(48% 0.013 73);
+  --color-sand-700:  oklch(38% 0.009 72);
+  --color-sand-800:  oklch(28% 0.006 71);
+  --color-sand-900:  oklch(19% 0.004 70);
+  --color-sand-950:  oklch(12% 0.002 69);
+
+  /* ── Shadows ────────────────────────────────────────────────── */
+  --shadow-soft:     0 1px 3px 0 oklch(0% 0 0 / 0.03), 0 1px 2px -1px oklch(0% 0 0 / 0.02);
+  --shadow-card:     0 4px 16px -4px oklch(0% 0 0 / 0.05), 0 2px 6px -2px oklch(0% 0 0 / 0.03);
+  --shadow-elevated: 0 8px 32px -8px oklch(0% 0 0 / 0.08), 0 4px 10px -4px oklch(0% 0 0 / 0.04);
+  --shadow-floating: 0 20px 60px -12px oklch(0% 0 0 / 0.12), 0 8px 20px -8px oklch(0% 0 0 / 0.05);
+
+  /* ── Easing ─────────────────────────────────────────────────── */
+  --ease-spring:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: #ffffff; /* Brighter background */
+  color: oklch(21% 0.048 248); /* Navy 800 for high text contrast in light theme */
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  color: oklch(15% 0.028 248); /* Navy 900 for headings */
+}
+
+p, li { text-wrap: pretty; }
+
+:focus-visible {
+  outline: 2px solid oklch(74% 0.112 74);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: oklch(42% 0.175 22 / 0.2); /* Burgundy selection */
+  color: oklch(42% 0.175 22); /* Burgundy text */
+}
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: var(--color-sand-50); }
+::-webkit-scrollbar-thumb { background: oklch(74% 0.112 74); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: oklch(65% 0.108 72); }
+
+/* ── Custom utilities ───────────────────────────────────────── */
+
+.text-gradient-gold {
+  background: linear-gradient(135deg,
+    oklch(83% 0.098 76) 0%,
+    oklch(74% 0.112 74) 50%,
+    oklch(55% 0.096 70) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-brand {
+  background: linear-gradient(135deg,
+    oklch(51% 0.175 22) 0%,
+    oklch(42% 0.175 22) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dot-grid {
+  background-image: radial-gradient(
+    circle,
+    oklch(42% 0.175 22 / 0.10) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* NEW Lighter blueprint architecture grid */
+.blueprint {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(oklch(42% 0.175 22 / 0.08) 1px, transparent 1px), /* Burgundy grid lines */
+    linear-gradient(90deg, oklch(42% 0.175 22 / 0.08) 1px, transparent 1px),
+    linear-gradient(oklch(42% 0.175 22 / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(42% 0.175 22 / 0.03) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+.blueprint-sand {
+  background-color: var(--color-sand-50);
+  background-image:
+    linear-gradient(oklch(42% 0.175 22 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(42% 0.175 22 / 0.08) 1px, transparent 1px),
+    linear-gradient(oklch(42% 0.175 22 / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(42% 0.175 22 / 0.03) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+/* Glassmorphism utility for light backgrounds */
+.glass-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-burgundy {
+  background: oklch(42% 0.175 22 / 0.85); /* Burgundy */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid oklch(100% 0 0 / 0.15);
+  color: white;
+}
+
+.link-animated {
+  background-image: linear-gradient(oklch(42% 0.175 22), oklch(42% 0.175 22)); /* Burgundy link */
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 0.3s var(--ease-spring);
+}
+.link-animated:hover { background-size: 100% 2px; }
+
+/* ── Lenis Smooth Scroll Base Styles ───────────────────────── */
+html, body {
+  height: auto !important;
+  min-height: 100%;
+  overscroll-behavior: none;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
