@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+import { m, AnimatePresence } from "framer-motion";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
@@ -53,6 +55,9 @@ const CSR_PILLARS = [
 ];
 
 export function WhoWeAreContent() {
+  const [storyExpanded, setStoryExpanded] = useState(false);
+  const [csrExpanded, setCsrExpanded] = useState(false);
+
   return (
     <>
       {/* ── Hero statement ────────────────────────────────────── */}
@@ -146,7 +151,7 @@ export function WhoWeAreContent() {
             <GSAPReveal y={40} delay={0.15} className="lg:order-1 order-2">
               <div className="aspect-[3/2.8] w-full rounded-2xl overflow-hidden relative">
                 <Image
-                  src="/images/about/mission.png"
+                  src="/images/about/mission.jpeg"
                   alt="Macwest mission — construction excellence"
                   fill
                   className="object-cover"
@@ -179,22 +184,25 @@ export function WhoWeAreContent() {
 
       {/* ── Our Story — sticky heading + scrolling prose ──────── */}
       <Section theme="white" spacing="xl">
+
         <Container size="xl" className="mx-auto">
+          <GSAPReveal y={20}>
+            <span className="inline-flex w-fit items-center px-3.5 py-1 rounded-full border border-navy-200 text-[12px] font-semibold tracking-wide text-navy-600 bg-navy-50 my-3">
+              Our Story
+            </span>
+          </GSAPReveal>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+
             <div className="lg:col-span-5">
-              <div className="sticky top-32 space-y-6">
-                <GSAPReveal y={20}>
-                  <span className="inline-flex items-center px-3.5 py-1 rounded-full border border-navy-200 text-[12px] font-semibold tracking-wide text-navy-600 bg-navy-50">
-                    Our Story
-                  </span>
-                </GSAPReveal>
+              <div className="">
+
                 <GSAPReveal y={30} delay={0.1}>
-                  <h3 className="text-4xl sm:text-5xl font-display font-bold text-navy-900 leading-tight">
+                  <h3 className="text-3xl sm:text-4xl font-display font-bold text-navy-900 leading-tight">
                     Built on Integrity, Driven by Excellence.
                   </h3>
                 </GSAPReveal>
                 <GSAPReveal y={40} delay={0.15}>
-                  <div className="aspect-[3/3] w-full rounded-2xl overflow-hidden relative">
+                  <div className="aspect-[3/2.3] w-full rounded-2xl overflow-hidden relative">
                     <Image
                       src="/images/about/our_story.JPG"
                       alt="Macwest — our story"
@@ -215,12 +223,40 @@ export function WhoWeAreContent() {
                   <p className="text-navy-500 leading-relaxed">
                     Built on the values of precision, integrity, and innovation, we have since earned several global certifications and are trusted partners in the industry. From our earliest projects, we set out to blend technical excellence with practical problem-solving — delivering structures of lasting value.
                   </p>
-                  <p className="text-navy-500 leading-relaxed">
-                    Over the years, we&apos;ve built and trained a strong team of engineers, skilled craftspeople, and creative professionals whose diverse expertise drives our work. What began as a local construction venture has grown into a full-service engineering and construction firm, recognized for cost-effective and future-ready solutions.
-                  </p>
-                  <p className="text-navy-500 leading-relaxed">
-                    Looking ahead, we are focused on expanding our footprint across Sub-Saharan Africa, bringing the same standards of quality and reliability to clients throughout the region. At our core, we remain true to the principles that guided our founding — always committed to exceeding expectations.
-                  </p>
+
+                  <AnimatePresence initial={false}>
+                    {storyExpanded && (
+                      <m.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-navy-500 leading-relaxed pt-6">
+                          Over the years, we&apos;ve built and trained a strong team of engineers, skilled craftspeople, and creative professionals whose diverse expertise drives our work. What began as a local construction venture has grown into a full-service engineering and construction firm, recognized for cost-effective and future-ready solutions.
+                        </p>
+                        <p className="text-navy-500 leading-relaxed pt-6 mb-2">
+                          Looking ahead, we are focused on expanding our footprint across Sub-Saharan Africa, bringing the same standards of quality and reliability to clients throughout the region. At our core, we remain true to the principles that guided our founding — always committed to exceeding expectations.
+                        </p>
+                      </m.div>
+                    )}
+                  </AnimatePresence>
+
+                  <button
+                    onClick={() => setStoryExpanded(!storyExpanded)}
+                    className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-brand-600 hover:text-brand-700 transition-colors mt-2"
+                  >
+                    {storyExpanded ? "Read Less" : "Read More"}
+                    <svg
+                      className={`w-4 h-4 transition-transform duration-300 ${storyExpanded ? "rotate-180" : ""}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
 
                   <div className="grid grid-cols-3 gap-4 pt-8 border-t border-navy-100">
                     {STATS.map((stat) => (
@@ -238,30 +274,61 @@ export function WhoWeAreContent() {
       </Section>
 
       {/* ── Corporate Social Responsibility ───────────────────── */}
-      <Section theme="brand" spacing="xl" className="relative overflow-hidden">
+      <Section theme="brand" spacing="sm" className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-600/10 to-transparent blur-3xl" />
           <div className="absolute bottom-0 left-0 w-1/3 h-full bg-gradient-to-r from-gold-500/5 to-transparent blur-3xl" />
         </div>
 
-        <Container className="relative z-10">
+        <Container size="2xl" className="relative z-10 mx-auto">
+          <GSAPReveal y={20}>
+            <span className="text-white inline-flex w-fit items-center px-3.5 py-1 rounded-full border border-white/20 text-[12px] font-semibold tracking-wide bg-white/5 my-3">
+              Community Impact
+            </span>
+          </GSAPReveal>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
             <GSAPReveal y={30}>
-              <span className="inline-flex items-center px-3.5 py-1 rounded-full border border-white/20 text-[12px] font-semibold tracking-wide text-white/60 mb-6">
-                Community Impact
-              </span>
-              <h3 className="text-4xl sm:text-5xl font-display font-bold text-white mb-6 leading-tight">
+              <p className="text-4xl sm:text-5xl font-display font-bold text-white mb-6 leading-tight relative z-20">
                 Corporate Social Responsibility
-              </h3>
+              </p>
               <p className="text-navy-200 leading-relaxed text-lg mb-5">
                 At Macwest, Corporate Social Responsibility is not an obligation — it guides how we work and how we engage with communities.
               </p>
               <p className="text-navy-300 leading-relaxed mb-5">
                 We believe every project is an opportunity to create a lasting, positive impact beyond the immediate scope of construction or development.
               </p>
-              <p className="text-navy-300 leading-relaxed mb-10">
-                While we pursue economic growth and business excellence, our CSR initiatives are designed to support education, community development, and sustainable livelihoods, ensuring that our presence brings tangible value to local communities.
-              </p>
+
+              <AnimatePresence initial={false}>
+                {csrExpanded && (
+                  <m.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-navy-300 leading-relaxed mb-8 pt-2">
+                      While we pursue economic growth and business excellence, our CSR initiatives are designed to support education, community development, and sustainable livelihoods, ensuring that our presence brings tangible value to local communities.
+                    </p>
+                  </m.div>
+                )}
+              </AnimatePresence>
+
+              <button
+                onClick={() => setCsrExpanded(!csrExpanded)}
+                className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-gold-400 hover:text-gold-300 transition-colors mb-10"
+              >
+                {csrExpanded ? "Read Less" : "Read More"}
+                <svg
+                  className={`w-4 h-4 transition-transform duration-300 ${csrExpanded ? "rotate-180" : ""}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
               <div className="grid grid-cols-2 gap-4">
                 {CSR_PILLARS.map((pillar) => (
                   <div key={pillar.title} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:bg-white/[0.08] transition-colors">
@@ -274,7 +341,7 @@ export function WhoWeAreContent() {
             </GSAPReveal>
 
             <GSAPReveal y={40} delay={0.15}>
-              <div className="aspect-[3/4] w-full rounded-2xl overflow-hidden relative shadow-2xl">
+              <div className="aspect-[3/3] w-full rounded-2xl overflow-hidden relative shadow-2xl">
                 <Image
                   src="https://i0.wp.com/www.macwest.com.gh/wp-content/uploads/2025/07/1H6A1074-scaled.jpg"
                   alt="Macwest corporate social responsibility"
