@@ -1,15 +1,22 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Variants } from "framer-motion";
 import { m, useInView, useScroll, useTransform } from "framer-motion";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
+import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { cn } from "@/lib/utils";
 import { fadeInLeft, fadeInRight, fadeInUp, scaleIn, staggerContainer, EASE } from "@/lib/animations";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /* ─── Data ──────────────────────────────────────────────────────── */
 
@@ -45,7 +52,7 @@ const SERVICES = [
     number: "04",
     title: "Mechanical, Electrical & Plumbing",
     anchor: "mechanicalelectrical",
-    image: "https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/0T6A0406.jpg?resize=1600%2C1067&ssl=1",
+    image: "/images/img-steel-pipes.jpg",
     description:
       "Integrated MEP solutions ensuring efficiency, reliability, and seamless performance across every project. Our engineering team brings extensive experience in mechanical installations, electrical and circuit applications, and plumbing and water systems — handling both simple and complex installations.",
     tags: ["Mechanical Installations", "Electrical Systems", "Plumbing & Water", "Complex Fit-Outs"],
@@ -54,7 +61,7 @@ const SERVICES = [
     number: "05",
     title: "Cement Supply — Ghacem",
     anchor: "cementsupply",
-    image: "https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/0T6A0238.jpg?resize=1600%2C1067&ssl=1",
+    image: "/images/Cement.jpg.jpeg",
     description:
       "Macwest is a trusted supplier of premium Ghacem cement, delivering consistent quality and reliability for all construction needs. We provide a full range of high-performance products tailored to diverse project requirements — ensuring durability, strength, and value.",
     tags: ["Premium Ghacem", "All Grades", "Volume Supply", "Reliable Delivery"],
@@ -63,7 +70,7 @@ const SERVICES = [
     number: "06",
     title: "Procurement Services",
     anchor: "pservice",
-    image: "https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/0T6A0394.jpg?resize=1600%2C1067&ssl=1",
+    image: "/images/services/procure.png",
     description:
       "Comprehensive procurement solutions designed to support efficiency, cost-effectiveness, and reliability. Leveraging a strong supplier network, we provide seamless sourcing, purchasing, and delivery of quality materials and equipment — the right resources, at the right time.",
     tags: ["Strategic Sourcing", "Supplier Network", "Cost Efficiency", "Timely Delivery"],
@@ -72,7 +79,7 @@ const SERVICES = [
     number: "07",
     title: "Softworks & Augmented Services",
     anchor: "softworks",
-    image: "https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/0T6A0271.jpg?resize=1600%2C1067&ssl=1",
+    image: "https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/0T6A0238.jpg?w=2048&ssl=1",
     description:
       "Beyond construction, Macwest extends value through specialised Softworks & Augmented Services — technical and vocational training, corporate leadership development, event management, branding, media coverage, and documentary production. Blending creativity with capability.",
     tags: ["Technical Training", "Leadership Dev.", "Event Management", "Branding & Media"],
@@ -99,6 +106,28 @@ const CERTS = [
 
 const CERT_SCOPE =
   "Building and Road Construction, Civil Engineering, General Procurement, Logistics, Haulage Services, Steel Fabrication, Modular Containers, Stakeholder Engagement and Organisation of Community Events.";
+
+const CERT_LOGOS = [
+  {
+    src: "/images/tv.jpg",
+    alt: "TVE CERT — Certification Body",
+    width: 100,
+    height: 78,
+  },
+  {
+    src: "https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/08/IAF.png?fit=327%2C209&ssl=1",
+    alt: "IAF — International Accreditation Forum",
+    width: 120,
+    height: 77,
+  },
+
+  {
+    src: "https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-19-at-8.40.49-AM.jpeg?fit=1280%2C619&ssl=1",
+    alt: "Macwest ISO Certification Badge",
+    width: 120,
+    height: 77,
+  }
+] as const;
 
 /* ─── Animation variants ────────────────────────────────────────── */
 
@@ -291,65 +320,102 @@ function CertCards() {
 /* ─── Page ──────────────────────────────────────────────────────── */
 
 export function ServicesContent() {
-  return (
-    <>
-      {/* ══ 1 · Editorial intro + cert strip ════════════════════════ */}
-      <Section theme="white" spacing="md" className="overflow-hidden">
-        {/* Ambient orb */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-          <m.div
-            className="absolute -top-40 -right-32 w-[500px] h-[500px] rounded-full bg-brand-100/30 blur-[100px]"
-            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
+  const pageRef = useRef<HTMLDivElement>(null);
 
-        <Container size="2xl" className="relative z-10">
-          {/* Two-column editorial header */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-end mb-14">
-            {/* Left — headline */}
-            <div>
-              <Reveal variants={scaleIn} className="mb-6">
-                <span className="inline-flex items-center px-3.5 py-1 rounded-full border border-navy-200 text-[12px] font-semibold tracking-wide text-navy-600 bg-navy-50">
-                  /Our Capabilities
-                </span>
-              </Reveal>
+  useEffect(() => {
+    if (!pageRef.current) return;
+    gsap.fromTo(
+      pageRef.current,
+      { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, duration: 1.1, ease: "expo.out", clearProps: "all" }
+    );
+  }, []);
+
+  return (
+    <div ref={pageRef}>
+      {/* ══ 1 · Editorial intro — exact design match ════════════════ */}
+      <section className="bg-white overflow-hidden pt-12">
+        <div className="max-w-[95rem] mx-auto px-6 sm:px-10 lg:px-16 pt-16 sm:pt-24 lg:pt-32 pb-10 sm:pb-12">
+
+          {/* Heading row: very large left + small description top-right */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-12 mb-8 sm:mb-10">
+            {/* Left — display heading */}
+            <div className="flex-1 min-w-0">
               <GSAPStaggerText
-                text="Engineering solutions built to outlast expectations."
-                className="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-navy-900 leading-[1.1] tracking-tight"
-                y={45}
-                duration={0.95}
-                stagger={0.035}
+                text="Explore Our Services."
+                className="font-display text-4xl sm:text-5xl lg:text-[4rem] font-bold text-navy-900 leading-[1.05] tracking-tight"
+                y={30}
+                duration={1}
+                stagger={0.05}
               />
             </div>
 
-            {/* Right — description + stats */}
-            <Reveal variants={fadeInUp} className="max-w-md">
-              <p className="text-navy-500 leading-relaxed text-base sm:text-lg mb-8">
-                Macwest has diversified its operations across seven core service lines — from civil infrastructure to augmented services. Every discipline is delivered to ISO-certified international standards.
+            {/* Right — small description, top-aligned */}
+            <GSAPReveal delay={0.45} y={20}>
+              <p className="text-navy-500 text-sm sm:text-base leading-relaxed lg:max-w-[660px] xl:max-w-[500px] lg:text-right lg:pt-3">
+                Our team of engineers and specialists brings decades of experience across civil construction, MEP, housing estates, and augmented services — each certified to ISO standards.
               </p>
-              <div className="flex gap-8">
-                {[
-                  { value: "14+", label: "Years' experience" },
-                  { value: "7", label: "Service lines" },
-                  { value: "3", label: "ISO certifications" },
-                ].map((stat) => (
-                  <div key={stat.label} className="group cursor-default">
-                    <div className="text-2xl sm:text-3xl font-display font-bold text-brand-600 mb-0.5 transition-colors duration-300 group-hover:text-gold-500">
-                      {stat.value}
-                    </div>
-                    <div className="text-xs font-medium text-navy-400 transition-colors duration-300 group-hover:text-navy-700">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
+            </GSAPReveal>
+          </div>
+
+          {/* Two hero images — wider left, narrower right */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            {/* Left image — wider */}
+            <m.div
+              initial={{ clipPath: "inset(0% 100% 0% 0%)", opacity: 0 }}
+              whileInView={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
+              transition={{ duration: 1.1, ease: EASE.outExpo }}
+              viewport={{ once: true }}
+              className="relative flex-[1.65] min-h-[220px] sm:min-h-[320px] lg:min-h-[440px] rounded-2xl overflow-hidden"
+            >
+              <Image
+                src="https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/0T6A0394.jpg?resize=1600%2C1067&ssl=1"
+                alt="Macwest construction and procurement services"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 640px) 100vw, 62vw"
+              />
+            </m.div>
+
+            {/* Right image — narrower, stacked two on mobile via a column */}
+            <div className="flex flex-row sm:flex-col gap-3 sm:gap-4 flex-1">
+              <m.div
+                initial={{ clipPath: "inset(0% 0% 0% 100%)", opacity: 0 }}
+                whileInView={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
+                transition={{ duration: 1.1, ease: EASE.outExpo, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="relative flex-1 min-h-[160px] sm:min-h-0 sm:flex-1 rounded-2xl overflow-hidden"
+              >
+                <Image
+                  src="https://i0.wp.com/macwest.com.gh/wp-content/uploads/2024/09/ridge-town-houses3.jpeg?resize=1200%2C800&ssl=1"
+                  alt="Macwest housing estates — Ridge Town Houses"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 50vw, 36vw"
+                />
+              </m.div>
+              <m.div
+                initial={{ clipPath: "inset(0% 0% 0% 100%)", opacity: 0 }}
+                whileInView={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
+                transition={{ duration: 1.1, ease: EASE.outExpo, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="relative flex-1 min-h-[160px] sm:min-h-0 sm:flex-1 rounded-2xl overflow-hidden"
+              >
+                <Image
+                  src="https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/0T6A0271.jpg?resize=1200%2C800&ssl=1"
+                  alt="Macwest augmented and softworks services"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 50vw, 36vw"
+                />
+              </m.div>
+            </div>
           </div>
 
           {/* Certification pill strip */}
-          <Reveal variants={fadeInUp} margin="-20px">
-            <div className="flex flex-wrap items-center gap-3 pt-8 border-t border-navy-100">
+          <Reveal variants={fadeInUp} margin="-20px" className="mt-8">
+            <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-navy-100">
               <span className="text-[11px] font-bold uppercase tracking-widest text-navy-400">
                 ISO Certified
               </span>
@@ -367,61 +433,10 @@ export function ServicesContent() {
               </span>
             </div>
           </Reveal>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
-      {/* ══ 2 · Capability statement ════════════════════════════════ */}
-      <Section theme="white" spacing="md">
-        <Container size="2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-12 items-end">
-            <div className="lg:col-span-7">
-              <Reveal variants={scaleIn} className="mb-6">
-                <span className="inline-flex items-center px-3.5 py-1 rounded-full border border-navy-200 text-[12px] font-semibold tracking-wide text-navy-600 bg-navy-50">
-                  /What We Do
-                </span>
-              </Reveal>
-              <GSAPStaggerText
-                text="Explore Our Capabilities"
-                className="font-display text-4xl sm:text-5xl lg:text-[4rem] font-bold text-navy-900 leading-[1.05] tracking-tight"
-                y={30}
-                duration={0.85}
-                stagger={0.025}
-              />
-            </div>
-            <div className="lg:col-span-5 lg:pb-3">
-              <Reveal variants={fadeInUp}>
-                <p className="text-navy-500 leading-relaxed text-base sm:text-lg">
-                  From roads and bridges to housing estates, MEP systems, and augmented services — precision-built, certified, and future-ready.
-                </p>
-              </Reveal>
-            </div>
-          </div>
 
-          <m.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6"
-          >
-            <m.div variants={fadeInUp} className="md:col-span-5">
-              <div className="relative aspect-[4/3] md:aspect-auto md:h-[400px] lg:h-[500px] rounded-[2rem] overflow-hidden group">
-                <Image src="https://macwest.com.gh/wp-content/uploads/2025/03/0T6A0394.jpg" alt="Construction site preparation" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-            </m.div>
-            <m.div variants={fadeInUp} className="md:col-span-4">
-              <div className="relative aspect-[4/3] md:aspect-auto md:h-[400px] lg:h-[500px] rounded-[2rem] overflow-hidden group">
-                <Image src="https://macwest.com.gh/wp-content/uploads/2024/09/ridge-town-houses3.jpeg" alt="Ridge town houses exterior" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-            </m.div>
-            <m.div variants={fadeInUp} className="md:col-span-3">
-              <div className="relative aspect-[4/3] md:aspect-auto md:h-[400px] lg:h-[500px] rounded-[2rem] overflow-hidden group">
-                <Image src="https://macwest.com.gh/wp-content/uploads/2025/03/0T6A0271.jpg" alt="Civil engineering workers" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-            </m.div>
-          </m.div>
-        </Container>
-      </Section>
 
       {/* ══ 3 · Service rows — stacked editorial layout ══════════════ */}
       <Section theme="white" spacing="none">
@@ -463,45 +478,16 @@ export function ServicesContent() {
                 stagger={0.045}
               />
               <Reveal variants={fadeInUp}>
-                <p className="text-navy-300 leading-relaxed text-sm mb-6">
+                <p className="text-navy-300 leading-relaxed text-sm mb-4">
                   <span className="text-white font-semibold">Scope: </span>
                   {CERT_SCOPE}
                 </p>
-
-                {/* Accreditation Logos */}
-                <div className="flex flex-wrap items-center gap-4 mb-8">
-                  <div className="relative h-14 w-20 bg-white rounded-lg flex items-center justify-center overflow-hidden">
-                    <Image
-                      src="https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/08/IAF.png?fit=327%2C209&ssl=1"
-                      alt="IAF"
-                      fill
-                      className="object-contain p-2"
-                    />
-                  </div>
-                  <div className="relative h-14 w-24 bg-white rounded-lg flex items-center justify-center overflow-hidden">
-                    <Image
-                      src="https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-19-at-8.40.49-AM.jpeg?fit=1280%2C619&ssl=1"
-                      alt="Certification Partner"
-                      fill
-                      className="object-contain p-2"
-                    />
-                  </div>
-                  <div className="relative h-14 w-20 bg-white rounded-lg flex items-center justify-center overflow-hidden">
-                    <Image
-                      src="/images/tve-cert.png"
-                      alt="TVE CERT"
-                      fill
-                      className="object-contain p-2"
-                    />
-                  </div>
-                </div>
-
                 <m.div
                   whileHover={{ x: 4 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   className="mt-2"
                 >
-                  <a
+                  <Link
                     href="https://www.iafcertsearch.org/certification/090yrhGzuRrHICKRcRcCv88u"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -511,14 +497,39 @@ export function ServicesContent() {
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
                     </svg>
-                  </a>
+                  </Link>
                 </m.div>
+
+
               </Reveal>
             </div>
 
-            {/* Right — cert cards */}
-            <div className="lg:col-span-8">
+            {/* Right — cert cards + certificate badge */}
+            <div className="lg:col-span-8 flex flex-col gap-6">
               <CertCards />
+
+              {/* Accreditation logos */}
+              <div className="flex items-center gap-4 border-t border-white/10 pt-4">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-navy-400">
+                  Certified &amp; Accredited by
+                </p>
+                <div className="flex  items-center gap-4">
+                  {CERT_LOGOS.map((logo) => (
+                    <div
+                      key={logo.alt}
+                      className=" rounded-xl px-4 py-3 flex items-center justify-center shadow-sm"
+                    >
+                      <Image
+                        src={logo.src}
+                        alt={logo.alt}
+                        width={logo.width}
+                        height={logo.height}
+                        className="object-contain rounded-md"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </Container>
@@ -574,6 +585,6 @@ export function ServicesContent() {
           </div>
         </Container>
       </Section>
-    </>
+    </div>
   );
 }
