@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
 import { mainNav, secondaryRoutes } from "@/config/routes";
 import { siteConfig } from "@/config/site";

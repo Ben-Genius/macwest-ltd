@@ -11,6 +11,16 @@ const nextConfig: NextConfig = {
         hostname: "i0.wp.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "macwest.com.gh",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "media.licdn.com",
+        pathname: "/**",
+      },
     ],
   },
 };

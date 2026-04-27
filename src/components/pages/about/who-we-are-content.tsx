@@ -17,7 +17,6 @@ import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 import { Globe } from "@/components/ui/globe";
-import { cn } from "@/lib/utils";
 import {
   staggerContainer,
   fadeInLeft,
