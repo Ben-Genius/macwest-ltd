@@ -21,11 +21,12 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <ServicesSection />
-      <WhyMacwestSection />
       <CertificationsSection />
+      <ServicesSection />
+      {/* <WhyMacwestSection /> */}
+
       <VisionParallaxSection />
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
       {/* <ClientsSection /> */}
       <QHSESection />
       <CTABandSection />

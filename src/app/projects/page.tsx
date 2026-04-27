@@ -1,4 +1,4 @@
-import { PlaceholderPage } from "@/components/pages/placeholder-page";
+import { PageLayout } from "@/components/pages/page-layout";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
@@ -8,5 +8,5 @@ export const metadata = createPageMetadata(
 );
 
 export default function ProjectsPage() {
-  return <PlaceholderPage title="Projects" />;
+  return <PageLayout title="Projects" />;
 }

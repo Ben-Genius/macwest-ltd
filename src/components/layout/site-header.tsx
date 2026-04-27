@@ -17,7 +17,6 @@ export function SiteHeader() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   const hoverLeaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const inactivityTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dropdownLeaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -38,35 +37,27 @@ export function SiteHeader() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  /* Auto-close bottom expansion after 4s of no interaction */
-  useEffect(() => {
-    if (isHovered) {
-      inactivityTimer.current = setTimeout(() => setIsHovered(false), 4000);
-      return () => {
-        if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
-      };
-    }
-  }, [isHovered]);
 
-  const handleHoverEnter = () => {
+  /* Scrolled-state pill hover — shows the expansion panel */
+  const handlePillEnter = () => {
     if (hoverLeaveTimer.current) clearTimeout(hoverLeaveTimer.current);
-    if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
     if (scrolled) setIsHovered(true);
   };
 
-  const handleHoverLeave = () => {
+  const handlePillLeave = () => {
     if (scrolled) {
       hoverLeaveTimer.current = setTimeout(() => setIsHovered(false), 250);
     }
   };
 
-  const handleDropdownEnter = (label: string) => {
+  /* Top-state per-item dropdown hover */
+  const handleItemEnter = (label: string) => {
     if (dropdownLeaveTimer.current) clearTimeout(dropdownLeaveTimer.current);
     setOpenDropdown(label);
   };
 
-  const handleDropdownLeave = () => {
-    dropdownLeaveTimer.current = setTimeout(() => setOpenDropdown(null), 120);
+  const handleItemLeave = () => {
+    dropdownLeaveTimer.current = setTimeout(() => setOpenDropdown(null), 150);
   };
 
   const isActive = (href: string) =>
@@ -82,10 +73,10 @@ export function SiteHeader() {
       >
         <div
           className="relative flex flex-col items-center"
-          onMouseEnter={handleHoverEnter}
-          onMouseLeave={handleHoverLeave}
+          onMouseEnter={handlePillEnter}
+          onMouseLeave={handlePillLeave}
         >
-          {/* Expansion menu — only when scrolled + hovered */}
+          {/* Expansion panel — scrolled (bottom) state only */}
           <AnimatePresence>
             {scrolled && isHovered && (
               <m.div
@@ -94,29 +85,49 @@ export function SiteHeader() {
                 exit={{ opacity: 0, y: 12, scale: 0.96 }}
                 transition={{ duration: 0.2, ease: EASE.outExpo }}
                 className="mb-3 w-[260px] bg-white shadow-elevated border border-brand-100 rounded-xl overflow-hidden flex flex-col p-2 z-50 pointer-events-auto"
+                onWheel={(e) => e.stopPropagation()}
               >
                 <div className="max-h-[280px] overflow-y-auto pr-1 space-y-0.5">
                   {mainNav.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className={cn(
-                        "flex items-center justify-between px-3 py-2.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all",
-                        isActive(item.href)
-                          ? "bg-brand-50 text-brand-600"
-                          : "text-navy-700 hover:bg-sand-50 hover:text-brand-600"
+                    <div key={item.label} className="flex flex-col mb-1 last:mb-0">
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "flex items-center justify-between px-3 py-2.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all",
+                          isActive(item.href)
+                            ? "bg-brand-50 text-brand-600"
+                            : "text-navy-700 hover:bg-sand-50 hover:text-brand-600"
+                        )}
+                      >
+                        {item.label}
+                        <ArrowRight className="size-3 opacity-30" />
+                      </Link>
+                      {item.children && (
+                        <div className="flex flex-col ml-3 pl-2 border-l border-brand-50 mt-0.5 space-y-0.5">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className={cn(
+                                "flex items-center px-3 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all",
+                                isActive(child.href)
+                                  ? "text-brand-600 bg-brand-50/50"
+                                  : "text-navy-500 hover:text-brand-600 hover:bg-sand-50"
+                              )}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
                       )}
-                    >
-                      {item.label}
-                      <ArrowRight className="size-3 opacity-30" />
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </m.div>
             )}
           </AnimatePresence>
 
-          {/* Invisible bridge so mouse can travel from pill up to expansion */}
+          {/* Invisible bridge — mouse can travel from pill up to expansion panel */}
           {scrolled && (
             <div className="absolute bottom-full left-0 right-0 h-4 z-50" />
           )}
@@ -125,11 +136,11 @@ export function SiteHeader() {
 
             {/* Main nav pill */}
             <div className={cn(
-              "bg-white/95 backdrop-blur-md border border-brand-100 rounded-xl p-3 flex items-center   transition-all duration-700 overflow-hidden shadow-elevated",
+              "bg-white/95 backdrop-blur-md border border-brand-100 rounded-xl p-3 flex items-center transition-all duration-700 shadow-elevated",
               scrolled ? "w-auto" : "w-full max-w-6xl"
             )}>
 
-              {/* Logo — full wordmark when at top, icon-only when scrolled to bottom */}
+              {/* Logo */}
               <Link
                 href="/"
                 className="flex items-center gap-2 px-2 sm:px-3 flex-shrink-0 group"
@@ -159,68 +170,82 @@ export function SiteHeader() {
               {/* Divider */}
               {!scrolled && <div className="w-px h-5 bg-navy-100 mx-2 hidden lg:block" />}
 
-              {/* Center links (only when not scrolled, desktop) */}
-              <div
+              {/* Center nav links with per-item dropdowns — top state only */}
+              <nav
                 className={cn(
-                  "hidden lg:flex items-center transition-all duration-500 ease-out overflow-hidden gap-0.5",
+                  "hidden lg:flex items-center transition-all duration-500 ease-out overflow-visible gap-0.5",
                   !scrolled ? "w-auto opacity-100 pr-2" : "w-0 opacity-0 pointer-events-none"
                 )}
               >
                 {!scrolled && mainNav.map((item) => {
-                  const hasChildren = item.children && item.children.length > 0;
+                  const hasChildren = !!item.children?.length;
                   return (
                     <div
                       key={item.label}
-                      className="relative group/navitem flex items-center justify-center h-9"
-                      onMouseEnter={() => hasChildren && handleDropdownEnter(item.label)}
-                      onMouseLeave={handleDropdownLeave}
+                      className="relative flex items-center"
+                      onMouseEnter={() => hasChildren && handleItemEnter(item.label)}
+                      onMouseLeave={hasChildren ? handleItemLeave : undefined}
                     >
-                      {hasChildren ? (
-                        <button
-                          className={cn(
-                            "flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors whitespace-nowrap",
-                            isActive(item.href) ? "text-brand-600 bg-brand-50" : "text-navy-600 hover:text-brand-600 hover:bg-sand-50"
-                          )}
-                        >
-                          {item.label}
-                          <ChevronDown className={cn("size-3 transition-transform duration-200 opacity-60", openDropdown === item.label && "rotate-180")} />
-                        </button>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          className={cn(
-                            "flex items-center px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors whitespace-nowrap",
-                            isActive(item.href) ? "text-brand-600 bg-brand-50" : "text-navy-600 hover:text-brand-600 hover:bg-sand-50"
-                          )}
-                        >
-                          {item.label}
-                        </Link>
-                      )}
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors whitespace-nowrap",
+                          isActive(item.href)
+                            ? "text-brand-600 bg-brand-50"
+                            : "text-navy-600 hover:text-brand-600 hover:bg-sand-50"
+                        )}
+                      >
+                        {item.label}
+                        {hasChildren && (
+                          <ChevronDown
+                            className={cn(
+                              "size-3 opacity-60 transition-transform duration-200",
+                              openDropdown === item.label && "rotate-180"
+                            )}
+                          />
+                        )}
+                      </Link>
 
-                      {/* Desktop dropdown */}
+                      {/* Per-item dropdown panel */}
                       <AnimatePresence>
                         {hasChildren && openDropdown === item.label && (
                           <m.div
-                            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                            initial={{ opacity: 0, y: -6, scale: 0.97 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                            transition={{ duration: 0.18, ease: EASE.spring }}
-                            className="absolute top-full mt-3 left-1/2 -translate-x-1/2 min-w-[180px] rounded-xl bg-white border border-brand-100 shadow-floating p-1.5 z-50 flex flex-col gap-0.5"
-                            onMouseEnter={() => handleDropdownEnter(item.label)}
-                            onMouseLeave={handleDropdownLeave}
+                            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                            transition={{ duration: 0.15, ease: EASE.outExpo }}
+                            className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50"
+                            onMouseEnter={() => handleItemEnter(item.label)}
+                            onMouseLeave={handleItemLeave}
                           >
-                            <div className="max-h-[220px] overflow-y-auto pr-1 custom-scrollbar">
-                              {item.children!.map((child) => (
-                                <Link
-                                  key={child.href}
-                                  href={child.href}
-                                  className="flex flex-col items-start px-3 py-2 rounded-lg hover:bg-sand-50 transition-colors duration-150 group/child"
-                                >
-                                  <span className="text-[11px] font-bold text-navy-700 group-hover/child:text-brand-600 transition-colors uppercase tracking-wide">
-                                    {child.label}
+                            <div className={cn(
+                              "bg-white border border-brand-100 shadow-floating rounded-xl p-1.5",
+                              item.label === "Services" ? "w-[400px]" : "min-w-[180px]"
+                            )}>
+                              {item.label === "Services" && (
+                                <div className="px-3 pt-2 pb-2 mb-1 border-b border-sand-100">
+                                  <span className="text-[10px] font-bold text-navy-400 uppercase tracking-widest">
+                                    Certification & Expertise
                                   </span>
-                                </Link>
-                              ))}
+                                </div>
+                              )}
+                              <div className={cn(
+                                item.label === "Services"
+                                  ? "grid grid-cols-2 gap-x-1 p-1"
+                                  : "flex flex-col gap-0.5"
+                              )}>
+                                {item.children!.map((child) => (
+                                  <Link
+                                    key={child.href}
+                                    href={child.href}
+                                    className="flex items-center px-3 py-2.5 rounded-lg hover:bg-sand-50 transition-colors group/child"
+                                  >
+                                    <span className="text-[11px] font-bold text-navy-700 group-hover/child:text-brand-600 transition-colors uppercase tracking-wide">
+                                      {child.label}
+                                    </span>
+                                  </Link>
+                                ))}
+                              </div>
                             </div>
                           </m.div>
                         )}
@@ -228,14 +253,13 @@ export function SiteHeader() {
                     </div>
                   );
                 })}
-              </div>
+              </nav>
 
-              {/* Right-side links: always About Us arrow; + Services & Projects when scrolled */}
+              {/* Right-side links */}
               <div className={cn(
                 "hidden lg:flex items-center gap-1 border-l border-navy-100 ml-1 transition-all",
                 scrolled ? "pl-2 pr-1" : "pl-3 pr-2"
               )}>
-                {/* Extra links shown ONLY in bottom-pill (scrolled) state */}
                 {scrolled && (
                   <>
                     <Link
@@ -283,7 +307,7 @@ export function SiteHeader() {
             </div>
 
             {/* Contact CTA */}
-            <div className="bg-brand-600 rounded-xl  flex items-center p-3  shadow-brand hover:bg-brand-700 transition-colors">
+            <div className="bg-brand-600 rounded-xl flex items-center p-3 shadow-brand hover:bg-brand-700 transition-colors">
               <Link
                 href="/contact"
                 className="flex items-center gap-2 px-3 h-full rounded-lg group transition-all"

@@ -4,40 +4,45 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { m, useScroll, useTransform, useInView } from "framer-motion";
-import { HardHat, Zap, Building2, Droplets, Wrench, ArrowRight } from "lucide-react";
+import { HardHat, Zap, Building2, Layers3, Package, Sparkles, ArrowRight, ServerCrashIcon } from "lucide-react";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 
 const services = [
   {
-    icon: HardHat,
-    title: "Building Construction",
-    description: "Commercial, residential and industrial buildings from foundation to fit-out.",
-    href: "/services",
+    icon: Building2,
+    title: "Housing Estates",
+    description:
+      "We design and develop modern, sustainable communities — from architectural and structural designs to project supervision and management, balancing comfort, functionality, and long-term value.",
+    href: "/services#housingestates",
+  },
+  {
+    icon: Layers3,
+    title: "Concrete Works",
+    description:
+      "Our concrete solutions are engineered for strength, safety, and long-lasting performance, applying the highest standards to achieve the compressive strength and structural integrity every project demands.",
+    href: "/services#concreteorks",
   },
   {
     icon: Zap,
-    title: "MEP Solutions",
-    description: "Mechanical, electrical, and plumbing systems engineered for reliability.",
-    href: "/services",
+    title: "Mechanical, Electrical & Plumbing",
+    description:
+      "Integrated MEP solutions covering mechanical installations, electrical and circuit applications, and plumbing and water systems — handling simple and complex installations with precision.",
+    href: "/services#mechanicalelectrical",
   },
   {
-    icon: Building2,
-    title: "Housing Estates",
-    description: "End-to-end residential estate development — planning to handover.",
-    href: "/services",
+    icon: Package,
+    title: "Cement Supply — Ghacem",
+    description:
+      "Trusted supplier of premium Ghacem cement, delivering consistent quality and a full range of high-performance products tailored to diverse project requirements.",
+    href: "/services#cementsupply",
   },
   {
-    icon: Droplets,
-    title: "Water & Sanitation",
-    description: "Borehole drilling, water treatment, and sanitation infrastructure.",
-    href: "/services",
-  },
-  {
-    icon: Wrench,
-    title: "Project Management",
-    description: "Full site supervision, procurement, and quality assurance.",
-    href: "/services",
+    icon: ServerCrashIcon,
+    title: "Softworks & Augmented Services",
+    description:
+      "Beyond construction — technical and vocational training, corporate leadership development, event management, branding, media coverage, and documentary production.",
+    href: "/services#softworks",
   },
 ];
 
@@ -66,7 +71,7 @@ export function ServicesSection() {
           </GSAPReveal>
 
           <GSAPStaggerText
-            text="Engineering solutions. Built to standard."
+            text="Key Services. Quality Assured."
             className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.02em] text-navy-900 leading-[1.08]"
             wordClassName="text-brand-600"
             stagger={0.06}
@@ -75,8 +80,7 @@ export function ServicesSection() {
 
           <GSAPReveal delay={0.4} y={30}>
             <p className="mt-6 text-lg text-navy-600 font-medium leading-relaxed max-w-2xl">
-              From infrastructure to fit-out, we cover the full construction lifecycle —
-              backed by rigorous testing and verified credentials.
+              Macwest has diversified its portfolio across civil construction, housing, MEP, concrete works, cement supply, and augmented services — each delivered to international ISO standards.
             </p>
           </GSAPReveal>
         </div>
@@ -116,18 +120,18 @@ export function ServicesSection() {
                     whileHover={{ scale: 1.1, rotate: -8 }}
                     transition={{ type: "spring", stiffness: 400, damping: 18 }}
                   >
-                    <Building2 className="size-7 text-white" />
+                    <HardHat className="size-7 text-white" />
                   </m.div>
                   <h3 className="font-display text-3xl font-bold text-navy-900 tracking-[-0.02em] leading-tight">
-                    Civil Engineering
+                    Civil Construction
                   </h3>
                   <p className="mt-4 text-navy-700 font-medium leading-relaxed text-sm">
-                    Roads, drainage, earthworks, and infrastructure projects built to international
-                    standards across Ghana and Sub-Saharan Africa.
+                    Durable infrastructure built with precision — roads, bridges, culverts, drains,
+                    kerb laying, pavement walkways, and buildings across Ghana and Sub-Saharan Africa.
                   </p>
                 </div>
                 <Link
-                  href="/services"
+                  href="/services#civilconst"
                   className="mt-8 inline-flex items-center justify-center gap-2 text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 shadow-brand transition-all group-hover:gap-3 duration-300 py-3.5 px-6"
                 >
                   Explore service <ArrowRight className="size-4" />
