@@ -6,7 +6,6 @@ import { ServicesSection } from "@/components/home/services-section";
 
 const WhyMacwestSection = dynamic(() => import("@/components/home/why-macwest-section").then((mod) => mod.WhyMacwestSection));
 const CertificationsSection = dynamic(() => import("@/components/home/certifications-section").then((mod) => mod.CertificationsSection));
-const VisionParallaxSection = dynamic(() => import("@/components/home/vision-parallax-section").then((mod) => mod.VisionParallaxSection));
 const ProjectsSection = dynamic(() => import("@/components/home/projects-section").then((mod) => mod.ProjectsSection));
 const ClientsSection = dynamic(() => import("@/components/home/clients-section").then((mod) => mod.ClientsSection));
 const QHSESection = dynamic(() => import("@/components/home/qhse-section").then((mod) => mod.QHSESection));
@@ -25,7 +24,6 @@ export default function HomePage() {
       <ServicesSection />
       {/* <WhyMacwestSection /> */}
 
-      <VisionParallaxSection />
       {/* <ProjectsSection /> */}
       {/* <ClientsSection /> */}
       <QHSESection />

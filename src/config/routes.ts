@@ -39,7 +39,7 @@ export const mainNav: readonly NavItem[] = [
       { label: "Completed Projects", href: "/past-project" },
     ],
   },
-  { label: "Partners", href: "/partners" },
+  // { label: "Partners", href: "/partners" },
   { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },
 ] as const;

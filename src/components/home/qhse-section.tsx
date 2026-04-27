@@ -138,7 +138,7 @@ export function QHSESection() {
             >
               <m.div style={{ y: parallaxY }} className="absolute inset-0 scale-110">
                 <Image
-                  src="/images/0T6A9949.jpg.jpeg"
+                  src="/images/qhse.jpg.jpeg"
                   alt="Macwest construction workers in full safety gear"
                   fill
                   className="object-cover"
@@ -161,7 +161,7 @@ export function QHSESection() {
               className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-card border border-white"
             >
               <Image
-                src="/images/IMG_8104-scaled.jpg.jpeg"
+                src="/images/0T6A9949.jpg.jpeg"
                 alt="Workers on scaffolding following safety protocols"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-[1.03]"
@@ -177,10 +177,10 @@ export function QHSESection() {
               className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-card border border-white"
             >
               <Image
-                src="/images/about-us-22.jpg.jpeg"
+                src="/images/QHSEE.avif"
                 alt="Safety briefing on Macwest construction site"
                 fill
-                className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                className="object-cover center transition-transform duration-700 hover:scale-[1.03]"
                 sizes="(max-width: 640px) 100vw, 25vw"
               />
             </GSAPReveal>
