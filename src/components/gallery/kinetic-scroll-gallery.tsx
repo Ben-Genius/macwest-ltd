@@ -40,7 +40,7 @@ function Lightbox({
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/92"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -73,7 +73,7 @@ function Lightbox({
           /* eslint-disable-next-line @next/next/no-img-element */
           src={images[index].src}
           alt={images[index].alt}
-          className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain"
+          className="max-h-[85vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
@@ -104,20 +104,16 @@ function KineticTile({
   scrollVelocity: MotionValue<number>;
   onClick: () => void;
 }) {
-  const smoothed = useSpring(scrollVelocity, {
-    mass: 0.1,
-    stiffness: 80,
-    damping: 40,
-  });
+  const smoothed = useSpring(scrollVelocity, { mass: 0.1, stiffness: 80, damping: 40 });
   const skew = useTransform(smoothed, [-1500, 0, 1500], [-15, 0, 15]);
 
   return (
     <motion.div
-      className="group relative w-full cursor-pointer overflow-hidden rounded-lg"
+      className="group relative w-full cursor-pointer overflow-hidden rounded-lg bg-navy-50"
       style={{ skewX: skew }}
       onClick={onClick}
     >
-      {/* inner image scaled up to hide skew bleed edges */}
+      {/* scale(1.15) prevents edge bleed during skew */}
       <div className="relative h-64 overflow-hidden" style={{ transform: "scale(1.15)" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -127,7 +123,7 @@ function KineticTile({
         />
       </div>
       {/* hover overlay */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      <div className="absolute inset-0 flex items-center justify-center bg-navy-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <div className="rounded-full bg-white/20 p-3 backdrop-blur-sm">
           <svg className="size-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
@@ -142,7 +138,6 @@ function KineticTile({
 
 export function KineticScrollGallery({ images }: { images: GalleryImage[] }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
 
@@ -156,7 +151,7 @@ export function KineticScrollGallery({ images }: { images: GalleryImage[] }) {
   );
 
   return (
-    <div className="min-h-screen bg-navy-950 py-12">
+    <div className="min-h-screen bg-white py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {images.map((img, i) => (

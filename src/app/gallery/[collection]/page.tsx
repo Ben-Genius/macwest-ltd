@@ -1,12 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-import { GALLERY_COLLECTIONS, getCollection } from "@/data/gallery";
+import { GALLERY_COLLECTIONS, getCollection, type GalleryImage } from "@/data/gallery";
 import { CollectionHeader } from "@/components/gallery/collection-header";
 import { KineticScrollGallery } from "@/components/gallery/kinetic-scroll-gallery";
 import { GalleryGridBlock } from "@/components/gallery/gallery-grid-block";
-import { DraggableGrid } from "@/components/gallery/draggable-grid";
-import { SubAlbumPicker } from "@/components/gallery/sub-album-picker";
 
 type Props = { params: Promise<{ collection: string }> };
 
@@ -30,39 +28,44 @@ export default async function CollectionPage({ params }: Props) {
   const collection = getCollection(slug);
   if (!collection) notFound();
 
-  const isNested = collection.type === "nested";
-  const count = isNested ? collection.subAlbums?.length : collection.images?.length;
+  /* ── Nested: combine all sub-album images with category label ── */
+  if (collection.type === "nested" && collection.subAlbums) {
+    const count = collection.subAlbums.length;
+    const combinedImages: GalleryImage[] = collection.subAlbums.flatMap(
+      (album) => album.images.map((img) => ({ ...img, category: album.title })),
+    );
 
-  /* nested → sub-album picker, no header needed */
-  if (isNested && collection.subAlbums) {
     return (
       <>
         <CollectionHeader
           title={collection.title}
           description={collection.description}
-          breadcrumbs={[{ label: "Gallery", href: "/gallery" }, { label: collection.title }]}
+          breadcrumbs={[
+            { label: "Gallery", href: "/gallery" },
+            { label: collection.title },
+          ]}
           tag={`${count} album${count !== 1 ? "s" : ""}`}
         />
-        <SubAlbumPicker collectionSlug={collection.slug} subAlbums={collection.subAlbums} />
+        <GalleryGridBlock images={combinedImages} />
       </>
     );
   }
 
+  /* ── Flat ── */
   if (!collection.images) notFound();
 
+  const count = collection.images.length;
   const style = collection.displayStyle ?? "kinetic";
-
-  /* drag style fills the viewport — no header */
-  if (style === "drag") {
-    return <DraggableGrid images={collection.images} />;
-  }
 
   return (
     <>
       <CollectionHeader
         title={collection.title}
         description={collection.description}
-        breadcrumbs={[{ label: "Gallery", href: "/gallery" }, { label: collection.title }]}
+        breadcrumbs={[
+          { label: "Gallery", href: "/gallery" },
+          { label: collection.title },
+        ]}
         tag={`${count} photo${count !== 1 ? "s" : ""}`}
       />
       {style === "grid" ? (
