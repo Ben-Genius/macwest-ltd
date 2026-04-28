@@ -56,6 +56,8 @@ function GalleryCard({ card }: { card: CollectionCard }) {
       <img
         src={card.src}
         alt={card.title}
+        loading="lazy"
+        decoding="async"
         className="aspect-2/1 block h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105 "
       />
       <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -72,7 +74,7 @@ export function GalleryHero() {
     <div className="relative bg-white p-12">
       {/* ── Hero text ── */}
       <motion.div
-        className="relative z-[9999] -mb-16 px-6 pt-32 text-center sm:pt-40"
+        className="relative z-[9999] -mb-16 px-6 pt-32 text-center sm:pt-40 pointer-events-none"
         variants={containerV}
         initial="hidden"
         animate="show"

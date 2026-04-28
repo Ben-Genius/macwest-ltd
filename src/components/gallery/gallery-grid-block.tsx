@@ -114,10 +114,10 @@ export function GalleryGridBlock({ images }: GalleryGridBlockProps) {
               <motion.div
                 key={`${filter}-${index}`}
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
                 role="listitem"
               >
                 <Card

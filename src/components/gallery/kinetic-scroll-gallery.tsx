@@ -8,7 +8,7 @@ import {
   useSpring,
   useTransform,
   AnimatePresence,
-  MotionValue,
+  type MotionValue,
 } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { type GalleryImage } from "@/data/gallery";
@@ -97,20 +97,20 @@ function Lightbox({
 
 function KineticTile({
   image,
-  scrollVelocity,
+  skew,
   onClick,
+  priority,
 }: {
   image: GalleryImage;
-  scrollVelocity: MotionValue<number>;
+  skew: MotionValue<number>;
   onClick: () => void;
+  priority?: boolean;
 }) {
-  const smoothed = useSpring(scrollVelocity, { mass: 0.1, stiffness: 80, damping: 40 });
-  const skew = useTransform(smoothed, [-1500, 0, 1500], [-15, 0, 15]);
 
   return (
     <motion.div
       className="group relative w-full cursor-pointer overflow-hidden rounded-lg bg-navy-50"
-      style={{ skewX: skew }}
+      style={{ skewX: skew as MotionValue<number> }}
       onClick={onClick}
     >
       {/* scale(1.15) prevents edge bleed during skew */}
@@ -119,6 +119,8 @@ function KineticTile({
         <img
           src={image.src}
           alt={image.alt}
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
@@ -140,6 +142,8 @@ export function KineticScrollGallery({ images }: { images: GalleryImage[] }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
+  const smoothed = useSpring(scrollVelocity, { mass: 0.1, stiffness: 80, damping: 40 });
+  const skew = useTransform(smoothed, [-1500, 0, 1500], [-15, 0, 15]);
 
   const handlePrev = useCallback(
     () => setLightboxIndex((i) => (i !== null ? (i - 1 + images.length) % images.length : 0)),
@@ -158,7 +162,8 @@ export function KineticScrollGallery({ images }: { images: GalleryImage[] }) {
             <KineticTile
               key={i}
               image={img}
-              scrollVelocity={scrollVelocity}
+              skew={skew}
+              priority={i < 6}
               onClick={() => setLightboxIndex(i)}
             />
           ))}

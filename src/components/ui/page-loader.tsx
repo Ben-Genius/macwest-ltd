@@ -19,18 +19,17 @@ export function PageLoader() {
     const maxTimer = setTimeout(() => {
       setIsVisible(false);
       document.body.style.overflow = "";
-    }, 4500);
+    }, 2500);
 
-    const dismiss = () =>
-      setTimeout(() => {
-        setIsVisible(false);
-        document.body.style.overflow = "";
-      }, 500);
+    const dismiss = () => {
+      setIsVisible(false);
+      document.body.style.overflow = "";
+    };
 
     if (document.readyState === "complete") {
-      setTimeout(dismiss, 2500);
+      setTimeout(dismiss, 600);
     } else {
-      window.addEventListener("load", () => setTimeout(dismiss, 2500), { once: true });
+      window.addEventListener("load", () => setTimeout(dismiss, 600), { once: true });
     }
 
     return () => {
@@ -45,7 +44,7 @@ export function PageLoader() {
         <m.div
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
-          transition={{ duration: 1.05, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white overflow-hidden"
         >
           {/* Top accent sweep */}
