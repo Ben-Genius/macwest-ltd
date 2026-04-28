@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 
 import { GALLERY_COLLECTIONS, getCollection } from "@/data/gallery";
 import { CollectionHeader } from "@/components/gallery/collection-header";
-import { KineticPhotoGrid } from "@/components/gallery/kinetic-photo-grid";
+import { KineticScrollGallery } from "@/components/gallery/kinetic-scroll-gallery";
+import { GalleryGridBlock } from "@/components/gallery/gallery-grid-block";
+import { DraggableGrid } from "@/components/gallery/draggable-grid";
 import { SubAlbumPicker } from "@/components/gallery/sub-album-picker";
 
 type Props = { params: Promise<{ collection: string }> };
@@ -29,34 +31,45 @@ export default async function CollectionPage({ params }: Props) {
   if (!collection) notFound();
 
   const isNested = collection.type === "nested";
-  const count = isNested
-    ? collection.subAlbums?.length
-    : collection.images?.length;
+  const count = isNested ? collection.subAlbums?.length : collection.images?.length;
+
+  /* nested → sub-album picker, no header needed */
+  if (isNested && collection.subAlbums) {
+    return (
+      <>
+        <CollectionHeader
+          title={collection.title}
+          description={collection.description}
+          breadcrumbs={[{ label: "Gallery", href: "/gallery" }, { label: collection.title }]}
+          tag={`${count} album${count !== 1 ? "s" : ""}`}
+        />
+        <SubAlbumPicker collectionSlug={collection.slug} subAlbums={collection.subAlbums} />
+      </>
+    );
+  }
+
+  if (!collection.images) notFound();
+
+  const style = collection.displayStyle ?? "kinetic";
+
+  /* drag style fills the viewport — no header */
+  if (style === "drag") {
+    return <DraggableGrid images={collection.images} />;
+  }
 
   return (
     <>
       <CollectionHeader
         title={collection.title}
         description={collection.description}
-        breadcrumbs={[
-          { label: "Gallery", href: "/gallery" },
-          { label: collection.title },
-        ]}
-        tag={
-          isNested
-            ? `${count} album${count !== 1 ? "s" : ""}`
-            : `${count} photo${count !== 1 ? "s" : ""}`
-        }
+        breadcrumbs={[{ label: "Gallery", href: "/gallery" }, { label: collection.title }]}
+        tag={`${count} photo${count !== 1 ? "s" : ""}`}
       />
-
-      {isNested && collection.subAlbums ? (
-        <SubAlbumPicker
-          collectionSlug={collection.slug}
-          subAlbums={collection.subAlbums}
-        />
-      ) : collection.images ? (
-        <KineticPhotoGrid images={collection.images} />
-      ) : null}
+      {style === "grid" ? (
+        <GalleryGridBlock images={collection.images} />
+      ) : (
+        <KineticScrollGallery images={collection.images} />
+      )}
     </>
   );
 }

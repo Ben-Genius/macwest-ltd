@@ -21,12 +21,15 @@ export type GallerySubAlbum = {
   images: GalleryImage[];
 };
 
+export type DisplayStyle = "kinetic" | "grid" | "drag";
+
 export type GalleryCollection = {
   title: string;
   slug: string;
   cover: string;
   description?: string;
   type: "flat" | "nested";
+  displayStyle?: DisplayStyle;
   featured?: boolean;
   span?: "normal" | "wide" | "tall";
   images?: GalleryImage[];
@@ -40,6 +43,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: "/images/IMG_2760-scaled.jpg.jpeg",
     description: "Board and leadership site inspections across active construction projects.",
     type: "flat",
+    displayStyle: "kinetic",
     featured: true,
     span: "tall",
     images: [
@@ -215,6 +219,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: "/images/IMG_8104-scaled.jpg.jpeg",
     description: "Internal engagement activities between staff and board members.",
     type: "flat",
+    displayStyle: "drag",
     images: [
       { src: "/images/IMG_8104-scaled.jpg.jpeg", alt: "Staff board engagement" },
       { src: "/images/IMG_8104-scaled.jpg_1.jpeg", alt: "Board engagement session" },
@@ -230,6 +235,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: wp("2025", "03", "E53A1491-scaled.jpg"),
     description: "Day 1 of the ENI Ghana sponsored cleaning and cooking skills training programme.",
     type: "flat",
+    displayStyle: "kinetic",
     images: [
       { src: wp("2025", "03", "E53A1438.jpg"), alt: "ENI training session" },
       { src: wp("2025", "03", "E53A1440.jpg"), alt: "Training activity" },
@@ -258,6 +264,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: wp("2025", "03", "E53A1529.jpg"),
     description: "Day 2 of the ENI Ghana sponsored cleaning and cooking skills training programme.",
     type: "flat",
+    displayStyle: "kinetic",
     images: [
       { src: wp("2025", "03", "E53A1529.jpg"), alt: "ENI training day 2" },
       { src: wp("2025", "03", "E53A1538-scaled.jpg"), alt: "Day 2 training", orientation: "portrait" },
@@ -275,6 +282,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: "/images/IMG_4737-scaled.jpg.jpeg",
     description: "Vendor Integrity Screening training programme delivered in partnership with ENI Ghana.",
     type: "flat",
+    displayStyle: "grid",
     images: [
       { src: "/images/IMG_4737-scaled.jpg.jpeg", alt: "VIS training" },
       { src: "/images/IMG_4738-scaled.jpg.jpeg", alt: "VIS training session" },
@@ -287,6 +295,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: "/images/IMG_4738-scaled.jpg.jpeg",
     description: "LDPJ community engagement event held at Bakanta Palace.",
     type: "flat",
+    displayStyle: "grid",
     images: [
       { src: "/images/IMG_4738-scaled.jpg.jpeg", alt: "Bakanta Palace engagement" },
       { src: "/images/IMG_4741-scaled.jpg.jpeg", alt: "Community engagement" },
@@ -299,6 +308,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: "/images/IMG_4741-scaled.jpg.jpeg",
     description: "LDPJ community engagement event held at Sanzule Palace.",
     type: "flat",
+    displayStyle: "grid",
     images: [
       { src: "/images/IMG_4741-scaled.jpg.jpeg", alt: "Sanzule Palace engagement" },
       { src: "/images/IMG_4737-scaled.jpg.jpeg", alt: "Community engagement" },
@@ -311,6 +321,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: wp2("2025", "03", "8D4A2129.jpg"),
     description: "Macwest-sponsored inter-schools sports and skills competition.",
     type: "flat",
+    displayStyle: "drag",
     span: "wide",
     images: [
       { src: wp2("2025", "03", "8D4A2129.jpg"), alt: "Inter schools competition" },
@@ -338,6 +349,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: "/images/0T6A9895.jpg.jpeg",
     description: "Celebrations marking Enrico Mattei Week in partnership with ENI Ghana.",
     type: "flat",
+    displayStyle: "kinetic",
     images: [
       { src: "/images/0T6A9895.jpg.jpeg", alt: "Enrico Mattei week celebration" },
       { src: "/images/0T6A9949.jpg.jpeg", alt: "Celebration event" },
@@ -352,6 +364,7 @@ export const GALLERY_COLLECTIONS: GalleryCollection[] = [
     cover: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg.jpeg",
     description: "Official handing over ceremony for the completed AstroTurf construction project.",
     type: "flat",
+    displayStyle: "kinetic",
     images: [
       { src: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg.jpeg", alt: "AstroTurf aerial view" },
       { src: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg_1.jpeg", alt: "Handover ceremony" },

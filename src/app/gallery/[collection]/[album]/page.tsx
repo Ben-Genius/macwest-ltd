@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 import { GALLERY_COLLECTIONS, getCollection, getSubAlbum } from "@/data/gallery";
 import { CollectionHeader } from "@/components/gallery/collection-header";
-import { KineticPhotoGrid } from "@/components/gallery/kinetic-photo-grid";
+import { GalleryGridBlock } from "@/components/gallery/gallery-grid-block";
 
 type Props = { params: Promise<{ collection: string; album: string }> };
 
@@ -35,7 +35,6 @@ export default async function SubAlbumPage({ params }: Props) {
   const { collection: cSlug, album: aSlug } = await params;
   const collection = getCollection(cSlug);
   const album = getSubAlbum(cSlug, aSlug);
-
   if (!collection || !album) notFound();
 
   return (
@@ -50,7 +49,7 @@ export default async function SubAlbumPage({ params }: Props) {
         ]}
         tag={collection.title}
       />
-      <KineticPhotoGrid images={album.images} />
+      <GalleryGridBlock images={album.images} />
     </>
   );
 }
