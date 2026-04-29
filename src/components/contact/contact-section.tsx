@@ -1,19 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { m, LazyMotion, domAnimation } from "framer-motion";
 import { CheckCircle2, AlertCircle } from "lucide-react";
-import { fadeInLeft, fadeInRight, fadeInUp, staggerParent } from "@/lib/animations";
+import { GSAPReveal } from "@/components/ui/gsap-reveal";
+import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 
 const contactGrid = [
   {
     label: "Call Center",
     lines: ["+233 30 000 0000", "+233 24 000 0000"],
   },
-  // {
-  //   label: "Our Location",
-  //   lines: ["Accra, Greater Accra", "Region, Ghana"],
-  // },
+  {
+    label: "Our Location",
+    lines: ["Accra, Greater Accra", "Region, Ghana"],
+  },
   {
     label: "Email",
     lines: ["info@macwest.com"],
@@ -67,8 +67,6 @@ const socialLinks = [
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-const staggerInfo = staggerParent(0.08, 0.2);
-
 export function ContactSection() {
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({
@@ -93,91 +91,80 @@ export function ContactSection() {
   }
 
   return (
-    <LazyMotion features={domAnimation}>
-      <section className="bg-white py-20 sm:py-28">
-        <div className="max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid lg:grid-cols-[1fr_480px] gap-12 lg:gap-20 items-start">
+    <section className="bg-white py-20 sm:py-28">
+      <div className="max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="grid lg:grid-cols-[1fr_480px] gap-12 lg:gap-20 items-start">
 
-            {/* ── LEFT: Editorial info ──────────────────────────── */}
-            <m.div
-              variants={fadeInLeft}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
-              {/* Tag */}
+          {/* ── LEFT: Editorial info ────────────────────────────── */}
+          <div>
+            {/* Tag */}
+            <GSAPReveal delay={0.05} y={18} duration={0.7}>
               <p className="text-sm italic text-navy-400 mb-6">/ get in touch /</p>
+            </GSAPReveal>
 
-              {/* Big heading */}
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-navy-950 leading-[1.08] tracking-tight mb-6 max-w-2xl">
-                We are always ready to help you and answer your questions
-              </h2>
+            {/* Big heading — word stagger */}
+            <GSAPStaggerText
+              text="We are always ready to help you and answer your questions"
+              delay={0.12}
+              duration={0.85}
+              stagger={0.04}
+              y={40}
+              className="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-navy-950 leading-[1.08] tracking-tight mb-6 max-w-2xl"
+            />
 
-              {/* Body copy */}
+            {/* Body copy */}
+            <GSAPReveal delay={0.22} y={20} duration={0.8}>
               <p className="text-sm text-navy-400 leading-relaxed mb-14 max-w-md">
                 From civil infrastructure to MEP and structural engineering —
                 certified, precise, and built to international standards.
                 Reach out and let&apos;s get started.
               </p>
+            </GSAPReveal>
 
-              {/* 2×2 contact grid */}
-              <m.div
-                variants={staggerInfo}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="grid grid-cols-2 gap-x-10 gap-y-10"
-              >
-                {contactGrid.map(({ label, lines, social }) => (
-                  <m.div key={label} variants={fadeInUp}>
-                    <p className="text-sm font-bold text-navy-950 mb-2">{label}</p>
-                    {social ? (
-                      <div className="flex items-center gap-4 mt-1">
-                        {socialLinks.map(({ label: sl, href, svg }) => (
-                          <a
-                            key={sl}
-                            href={href}
-                            aria-label={sl}
-                            className="text-navy-500 hover:text-navy-950 transition-colors duration-150"
-                          >
-                            {svg}
-                          </a>
-                        ))}
-                      </div>
-                    ) : (
-                      lines?.map((line) => (
-                        <p key={line} className="text-sm text-navy-500 leading-relaxed">
-                          {line}
-                        </p>
-                      ))
-                    )}
-                  </m.div>
-                ))}
-              </m.div>
-            </m.div>
+            {/* 2×2 contact grid — each cell staggers in */}
+            <div className="grid grid-cols-2 gap-x-10 gap-y-10">
+              {contactGrid.map(({ label, lines, social }, i) => (
+                <GSAPReveal key={label} delay={0.28 + i * 0.09} y={16} duration={0.75}>
+                  <p className="text-sm font-bold text-navy-950 mb-2">{label}</p>
+                  {social ? (
+                    <div className="flex items-center gap-4 mt-1">
+                      {socialLinks.map(({ label: sl, href, svg }) => (
+                        <a
+                          key={sl}
+                          href={href}
+                          aria-label={sl}
+                          className="text-navy-500 hover:text-navy-950 transition-colors duration-150"
+                        >
+                          {svg}
+                        </a>
+                      ))}
+                    </div>
+                  ) : (
+                    lines?.map((line) => (
+                      <p key={line} className="text-sm text-navy-500 leading-relaxed">
+                        {line}
+                      </p>
+                    ))
+                  )}
+                </GSAPReveal>
+              ))}
+            </div>
+          </div>
 
-            {/* ── RIGHT: Form card ─────────────────────────────── */}
-            <m.div
-              variants={fadeInRight}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="bg-[#F4F4F4] rounded-2xl p-8 sm:p-10"
-            >
-              <h3 className="font-display text-xl font-semibold text-navy-950 mb-1">
-                Get in Touch
-              </h3>
-              <p className="text-xs text-navy-500 leading-relaxed mb-8">
-                Define your goals and identify areas where we can add value to your project.
-              </p>
+          {/* ── RIGHT: Form card ──────────────────────────────────── */}
+          <GSAPReveal delay={0.18} x={50} y={0} duration={1.05} className="h-full">
+            <div className="bg-[#F4F4F4] rounded-2xl p-8 sm:p-10">
+              <GSAPReveal delay={0.3} y={14} duration={0.7}>
+                <h3 className="font-display text-xl font-semibold text-navy-950 mb-1">
+                  Get in Touch
+                </h3>
+                <p className="text-xs text-navy-500 leading-relaxed mb-8">
+                  Define your goals and identify areas where we can add value to your project.
+                </p>
+              </GSAPReveal>
 
               {status === "sent" ? (
-                <m.div
-                  variants={fadeInUp}
-                  initial="hidden"
-                  animate="show"
-                  className="flex flex-col items-center justify-center gap-4 py-14 text-center"
-                >
+                <div className="flex flex-col items-center justify-center gap-4 py-14 text-center">
                   <CheckCircle2 className="text-brand-600" size={44} strokeWidth={1.5} />
                   <h4 className="font-display text-lg font-bold text-navy-900">
                     Message received!
@@ -194,47 +181,36 @@ export function ContactSection() {
                   >
                     Send another message
                   </button>
-                </m.div>
+                </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-0">
-                  <UnderlineField
-                    label="Full name"
-                    name="fullName"
-                    placeholder="Full name"
-                    value={form.fullName}
-                    onChange={handleChange}
-                    required
-                  />
-                  <UnderlineField
-                    label="Email"
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <UnderlineField
-                    label="Subject"
-                    name="subject"
-                    placeholder="Subject"
-                    value={form.subject}
-                    onChange={handleChange}
-                    required
-                  />
+                  {(["fullName", "email", "subject"] as const).map((field, i) => (
+                    <GSAPReveal key={field} delay={0.38 + i * 0.08} y={12} duration={0.6}>
+                      <UnderlineField
+                        label={field === "fullName" ? "Full name" : field.charAt(0).toUpperCase() + field.slice(1)}
+                        name={field}
+                        type={field === "email" ? "email" : "text"}
+                        placeholder={field === "fullName" ? "Full name" : field.charAt(0).toUpperCase() + field.slice(1)}
+                        value={form[field]}
+                        onChange={handleChange}
+                        required
+                      />
+                    </GSAPReveal>
+                  ))}
 
-                  {/* Message */}
-                  <div className="border-b border-navy-200 py-4">
-                    <textarea
-                      name="message"
-                      rows={4}
-                      placeholder="Message"
-                      value={form.message}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-transparent text-sm text-navy-900 placeholder:text-navy-400 focus:outline-none resize-none"
-                    />
-                  </div>
+                  <GSAPReveal delay={0.62} y={12} duration={0.6}>
+                    <div className="border-b border-navy-200 py-4">
+                      <textarea
+                        name="message"
+                        rows={4}
+                        placeholder="Message"
+                        value={form.message}
+                        onChange={handleChange}
+                        required
+                        className="w-full bg-transparent text-sm text-navy-900 placeholder:text-navy-400 focus:outline-none resize-none"
+                      />
+                    </div>
+                  </GSAPReveal>
 
                   {status === "error" && (
                     <div className="flex items-center gap-2 text-sm text-red-600 pt-2">
@@ -243,34 +219,32 @@ export function ContactSection() {
                     </div>
                   )}
 
-                  <div className="pt-8">
-                    <m.button
-                      type="submit"
-                      disabled={status === "sending"}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-brand-600 hover:bg-navy-800 disabled:opacity-60 text-white text-sm font-semibold tracking-wide transition-colors duration-200"
-                    >
-                      {status === "sending" ? (
-                        <>
-                          <span className="block w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          Sending…
-                        </>
-                      ) : (
-                        <>
-                          Send a message
-                        </>
-                      )}
-                    </m.button>
-                  </div>
+                  <GSAPReveal delay={0.7} y={12} duration={0.6}>
+                    <div className="pt-8">
+                      <button
+                        type="submit"
+                        disabled={status === "sending"}
+                        className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-brand-600 hover:bg-brand-700 active:scale-[0.97] disabled:opacity-60 text-white text-sm font-semibold tracking-wide transition-all duration-200"
+                      >
+                        {status === "sending" ? (
+                          <>
+                            <span className="block w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Sending…
+                          </>
+                        ) : (
+                          "Send a message"
+                        )}
+                      </button>
+                    </div>
+                  </GSAPReveal>
                 </form>
               )}
-            </m.div>
+            </div>
+          </GSAPReveal>
 
-          </div>
         </div>
-      </section>
-    </LazyMotion>
+      </div>
+    </section>
   );
 }
 
@@ -286,15 +260,7 @@ interface UnderlineFieldProps {
   required?: boolean;
 }
 
-function UnderlineField({
-  label,
-  name,
-  type = "text",
-  placeholder,
-  value,
-  onChange,
-  required,
-}: UnderlineFieldProps) {
+function UnderlineField({ label, name, type = "text", placeholder, value, onChange, required }: UnderlineFieldProps) {
   return (
     <div className="border-b border-navy-200 py-4">
       <input

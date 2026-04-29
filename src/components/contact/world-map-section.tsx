@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
-import { m, LazyMotion, domAnimation } from "framer-motion";
-import { fadeInLeft, fadeInRight, fadeInUp, staggerParent } from "@/lib/animations";
+import { GSAPReveal } from "@/components/ui/gsap-reveal";
+import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 
 const GEO_URL = "/world-110m.json";
 
@@ -28,59 +28,53 @@ const locations: Location[] = [
     name: "Takoradi, Ghana",
     address: "Western Region, Ghana",
     flag: "🇬🇭",
-    coordinates: [-0.128, 21.508],
+    coordinates: [-1.75, 4.9],
   },
 ];
-
-const staggerCards = staggerParent(0.1, 0.15);
 
 export function WorldMapSection() {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
-    <LazyMotion features={domAnimation}>
-      <section className="bg-white border-t-1 border-navy-100   py-20 sm:py-28 overflow-hidden">
-        <div className="max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid lg:grid-cols-[380px_1fr] gap-12 lg:gap-16 items-center">
+    <section className="bg-white border-t border-navy-100 py-20 sm:py-28 overflow-hidden">
+      <div className="max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="grid lg:grid-cols-[380px_1fr] gap-12 lg:gap-16 items-center">
 
-            {/* ── LEFT: Text + location cards ──────────────────── */}
-            <m.div
-              variants={fadeInLeft}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="flex flex-col"
-            >
+          {/* ── LEFT: Text + location cards ──────────────────────── */}
+          <div className="flex flex-col">
+            <GSAPReveal delay={0.05} y={18} duration={0.7}>
               <p className="text-sm italic text-navy-400 mb-6">/ our locations /</p>
+            </GSAPReveal>
 
-              <h2 className="font-display text-4xl sm:text-5xl font-bold text-navy-950 leading-[1.08] tracking-tight mb-6">
-                Where to find us
-              </h2>
+            <GSAPStaggerText
+              text="Where to find us"
+              delay={0.12}
+              duration={0.9}
+              stagger={0.05}
+              y={38}
+              className="font-display text-4xl sm:text-5xl font-bold text-navy-950 leading-[1.08] tracking-tight mb-6"
+            />
 
+            <GSAPReveal delay={0.22} y={18} duration={0.8}>
               <p className="text-sm text-navy-400 leading-relaxed mb-12 max-w-sm">
                 Headquartered in Ghana with a growing international footprint —
                 delivering certified engineering excellence across borders.
               </p>
+            </GSAPReveal>
 
-              {/* Location cards */}
-              <m.div
-                variants={staggerCards}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="flex flex-col gap-3"
-              >
-                {locations.map((loc) => (
-                  <m.button
-                    key={loc.id}
-                    variants={fadeInUp}
+            {/* Location cards — staggered */}
+            <div className="flex flex-col gap-3">
+              {locations.map((loc, i) => (
+                <GSAPReveal key={loc.id} delay={0.3 + i * 0.1} y={16} duration={0.75}>
+                  <button
                     onMouseEnter={() => setActiveId(loc.id)}
                     onMouseLeave={() => setActiveId(null)}
                     onClick={() => setActiveId(activeId === loc.id ? null : loc.id)}
-                    className={`text-left flex items-center gap-4 rounded-2xl border px-6 py-4 transition-all duration-200 ${activeId === loc.id
-                      ? "bg-navy-950 border-navy-950"
-                      : "bg-white border-navy-100 hover:border-navy-300"
-                      }`}
+                    className={`w-full text-left flex items-center gap-4 rounded-2xl border px-6 py-4 transition-all duration-200 ${
+                      activeId === loc.id
+                        ? "bg-navy-950 border-navy-950"
+                        : "bg-white border-navy-100 hover:border-navy-300"
+                    }`}
                   >
                     <span className="text-2xl leading-none">{loc.flag}</span>
                     <div>
@@ -92,19 +86,15 @@ export function WorldMapSection() {
                       </p>
                     </div>
                     <div className={`ml-auto w-2 h-2 rounded-full flex-shrink-0 ${activeId === loc.id ? "bg-gold-400" : "bg-navy-200"}`} />
-                  </m.button>
-                ))}
-              </m.div>
-            </m.div>
+                  </button>
+                </GSAPReveal>
+              ))}
+            </div>
+          </div>
 
-            {/* ── RIGHT: Map ───────────────────────────────────── */}
-            <m.div
-              variants={fadeInRight}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="relative rounded-2xl overflow-hidden border border-brand-100 bg-navy-50/30"
-            >
+          {/* ── RIGHT: Map ─────────────────────────────────────────── */}
+          <GSAPReveal delay={0.18} x={60} y={0} duration={1.1} className="relative">
+            <div className="relative rounded-2xl overflow-hidden border border-brand-100 bg-navy-50/30">
               <ComposableMap
                 projection="geoMercator"
                 projectionConfig={{ scale: 135, center: [15, 25] }}
@@ -115,10 +105,7 @@ export function WorldMapSection() {
                 <defs>
                   <pattern
                     id="dot-land"
-                    x="0"
-                    y="0"
-                    width="5"
-                    height="5"
+                    x="0" y="0" width="5" height="5"
                     patternUnits="userSpaceOnUse"
                   >
                     <circle cx="2" cy="2" r="1.1" fill="#12161E" opacity="0.9" />
@@ -142,7 +129,7 @@ export function WorldMapSection() {
                         stroke="none"
                         style={{
                           default: { outline: "none" },
-                          hover: { outline: "none" },
+                          hover:   { outline: "none" },
                           pressed: { outline: "none" },
                         }}
                       />
@@ -208,21 +195,21 @@ export function WorldMapSection() {
                 })}
               </ComposableMap>
 
-              {/* Vignette edges */}
-              <div className="pointer-events-none absolute inset-0 rounded-3xl shadow-[inset_0_0_60px_20px_white]" />
-            </m.div>
+              {/* Vignette */}
+              <div className="pointer-events-none absolute inset-0 rounded-2xl shadow-[inset_0_0_60px_20px_white]" />
+            </div>
+          </GSAPReveal>
 
-          </div>
         </div>
+      </div>
 
-        <style>{`
-          @keyframes map-ping {
-            0%   { transform: scale(1);   opacity: 0.18; }
-            70%  { transform: scale(1.8); opacity: 0; }
-            100% { transform: scale(1.8); opacity: 0; }
-          }
-        `}</style>
-      </section>
-    </LazyMotion>
+      <style>{`
+        @keyframes map-ping {
+          0%   { transform: scale(1);   opacity: 0.18; }
+          70%  { transform: scale(1.8); opacity: 0; }
+          100% { transform: scale(1.8); opacity: 0; }
+        }
+      `}</style>
+    </section>
   );
 }
