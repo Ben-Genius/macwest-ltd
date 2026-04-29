@@ -30,29 +30,14 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
     rafId = requestAnimationFrame(raf);
 
-    // Global resize handler to ensure Lenis recalculates dynamically
     const resizeObserver = new ResizeObserver(() => {
       lenis.resize();
     });
-    // Observing documentElement tends to be more reliable in Next.js
     resizeObserver.observe(document.documentElement);
-    resizeObserver.observe(document.body);
-
-    // Some dynamic elements (images, lazy loaders) might slip past ResizeObserver
-    const mutationObserver = new MutationObserver(() => {
-      lenis.resize();
-    });
-    mutationObserver.observe(document.body, { 
-      childList: true, 
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["style", "class"] 
-    });
 
     return () => {
       cancelAnimationFrame(rafId);
       resizeObserver.disconnect();
-      mutationObserver.disconnect();
       lenis.destroy();
     };
   }, []);

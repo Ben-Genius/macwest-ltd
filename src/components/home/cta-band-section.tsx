@@ -1,63 +1,83 @@
 "use client";
 
-import { DicedHeroSection } from "@/components/ui/diced-hero-section";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { m } from "framer-motion";
+import { fadeInUp, scaleIn } from "@/lib/animations";
+import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 
 export function CTABandSection() {
-  const router = useRouter();
-
   return (
-    <section className="relative bg-sand-50 py-10 md:py-20 border-t border-black/5 overflow-hidden">
-      <DicedHeroSection
-        topText="Start a project"
-        mainText="Your Vision"
-        subMainText="Let's build the infrastructure of tomorrow. We specialize in certified civil engineering, structural developments, and MEP solutions configured to precise international standards across Ghana."
-        buttonText="Get a Quote"
-        slides={[
-          {
-            title: "Civil Engineering",
-            image: "/images/IMG_9861-scaled.jpg.jpeg",
-          },
-          {
-            title: "Construction Site",
-            image: "/images/IMG_8104-scaled.jpg.jpeg",
-          },
-          {
-            title: "Project Management",
-            image: "/images/IMG_2913-scaled.jpg_1.jpeg",
-          },
-          {
-            title: "Structural Engineering",
-            image: "/images/0T6A9963.jpg.jpeg",
-          },
-        ]}
-        onMainButtonClick={() => router.push("/contact")}
-        onGridImageHover={(index) => console.log(`Previewing project image ${index}`)}
-        onGridImageClick={(index) => router.push("/projects")}
-        topTextStyle={{ 
-          color: "oklch(42% 0.175 22)", // Brand 600 Burgundy
-          fontSize: "0.875rem",
-          gradient: "linear-gradient(45deg, oklch(51% 0.175 22), oklch(42% 0.175 22))"
-        }}
-        mainTextStyle={{
-          fontSize: "clamp(3rem, 6vw, 4.5rem)",
-          gradient: "linear-gradient(45deg, oklch(15% 0.028 248), oklch(29% 0.072 248))", // Navy gradient
-        }}
-        subMainTextStyle={{ 
-          color: "oklch(29% 0.072 248)", // Navy 700 
-          fontSize: "1.125rem" 
-        }}
-        buttonStyle={{
-          backgroundColor: "oklch(42% 0.175 22)", // Brand 600 Burgundy
-          color: "#ffffff",
-          borderRadius: "1rem",
-          hoverColor: "oklch(35% 0.160 22)", // Brand 700
-          hoverForeground: "#f5f0e8", // Sand 50
-        }}
-        separatorColor="oklch(74% 0.112 74)" // Gold 400
-        mobileBreakpoint={1000}
-        fontFamily="var(--font-sans)"
-      />
+    <section className="relative bg-brand-800 overflow-hidden">
+      {/* Ambient orbs */}
+
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20 sm:py-28 lg:py-10 text-center">
+        {/* Label */}
+        <m.p
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-xs font-bold  text-white uppercase tracking-[0.22em] text-brand-400 mb-6"
+        >
+          Start a project
+        </m.p>
+
+        {/* Headline */}
+        <GSAPStaggerText
+          text="Ready to build something that lasts?"
+          className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight justify-center mb-6"
+          y={50}
+          duration={1}
+          stagger={0.04}
+        />
+
+        {/* Subtext */}
+        <m.p
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-navy-300 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-10"
+        >
+          From civil infrastructure to MEP and structural engineering — certified, precise, and built to international standards.
+        </m.p>
+
+        {/* CTA button */}
+        <m.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <m.div
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="inline-block"
+          >
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm sm:text-base tracking-wide transition-colors duration-200 shadow-lg shadow-brand-900/40"
+            >
+              Get a Quote
+              <m.svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+              </m.svg>
+            </Link>
+          </m.div>
+        </m.div>
+
+
+      </div>
     </section>
   );
 }

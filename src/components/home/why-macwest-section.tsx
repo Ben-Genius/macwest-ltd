@@ -60,9 +60,8 @@ function ReasonRow({ reason, i }: { reason: (typeof reasons)[0]; i: number }) {
   return (
     <div
       ref={rowRef}
-      className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
-        reason.flip ? "lg:[&>*:first-child]:order-2" : ""
-      }`}
+      className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${reason.flip ? "lg:[&>*:first-child]:order-2" : ""
+        }`}
     >
       {/* Text side */}
       <m.div

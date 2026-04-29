@@ -1,4 +1,6 @@
-import { PlaceholderPage } from "@/components/pages/placeholder-page";
+import { ContactHero } from "@/components/contact/contact-hero";
+import { ContactSection } from "@/components/contact/contact-section";
+import { WorldMapSection } from "@/components/contact/world-map-section";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
@@ -8,5 +10,11 @@ export const metadata = createPageMetadata(
 );
 
 export default function ContactPage() {
-  return <PlaceholderPage title="Contact" description="Form + enquiry types will ship in the contact iteration." />;
+  return (
+    <>
+      <ContactHero />
+      <ContactSection />
+      <WorldMapSection />
+    </>
+  );
 }

@@ -231,3 +231,14 @@ html, body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+/* ── Gallery strip animations ───────────────────────────────── */
+@keyframes gallery-scroll-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+@keyframes gallery-scroll-down {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
