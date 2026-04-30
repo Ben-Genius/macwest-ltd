@@ -5,7 +5,7 @@ import { m, useInView } from "framer-motion";
 import { ZoomParallax } from "@/components/ui/zoom-parallax";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
-import { scaleIn, fadeInUp, EASE } from "@/lib/animations";
+import { scaleIn, fadeInUp } from "@/lib/animations";
 
 const visionImages = [
   { src: "/images/IMG_2913-scaled.jpg.jpeg", alt: "Commercial Building Construction site showcasing Macwest precision" },
@@ -22,7 +22,7 @@ const visionImages = [
 function ScrollCue() {
   const ref = useRef(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const isInView = useInView(ref, { once: true, margin: "-40px" as any });
+  const isInView = useInView(ref, { once: true, margin: "40px" as any });
 
   return (
     <m.div
@@ -60,13 +60,10 @@ export function VisionParallaxSection() {
 
   return (
     <section className="relative w-full overflow-hidden bg-white">
-      {/* Ambient background orb */}
-      1
-
       {/* Intro text */}
       <div
         ref={ref}
-        className="relative h-[28vh] sm:h-[30vh] max-w-[95rem] mx-auto flex flex-col items-start justify-center px-6 sm:px-12 lg:px-24 bg-white"
+        className="relative h-[28vh] sm:h-[30vh] max-w-[95rem] mx-auto flex flex-col items-start justify-center px-6 sm:px-12 lg:px-4 bg-white"
       >
         <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl text-left">
           {/* Label */}
@@ -95,7 +92,7 @@ export function VisionParallaxSection() {
             </p>
           </GSAPReveal>
 
-          <ScrollCue />
+          {/* <ScrollCue /> */}
         </div>
       </div>
 
