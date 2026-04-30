@@ -1,5 +1,8 @@
-import { PageLayout } from "@/components/pages/page-layout";
 import { createPageMetadata } from "@/lib/metadata";
+import { ProjectsOverviewHero } from "@/components/projects/projects-overview-hero";
+import { ProjectsHubCards } from "@/components/projects/projects-hub-cards";
+import { FeaturedProjects } from "@/components/projects/featured-projects";
+import { CTABandSection } from "@/components/home/cta-band-section";
 
 export const metadata = createPageMetadata(
   "Projects",
@@ -8,5 +11,12 @@ export const metadata = createPageMetadata(
 );
 
 export default function ProjectsPage() {
-  return <PageLayout title="Projects" />;
+  return (
+    <>
+      <ProjectsOverviewHero />
+      <ProjectsHubCards />
+      <FeaturedProjects />
+      <CTABandSection />
+    </>
+  );
 }

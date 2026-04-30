@@ -5,7 +5,7 @@ import { m, useInView } from "framer-motion";
 import { ZoomParallax } from "@/components/ui/zoom-parallax";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
-import { scaleIn, fadeInUp } from "@/lib/animations";
+import { scaleIn, fadeInUp, EASE } from "@/lib/animations";
 
 const visionImages = [
   { src: "/images/IMG_2913-scaled.jpg.jpeg", alt: "Commercial Building Construction site showcasing Macwest precision" },

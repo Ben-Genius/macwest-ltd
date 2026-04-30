@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import { fadeInUp, scaleIn } from "@/lib/animations";
+import { fadeInUp, scaleIn, EASE } from "@/lib/animations";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 
 export function CTABandSection() {
