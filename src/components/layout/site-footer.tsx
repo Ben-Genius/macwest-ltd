@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import { FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
+import { m } from "framer-motion";
 import { mainNav, secondaryRoutes } from "@/config/routes";
 import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
@@ -39,6 +42,7 @@ export function SiteFooter({ className }: SiteFooterProps) {
         </svg>
       </div>
 
+      {/* ── Footer grid ─────────────────────────────────────────────── */}
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 pt-20 pb-12 relative z-10">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_0.8fr_0.8fr_1.2fr]">
 
@@ -60,7 +64,6 @@ export function SiteFooter({ className }: SiteFooterProps) {
                 housing estates, and industrial infrastructure since 2011.
               </p>
 
-              {/* Socials */}
               <div className="flex items-center gap-4">
                 {socials.map(({ icon: Icon, href, label }) => (
                   <a
@@ -143,7 +146,6 @@ export function SiteFooter({ className }: SiteFooterProps) {
                 </div>
               </div>
 
-              {/* Mini Certs List */}
               <div className="space-y-2 pt-6 border-t border-white/5">
                 {certifications.map(({ label }) => (
                   <div key={label} className="flex items-center gap-2">
@@ -157,10 +159,56 @@ export function SiteFooter({ className }: SiteFooterProps) {
         </div>
       </div>
 
+      {/* ── "Let's Talk" display statement ──────────────────────────── */}
+      <div className="relative z-10 border-t border-white/5">
+        <GSAPReveal y={30} duration={1.1}>
+          <m.div
+            whileHover="hovered"
+            className="group block"
+          >
+            <Link
+              href="/contact"
+              className="flex items-end justify-between px-4 sm:px-8 lg:px-12 pt-6 pb-2 overflow-hidden"
+            >
+              {/* Giant text */}
+              <m.span
+                variants={{ hovered: { x: 6 } }}
+                transition={{ type: "spring", stiffness: 200, damping: 28 }}
+                className="font-display font-bold text-white leading-[0.88] tracking-[-0.04em] select-none"
+                style={{ fontSize: "clamp(4.5rem, 14vw, 11rem)" }}
+              >
+                Let&apos;s Collaborate
+              </m.span>
+
+              {/* Arrow circle — animates on hover */}
+              <m.div
+                variants={{
+                  hovered: { scale: 1.15, backgroundColor: "oklch(42% 0.175 22)" },
+                }}
+                transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                className="flex-shrink-0 mb-4 sm:mb-6 size-14 sm:size-20 rounded-full border border-white/20 bg-white/5 flex items-center justify-center"
+              >
+                <ArrowUpRight className="size-6 sm:size-9 text-white" />
+              </m.div>
+            </Link>
+
+            {/* Sub-line below the big text */}
+            <div className="flex items-start justify-between px-4 sm:px-8 lg:px-12 pb-8 pt-1">
+              <p className="text-[11px] text-white/30 font-medium max-w-[200px] leading-relaxed">
+                Building Ghana&apos;s infrastructure — certified, precise, and built to last.
+              </p>
+              <p className="text-[11px] text-white/30 font-medium text-right">
+                {siteConfig.company.email}
+              </p>
+            </div>
+          </m.div>
+        </GSAPReveal>
+      </div>
+
       <Separator className="bg-white/5" />
 
       {/* Bottom bar */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-6 opacity-40">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4 opacity-40">
         <p className="text-[10px] font-bold uppercase tracking-[0.2em]">
           © {new Date().getFullYear()} {siteConfig.name} &middot; RC NO. CA-89,951
         </p>

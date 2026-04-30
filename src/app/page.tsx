@@ -10,7 +10,7 @@ const ProjectsSection = dynamic(() => import("@/components/home/projects-section
 const ClientsSection = dynamic(() => import("@/components/home/clients-section").then((mod) => mod.ClientsSection));
 const QHSESection = dynamic(() => import("@/components/home/qhse-section").then((mod) => mod.QHSESection));
 const CTABandSection = dynamic(() => import("@/components/home/cta-band-section").then((mod) => mod.CTABandSection));
-
+const VisionParallaxSection = dynamic(() => import("@/components/home/vision-parallax-section").then((mod) => mod.VisionParallaxSection));
 export const metadata: Metadata = {
   title: "Home",
   description: siteConfig.description,
@@ -22,8 +22,8 @@ export default function HomePage() {
       <HeroSection />
       <CertificationsSection />
       <ServicesSection />
+      <VisionParallaxSection />
       {/* <WhyMacwestSection /> */}
-
       {/* <ProjectsSection /> */}
       {/* <ClientsSection /> */}
       <QHSESection />
