@@ -15,8 +15,7 @@ export default function ProjectsPage() {
     <>
       <ProjectsOverviewHero />
       <ProjectsHubCards />
-      <FeaturedProjects />
-      <CTABandSection />
+      {/* <CTABandSection /> */}
     </>
   );
 }

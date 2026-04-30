@@ -1,113 +1,206 @@
 "use client";
 
-import Link from "next/link";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { ACTIVE_PROJECTS, COMPLETED_PROJECTS } from "@/data/projects";
+import type { Project } from "@/data/projects";
+import { cn } from "@/lib/utils";
 
-const cards = [
-  {
-    href: "/current-projects",
-    label: "Current Projects",
-    count: ACTIVE_PROJECTS.length,
-    countLabel: "active sites",
-    description:
-      "Construction, civil engineering, MEP, and community infrastructure underway across Ghana.",
-    cover: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg_1.jpeg",
-    statusDot: "bg-emerald-400 animate-pulse",
-    statusText: "In progress",
-    statusStyle: "bg-emerald-50 text-emerald-700 border border-emerald-200",
-  },
-  {
-    href: "/past-project",
-    label: "Completed Projects",
-    count: COMPLETED_PROJECTS.length,
-    countLabel: "delivered",
-    description:
-      "Housing estates, marine logistics, sports infrastructure, and civil works — delivered.",
-    cover: "/images/IMG_8104-scaled.jpg.jpeg",
-    statusDot: "bg-navy-400",
-    statusText: "Delivered",
-    statusStyle: "bg-navy-50 text-navy-600 border border-navy-200",
-  },
-];
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-export function ProjectsHubCards() {
+/* ── Shared horizontal scroll strip ──────────────────────────── */
+interface HorizontalStripProps {
+  projects: Project[];
+  eyebrow: string;
+  title: string;
+  titleAccent: string;
+  viewMoreHref: string;
+  viewMoreLabel: string;
+  statusVariant: "active" | "completed";
+}
+
+function HorizontalStrip({
+  projects,
+  eyebrow,
+  title,
+  titleAccent,
+  viewMoreHref,
+  viewMoreLabel,
+  statusVariant,
+}: HorizontalStripProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+
+    const ctx = gsap.context(() => {
+      const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+
+      gsap.to(track, {
+        x: getScrollAmount,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${Math.abs(getScrollAmount())}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="bg-sand-50 py-16 sm:py-24 border-t border-navy-100">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-14">
-          <div>
-            <GSAPReveal y={14}>
-              <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-600 mb-3">
-                Browse by status
-              </p>
-            </GSAPReveal>
-            <GSAPReveal y={18} delay={0.1}>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-950 tracking-[-0.03em]">
-                Explore the portfolio
-              </h2>
-            </GSAPReveal>
-          </div>
+    <section
+      ref={sectionRef}
+      className={cn(
+        "h-screen overflow-hidden flex flex-col border-t border-navy-100 pt-30",
+        statusVariant === "active" ? "bg-white" : "bg-sand-50"
+      )}
+    >
+      {/* Header */}
+      <div className="flex-shrink-0 flex items-start justify-between px-8 sm:px-12 lg:px-16 pt-12 pb-8">
+        <div>
+          <GSAPReveal delay={0.05} y={14}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-brand-600 mb-3">
+              {eyebrow}
+            </p>
+          </GSAPReveal>
+          <GSAPReveal delay={0.15} y={20}>
+            <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-[-0.02em] text-navy-950 leading-[1.05]">
+              {title} <span className="text-brand-600">{titleAccent}</span>
+            </h2>
+          </GSAPReveal>
+          <GSAPReveal delay={0.2} y={12}>
+            <p className="mt-2 text-[12px] font-medium text-navy-400 uppercase tracking-widest">
+              {projects.length} project{projects.length !== 1 ? "s" : ""}
+            </p>
+          </GSAPReveal>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {cards.map((card, i) => (
-            <GSAPReveal key={card.href} delay={0.12 + i * 0.1} y={24}>
-              <Link
-                href={card.href}
-                className="group block bg-white rounded-2xl border border-navy-100 overflow-hidden hover:border-navy-200 hover:shadow-lg transition-all duration-300"
-              >
-                {/* Image */}
-                <div className="relative h-[240px] sm:h-[280px] overflow-hidden rounded-t-2xl">
-                  <Image
-                    src={card.cover}
-                    alt={card.label}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        <GSAPReveal delay={0.25} y={14} className="mt-3">
+          <Link
+            href={viewMoreHref}
+            className="inline-flex items-center gap-2 text-[12px] font-bold text-white bg-brand-600 hover:bg-brand-700 transition-colors px-5 py-3 rounded-xl shadow-sm"
+          >
+            {viewMoreLabel} <ArrowRight className="size-4" />
+          </Link>
+        </GSAPReveal>
+      </div>
 
-                  {/* Corner arrow */}
-                  <div className="absolute top-4 right-4 size-9 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-                    <ArrowUpRight className="size-4 text-navy-900" />
-                  </div>
+      {/* Horizontal scrolling track */}
+      <div className="flex-1 overflow-hidden min-h-0">
+        <div
+          ref={trackRef}
+          className="flex h-full pl-8 sm:pl-12 lg:pl-16 pr-24 pb-10 gap-4 will-change-transform"
+          style={{ width: "max-content" }}
+        >
+          {projects.map((project, i) => (
+            <Link
+              key={project.id}
+              href={`/projects/${project.slug}`}
+              className="flex-shrink-0 flex flex-col gap-3 group"
+              style={{ width: "clamp(300px, 36vw, 480px)" }}
+            >
+              {/* Index + divider + category */}
+              <div className="flex items-center gap-3 flex-shrink-0">
+                <span className="text-[11px] font-bold text-navy-300 tracking-widest tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="h-px flex-1 bg-navy-100 group-hover:bg-brand-400 transition-colors duration-500" />
+                <span className="text-[10px] font-bold text-navy-400 tracking-[0.14em] uppercase whitespace-nowrap">
+                  {project.category}
+                </span>
+              </div>
+
+              {/* Card */}
+              <div className="flex-1 relative overflow-hidden rounded-xl cursor-pointer min-h-0 max-h-[62vh]">
+                <Image
+                  src={project.cover}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="(max-width: 640px) 80vw, 32vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+
+                {/* Status pill */}
+                <div className="absolute top-4 left-4">
+                  <span
+                    className={cn(
+                      "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-[0.14em]",
+                      statusVariant === "active"
+                        ? "bg-emerald-500/90 text-white"
+                        : "bg-white/15 text-white/80 backdrop-blur-sm"
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "size-1.5 rounded-full",
+                        statusVariant === "active" ? "bg-white animate-pulse" : "bg-white/60"
+                      )}
+                    />
+                    {statusVariant === "active" ? "Active" : "Delivered"}
+                  </span>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 sm:p-8">
-                  <div className="flex items-center justify-between mb-4">
-                    {/* Status pill */}
-                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.12em] ${card.statusStyle}`}>
-                      <span className={`size-1.5 rounded-full ${card.statusDot}`} />
-                      {card.statusText}
-                    </span>
-
-                    {/* Count */}
-                    <span className="font-display text-3xl font-bold text-navy-950">
-                      {card.count}
-                    </span>
-                  </div>
-
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-navy-950 mb-2">
-                    {card.label}
-                  </h3>
-                  <p className="text-sm text-navy-500 leading-relaxed mb-5">
-                    {card.description}
+                {/* Bottom text */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7 transform transition-transform duration-500 group-hover:-translate-y-2 text-white">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-1.5">
+                    {project.subtitle}
                   </p>
-
-                  <div className="flex items-center gap-2 text-[12px] font-bold text-navy-400 group-hover:text-brand-600 transition-colors uppercase tracking-widest">
-                    <span>View all</span>
-                    <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
+                  <h3 className="font-display text-xl sm:text-[1.4rem] font-bold text-white leading-snug">
+                    {project.title}
+                  </h3>
+                  <p className="mt-1.5 text-[12px] text-white/65 font-medium tracking-wide">
+                    {project.location} &middot; {project.yearCompleted ?? project.year}
+                  </p>
                 </div>
-              </Link>
-            </GSAPReveal>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+/* ── Exported wrapper — renders both strips ───────────────────── */
+export function ProjectsHubCards() {
+  return (
+    <>
+      <HorizontalStrip
+        projects={ACTIVE_PROJECTS}
+        eyebrow="Ongoing work"
+        title="Currently"
+        titleAccent="in progress."
+        viewMoreHref="/current-projects"
+        viewMoreLabel="View all active"
+        statusVariant="active"
+      />
+      <HorizontalStrip
+        projects={COMPLETED_PROJECTS}
+        eyebrow="Delivered work"
+        title="Completed"
+        titleAccent="projects."
+        viewMoreHref="/past-project"
+        viewMoreLabel="View all completed"
+        statusVariant="completed"
+      />
+    </>
   );
 }

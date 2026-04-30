@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { m } from "framer-motion";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { ACTIVE_PROJECTS, COMPLETED_PROJECTS } from "@/data/projects";
 
@@ -9,102 +11,122 @@ const stats = [
   { value: String(ACTIVE_PROJECTS.length + COMPLETED_PROJECTS.length) + "+", label: "Total Projects" },
   { value: String(ACTIVE_PROJECTS.length), label: "Active Sites" },
   { value: "6", label: "Sectors" },
-  { value: "14+", label: "Years" },
+  { value: "14+", label: "Years Active" },
 ];
+
+function Sparkle({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 56 56"
+      fill="none"
+      className={className}
+      aria-hidden
+    >
+      <path
+        d="M28 0L30.3 24.7L56 28L30.3 31.3L28 56L25.7 31.3L0 28L25.7 24.7L28 0Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
 
 export function ProjectsOverviewHero() {
   return (
-    <section className="relative bg-white overflow-hidden pt-36 pb-16 sm:pt-44 sm:pb-20">
-      {/* Subtle blueprint grid — very faint */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(10,20,60,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(10,20,60,0.8) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
+    <>
+      {/* ── 1. Full-bleed hero image — no overlay, no text ─────────── */}
+      <section className="relative overflow-hidden" style={{ height: "clamp(320px, 58vh, 640px)" }}>
+        <Image
+          src="/images/DJI_20240911144011_0234_D_PARZIAIR.jpg_1.jpeg"
+          alt="Macwest project aerial view"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        {/* Soft bottom fade into the white band */}
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent" />
+      </section>
 
-      {/* Decorative star — Boffi-inspired */}
-      <svg
-        className="pointer-events-none absolute top-36 right-12 opacity-10 hidden lg:block"
-        width="72"
-        height="72"
-        viewBox="0 0 72 72"
-        fill="none"
-      >
-        <path d="M36 0L38.5 33.5L72 36L38.5 38.5L36 72L33.5 38.5L0 36L33.5 33.5L36 0Z" fill="#8B0B03" />
-      </svg>
+      {/* ── 2. Title band — Boffi-inspired, light ──────────────────── */}
+      <section className="relative bg-white overflow-hidden">
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Eyebrow */}
-        <GSAPReveal delay={0.05} y={14}>
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-600 mb-6">
-            Macwest Limited — Portfolio
-          </p>
-        </GSAPReveal>
-
-        {/* Headline — Zaha Hadid large bold style */}
-        <div className="mb-8">
-          <GSAPReveal delay={0.1} y={40} duration={0.9}>
-            <h1
-              className="font-display font-bold text-navy-950 leading-[0.95] tracking-[-0.04em]"
-              style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
-            >
-              Projects
-            </h1>
-          </GSAPReveal>
-          <GSAPReveal delay={0.2} y={40} duration={0.9}>
-            <h1
-              className="font-display font-bold leading-[0.95] tracking-[-0.04em] text-brand-600"
-              style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
-            >
-              built to last.
-            </h1>
-          </GSAPReveal>
+        {/* Sparkle decorations — positioned at image/band boundary */}
+        <div className="absolute -top-6 right-[18%] pointer-events-none">
+          <Sparkle className="size-14 text-navy-900 opacity-90" />
+        </div>
+        <div className="absolute top-6 right-[26%] pointer-events-none">
+          <Sparkle className="size-6 text-navy-400 opacity-60" />
         </div>
 
-        {/* Subtext + CTAs in row */}
-        <div className="flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-12">
-          <GSAPReveal delay={0.35} y={18} className="max-w-md">
-            <p className="text-base sm:text-lg text-navy-500 leading-relaxed">
-              From civil infrastructure to offshore marine operations — certified, high-quality
-              construction across Ghana and Sub-Saharan Africa.
-            </p>
-          </GSAPReveal>
+        {/* Main title row */}
+        <div className="max-w-[100rem] mx-auto px-4 sm:px-8 lg:px-12">
+          <div className="flex items-end justify-between gap-8 pt-3 pb-0">
 
-          <GSAPReveal delay={0.45} y={14} className="flex flex-wrap gap-3 sm:ml-auto flex-shrink-0">
-            <Link
-              href="/current-projects"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-navy-950 hover:bg-navy-800 text-white text-[12px] font-bold uppercase tracking-widest transition-colors"
-            >
-              Current projects <ArrowUpRight className="size-3.5" />
-            </Link>
-            <Link
-              href="/past-project"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-navy-200 hover:border-navy-400 text-navy-700 text-[12px] font-bold uppercase tracking-widest transition-colors"
-            >
-              Completed work
-            </Link>
-          </GSAPReveal>
-        </div>
+            {/* Giant display title — bleeds to left edge, Boffi-style */}
+            <GSAPReveal y={40} duration={1} className="flex-1 min-w-0">
+              <h1
+                className="font-display font-bold text-navy-950 leading-[0.88] tracking-[-0.04em] whitespace-nowrap"
+                style={{ fontSize: "clamp(4.5rem, 13vw, 11rem)" }}
+              >
+                Projects
+              </h1>
+            </GSAPReveal>
 
-        {/* Stats row — horizontal rule with inline stats */}
-        <div className="mt-16 pt-8 border-t border-navy-100 grid grid-cols-2 sm:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
-            <GSAPReveal key={stat.label} delay={0.5 + i * 0.06} y={12}>
-              <div>
-                <p className="font-display text-4xl sm:text-5xl font-bold text-navy-950 tracking-tight">
-                  {stat.value}
-                </p>
-                <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.2em] text-navy-400">
-                  {stat.label}
-                </p>
+            {/* Right: brand label + description */}
+            <GSAPReveal y={24} delay={0.18} className="flex-shrink-0 max-w-[260px] sm:max-w-[300px] pb-3 sm:pb-5">
+              <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-brand-600 mb-2">
+                Macwest Portfolio
+              </p>
+              <p className="text-[13px] text-navy-500 leading-relaxed">
+                Our projects span civil construction, housing estates, MEP, maritime
+                operations, and community infrastructure — each delivered to ISO standards.
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Link
+                  href="/current-projects"
+                  className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-navy-700 hover:text-brand-600 transition-colors"
+                >
+                  Current <ArrowUpRight className="size-3" />
+                </Link>
+                <span className="text-navy-200">·</span>
+                <Link
+                  href="/past-project"
+                  className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-navy-700 hover:text-brand-600 transition-colors"
+                >
+                  Completed <ArrowUpRight className="size-3" />
+                </Link>
               </div>
             </GSAPReveal>
-          ))}
+          </div>
         </div>
-      </div>
-    </section>
+
+        {/* ── 3. Stats strip ─────────────────────────────────────────── */}
+        <div className="border-t border-navy-100 mt-6">
+          <div className="max-w-[100rem] mx-auto px-4 sm:px-8 lg:px-12">
+            <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-navy-100">
+              {stats.map((stat, i) => (
+                <GSAPReveal key={stat.label} delay={0.1 + i * 0.07} y={16}>
+                  <m.div
+                    whileHover={{ backgroundColor: "rgba(139,11,3,0.03)" }}
+                    className="px-5 py-7 sm:px-8 sm:py-9 transition-colors duration-200"
+                  >
+                    <p
+                      className="font-display font-bold text-navy-950 tracking-tight leading-none"
+                      style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+                    >
+                      {stat.value}
+                    </p>
+                    <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.22em] text-navy-400">
+                      {stat.label}
+                    </p>
+                  </m.div>
+                </GSAPReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

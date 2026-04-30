@@ -92,7 +92,7 @@ export function VisionParallaxSection() {
             </p>
           </GSAPReveal>
 
-          {/* <ScrollCue /> */}
+          <ScrollCue />
         </div>
       </div>
 

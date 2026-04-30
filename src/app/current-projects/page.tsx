@@ -12,10 +12,10 @@ export const metadata = createPageMetadata(
 export default function CurrentProjectsPage() {
   return (
     <>
-      <PageHeader
+      {/* <PageHeader
         title="Current Projects"
         description="Active sites and programmes underway."
-      />
+      /> */}
       <CurrentProjectsContent />
       <CTABandSection />
     </>

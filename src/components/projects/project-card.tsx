@@ -110,11 +110,6 @@ export function ProjectCard({ project, className, variant = "default", index }: 
         </p>
 
         {/* Contract value — revealed on hover */}
-        {project.contractValue && project.contractValue !== "—" && (
-          <p className="mt-3 text-[11px] font-bold text-white/50 tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
-            Contract: {project.contractValue}
-          </p>
-        )}
       </div>
     </Link>
   );

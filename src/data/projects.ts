@@ -26,7 +26,6 @@ export type Project = {
   yearCompleted?: string;
   client?: string;
   duration?: string;
-  contractValue?: string;
   description: string;
   scope: string[];
   highlights: { label: string; value: string }[];
@@ -66,10 +65,10 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Status", value: "In Progress" },
       { label: "Sector", value: "Education" },
     ],
-    cover: "/images/IMG_2913-scaled.jpg.jpeg",
+    cover: "/images/IMG_2859-scaled.jpg.jpeg",
     images: [
-      { src: "/images/IMG_2913-scaled.jpg.jpeg", alt: "Classroom construction" },
-      { src: "/images/IMG_2859-scaled.jpg.jpeg", alt: "Block-work progress" },
+      { src: "/images/IMG_2859-scaled.jpg.jpeg", alt: "Classroom construction" },
+      { src: "/images/IMG_2859-scaled.jpg_1.jpeg", alt: "Block-work progress" },
       { src: "/images/IMG_2813-scaled.jpg.jpeg", alt: "Site overview" },
     ],
     featured: true,
@@ -98,7 +97,6 @@ export const ALL_PROJECTS: Project[] = [
       "Paving, landscaping, and security lighting",
     ],
     highlights: [
-      { label: "Contract Value", value: "GHS 9.6M" },
       { label: "Market Stalls", value: "200+ units" },
       { label: "Status", value: "In Progress" },
       { label: "Location", value: "Esiama" },
@@ -134,14 +132,13 @@ export const ALL_PROJECTS: Project[] = [
       "Utility connections",
     ],
     highlights: [
-      { label: "Contract Value", value: "GHS 3.6M" },
       { label: "Site Area", value: "Large-scale" },
       { label: "Status", value: "In Progress" },
       { label: "Sector", value: "Agriculture" },
     ],
-    cover: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg.jpeg",
+    cover: "/images/4.webp",
     images: [
-      { src: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg.jpeg", alt: "Aerial site view" },
+      { src: "/images/4.webp", alt: "Aerial site view" },
       { src: "/images/IMG_9861-scaled.jpg.jpeg", alt: "Earthworks" },
     ],
     featured: false,
@@ -170,7 +167,6 @@ export const ALL_PROJECTS: Project[] = [
       "External works and car parking",
     ],
     highlights: [
-      { label: "Contract Value", value: "GHS 6.2M" },
       { label: "Hall Capacity", value: "500+ delegates" },
       { label: "Status", value: "In Progress" },
       { label: "Sector", value: "Civic" },
@@ -206,15 +202,14 @@ export const ALL_PROJECTS: Project[] = [
       "Painting and decorative finishes",
     ],
     highlights: [
-      { label: "Contract Value", value: "GHS 800K" },
       { label: "Sites", value: "Multiple" },
       { label: "Status", value: "In Progress" },
       { label: "Sector", value: "Refurbishment" },
     ],
-    cover: "/images/IMG_2913-scaled.jpg_1.jpeg",
+    cover: "/images/IMG_2813-scaled.jpg_1.jpeg",
     images: [
-      { src: "/images/IMG_2913-scaled.jpg_1.jpeg", alt: "Renovation works" },
-      { src: "/images/IMG_2859-scaled.jpg_1.jpeg", alt: "Refurbishment progress" },
+      { src: "/images/IMG_2813-scaled.jpg_1.jpeg", alt: "Renovation works" },
+      { src: "/images/IMG_2813-scaled.jpg_2.jpeg", alt: "Refurbishment progress" },
     ],
     featured: false,
     span: "normal",
@@ -246,10 +241,10 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Type", value: "Thermal Generation" },
       { label: "Scope", value: "Civil Works" },
     ],
-    cover: "/images/IMG_9861-scaled.jpg.jpeg",
+    cover: "/images/img-steel-pipes.jpg",
     images: [
-      { src: "/images/IMG_9861-scaled.jpg.jpeg", alt: "Site works" },
-      { src: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg_1.jpeg", alt: "Aerial overview" },
+      { src: "/images/img-steel-pipes.jpg", alt: "Site works" },
+      { src: "/images/IMG_9861-scaled.jpg.jpeg", alt: "Aerial overview" },
     ],
     featured: false,
     span: "normal",
@@ -276,14 +271,13 @@ export const ALL_PROJECTS: Project[] = [
       "Access and hard-standing",
     ],
     highlights: [
-      { label: "Contract Value", value: "GHS 3.0M" },
       { label: "Communities", value: "Coastal" },
       { label: "Status", value: "In Progress" },
       { label: "Sector", value: "Community" },
     ],
-    cover: "/images/IMG_4741-scaled.jpg.jpeg",
+    cover: "/images/img-port.jpg",
     images: [
-      { src: "/images/IMG_4741-scaled.jpg.jpeg", alt: "Coastal facility" },
+      { src: "/images/img-port.jpg", alt: "Coastal facility" },
       { src: "/images/IMG_4737-scaled.jpg.jpeg", alt: "Community engagement" },
     ],
     featured: false,
@@ -310,15 +304,14 @@ export const ALL_PROJECTS: Project[] = [
       "Kerbing and road markings",
     ],
     highlights: [
-      { label: "Contract Value", value: "GHS 1.85M" },
       { label: "Location", value: "Ofankor, Accra" },
       { label: "Status", value: "In Progress" },
       { label: "Sector", value: "Urban Infra" },
     ],
-    cover: "/images/IMG_2913-scaled.jpg.jpeg",
+    cover: "/images/IMG_2760-scaled.jpg_2.jpeg",
     images: [
-      { src: "/images/IMG_2913-scaled.jpg.jpeg", alt: "Road works" },
-      { src: "/images/IMG_2859-scaled.jpg.jpeg", alt: "Drainage works" },
+      { src: "/images/IMG_2760-scaled.jpg_2.jpeg", alt: "Road works" },
+      { src: "/images/IMG_2760-scaled.jpg_1.jpeg", alt: "Drainage works" },
     ],
     featured: false,
     span: "normal",
@@ -338,7 +331,6 @@ export const ALL_PROJECTS: Project[] = [
     yearCompleted: "2023",
     client: "Imperial Homes Ghana",
     duration: "24 months",
-    contractValue: "GHS 8.6M",
     description:
       "A 48-unit mixed residential estate developed for mid-market homeowners on the outskirts of Accra. The project included site preparation, infrastructure provision, and full construction of detached and semi-detached units to client specification.",
     scope: [
@@ -350,7 +342,6 @@ export const ALL_PROJECTS: Project[] = [
       "Utility connections — water, power, sewage",
     ],
     highlights: [
-      { label: "Contract Value", value: "GHS 8.6M" },
       { label: "Units Delivered", value: "48 homes" },
       { label: "Site Area", value: "31,000 m²" },
       { label: "Duration", value: "24 months" },
@@ -377,7 +368,6 @@ export const ALL_PROJECTS: Project[] = [
     yearCompleted: "2023",
     client: "ENI Ghana",
     duration: "16 months",
-    contractValue: "USD 1.2M",
     description:
       "Provision of offshore support vessel (OSV) operations and marine logistics services for ENI Ghana's deepwater extraction programme. Scope covered crew boat operations, cargo handling, emergency standby, and safety management.",
     scope: [
@@ -388,15 +378,14 @@ export const ALL_PROJECTS: Project[] = [
       "Anchor handling and mooring support",
     ],
     highlights: [
-      { label: "Contract Value", value: "USD 1.2M" },
       { label: "Vessel Days", value: "480+ days" },
       { label: "Offshore Reach", value: "Deep water" },
       { label: "Duration", value: "16 months" },
     ],
-    cover: "/images/IMG_4741-scaled.jpg.jpeg",
+    cover: "/images/img-oil-ship.jpg",
     images: [
-      { src: "/images/IMG_4741-scaled.jpg.jpeg", alt: "Offshore operations" },
-      { src: "/images/IMG_4737-scaled.jpg.jpeg", alt: "Vessel at sea" },
+      { src: "/images/img-oil-ship.jpg", alt: "Offshore operations" },
+      { src: "/images/IMG_4738-scaled.jpg.jpeg", alt: "Vessel at sea" },
       { src: "/images/IMG_4738-scaled.jpg.jpeg", alt: "Cargo handling" },
     ],
     featured: true,
@@ -415,7 +404,6 @@ export const ALL_PROJECTS: Project[] = [
     yearCompleted: "2024",
     client: "Ghana Education Trust Fund / ENI Ghana",
     duration: "10 months",
-    contractValue: "GHS 1.9M",
     description:
       "Full design and construction of a FIFA-grade AstroTurf pitch for a community school in the Ellembele district. Officially handed over to the community in a ceremony attended by local government and ENI Ghana representatives.",
     scope: [
@@ -427,15 +415,14 @@ export const ALL_PROJECTS: Project[] = [
       "Handing over documentation and ceremony",
     ],
     highlights: [
-      { label: "Contract Value", value: "GHS 1.9M" },
       { label: "Pitch Size", value: "90×60 m" },
       { label: "Standard", value: "FIFA Quality Pro" },
       { label: "Duration", value: "10 months" },
     ],
-    cover: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg.jpeg",
+    cover: "/images/IMG_9528-scaled.jpg_1.jpeg",
     images: [
-      { src: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg.jpeg", alt: "Aerial view of AstroTurf" },
-      { src: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg_1.jpeg", alt: "Handover ceremony" },
+      { src: "/images/IMG_9528-scaled.jpg_1.jpeg", alt: "Aerial view of AstroTurf" },
+      { src: "/images/IMG_9528-scaled.jpg.jpeg", alt: "Handover ceremony" },
       { src: "/images/IMG_9528-scaled.jpg.jpeg", alt: "Completed pitch" },
       { src: "/images/IMG_9861-scaled.jpg.jpeg", alt: "Floodlighting" },
     ],
@@ -455,7 +442,6 @@ export const ALL_PROJECTS: Project[] = [
     yearCompleted: "2024",
     client: "Ghana Education Trust Fund",
     duration: "18 months",
-    contractValue: "GHS 4.2M",
     description:
       "A community sports facility serving over 10,000 residents across the Western Region. The project encompasses a multi-purpose sports hall, outdoor courts, AstroTurf pitch, and supporting civil infrastructure.",
     scope: [
@@ -467,14 +453,13 @@ export const ALL_PROJECTS: Project[] = [
       "Electrical and lighting systems",
     ],
     highlights: [
-      { label: "Contract Value", value: "GHS 4.2M" },
       { label: "Site Area", value: "12,400 m²" },
       { label: "Capacity", value: "2,500 seats" },
       { label: "Duration", value: "18 months" },
     ],
-    cover: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg_1.jpeg",
+    cover: "/images/0T6A9963.jpg.jpeg",
     images: [
-      { src: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg_1.jpeg", alt: "Sports complex aerial" },
+      { src: "/images/0T6A9963.jpg.jpeg", alt: "Sports complex aerial" },
       { src: "/images/IMG_9528-scaled.jpg.jpeg", alt: "Construction progress" },
       { src: "/images/IMG_9861-scaled.jpg.jpeg", alt: "Foundation works" },
     ],
