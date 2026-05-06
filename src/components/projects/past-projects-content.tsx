@@ -24,7 +24,7 @@ export function PastProjectsContent() {
           (p) => (p.yearCompleted ?? p.year) === activeYear
         );
 
-  const heroImages = COMPLETED_PROJECTS.slice(0, 2);
+  const heroImages = COMPLETED_PROJECTS.filter((p) => p.cover).slice(0, 2);
 
   return (
     <div className="bg-white">
@@ -184,13 +184,21 @@ export function PastProjectsContent() {
 
                 {/* Col 4 — image stretches full row height */}
                 <div className="relative overflow-hidden rounded-xl bg-navy-100 self-stretch min-h-[350px]">
-                  <Image
-                    src={project.cover}
-                    alt={project.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 640px) 220px, (max-width: 1024px) 300px, 380px"
-                  />
+                  {project.cover ? (
+                    <Image
+                      src={project.cover}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 220px, (max-width: 1024px) 300px, 380px"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-navy-300">
+                        Images coming soon
+                      </span>
+                    </div>
+                  )}
                 </div>
               </Link>
             </GSAPReveal>

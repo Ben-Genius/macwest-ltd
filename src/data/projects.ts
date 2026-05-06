@@ -29,7 +29,7 @@ export type Project = {
   description: string;
   scope: string[];
   highlights: { label: string; value: string }[];
-  cover: string;
+  cover: string; // empty string = no image yet
   images: ProjectImage[];
   featured?: boolean;
   span?: "normal" | "wide" | "tall";
@@ -48,7 +48,13 @@ export type Project = {
 //     Bakanta     → 0296, 0298, 0300
 // ─────────────────────────────────────────────────────────────────────────────
 
-const P = "/images/projects/projects"; // shorthand
+const P  = "/images/projects/projects"; // shorthand
+const PP = "/images/projects/pastProject"; // real project photos
+const AGY  = `${PP}/1. Eastern Region (Agyanoa) - Complete Activities`;
+const SHEA = `${PP}/2. Shea Farm Project - Complete Activities`;
+const SAZ  = `${PP}/3. Sanzule Showroom - Complete Activities`;
+const SCH  = `${PP}/4. School Project - Complete Activities`;
+const MAIN = `${PP}/5. Main Site (Lounge/Main Building/New Shops/Top Offices) - Complete Activities`;
 
 export const ALL_PROJECTS: Project[] = [
 
@@ -159,10 +165,11 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Status", value: "In Progress" },
       { label: "Sector", value: "Agriculture" },
     ],
-    cover: "/images/4.webp",
+    cover: `${SHEA}/00001509-PHOTO-2026-04-30-21-11-12.webp`,
     images: [
-      { src: "/images/4.webp", alt: "Aerial site view" },
-      { src: "/images/IMG_9861-scaled.jpg.jpeg", alt: "Earthworks" },
+      { src: `${SHEA}/00001509-PHOTO-2026-04-30-21-11-12.webp`, alt: "Shea farm site" },
+      { src: `${SHEA}/00001510-PHOTO-2026-04-30-21-11-13.webp`, alt: "Farm infrastructure works" },
+      { src: `${SHEA}/00001514-PHOTO-2026-05-01-09-48-12.webp`, alt: "Site development progress" },
     ],
     featured: false,
     span: "normal",
@@ -422,14 +429,8 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Duration", value: "24 months" },
       { label: "Sector", value: "Private Residential" },
     ],
-    cover: "https://i0.wp.com/www.macwest.com.gh/wp-content/uploads/2025/03/IMG_8100-scaled.jpg",
-    images: [
-      { src: "https://i0.wp.com/www.macwest.com.gh/wp-content/uploads/2025/03/IMG_8100-scaled.jpg", alt: "Paradise Estate villa exterior" },
-      { src: "https://i0.wp.com/www.macwest.com.gh/wp-content/uploads/2025/03/IMG_8101-scaled.jpg", alt: "Villa unit construction" },
-      { src: "https://i0.wp.com/www.macwest.com.gh/wp-content/uploads/2025/03/IMG_8102-scaled.jpg", alt: "Estate overview" },
-      { src: "/images/IMG_8104-scaled.jpg.jpeg", alt: "Completed villa units" },
-      { src: `${P}/tacoma/Tacoma-home.webp`, alt: "Residential unit exterior" },
-    ],
+    cover: "",
+    images: [],
     featured: true,
     span: "wide",
   },
@@ -461,12 +462,8 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Offshore Reach", value: "Deep water" },
       { label: "Duration", value: "16 months" },
     ],
-    cover: "/images/img-oil-ship.jpg",
-    images: [
-      { src: "/images/img-oil-ship.jpg", alt: "Offshore support vessel" },
-      { src: "/images/IMG_4738-scaled.jpg.jpeg", alt: "Vessel at sea" },
-      { src: "/images/IMG_4741-scaled.jpg.jpeg", alt: "Cargo handling operations" },
-    ],
+    cover: "",
+    images: [],
     featured: true,
     span: "normal",
   },
@@ -545,8 +542,6 @@ export const ALL_PROJECTS: Project[] = [
     images: [
       { src: `${P}/DJI/DJI_20240911150341_0255_D_PARZIAIR.webp`, alt: "Sports complex aerial" },
       { src: `${P}/DJI/DJI_20240911151915_0270_D_PARZIAIR.webp`, alt: "Facility overview from above" },
-      { src: "/images/0T6A9963.jpg.jpeg", alt: "Complex during construction" },
-      { src: "/images/0T6A9963.jpg_1.jpeg", alt: "Structural works progress" },
     ],
     featured: false,
     span: "normal",
@@ -953,10 +948,13 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Client", value: "QIP / Eni Ghana" },
       { label: "Duration", value: "5 months" },
     ],
-    cover: `${P}/sanzule/sanzule.webp`,
+    cover: `${SAZ}/00001517-PHOTO-2026-05-01-09-49-26.webp`,
     images: [
-      { src: `${P}/sanzule/sanzule.webp`, alt: "Sanzule-Krisan canteen refurbishment" },
-      { src: `${P}/sanzule/Sanzule-JHS-Primary.webp`, alt: "Sanzule JHS and Primary school" },
+      { src: `${SAZ}/00001517-PHOTO-2026-05-01-09-49-26.webp`, alt: "Sanzule showroom — completed" },
+      { src: `${SAZ}/00001518-PHOTO-2026-05-01-09-49-26.webp`, alt: "Showroom interior" },
+      { src: `${SAZ}/00001519-PHOTO-2026-05-01-09-49-27.webp`, alt: "Canteen and showroom works" },
+      { src: `${SAZ}/00001520-PHOTO-2026-05-01-09-49-27.webp`, alt: "Facility progress" },
+      { src: `${SAZ}/00001521-PHOTO-2026-05-01-09-49-28.webp`, alt: "Completed facility handover" },
     ],
     featured: false,
     span: "normal",
@@ -994,8 +992,6 @@ export const ALL_PROJECTS: Project[] = [
     cover: `${P}/new-bakanta/New-Bakanta.webp`,
     images: [
       { src: `${P}/new-bakanta/New-Bakanta.webp`, alt: "New Bakanta fishing community" },
-      { src: "/images/img-port.jpg", alt: "Coastal fishing community" },
-      { src: "/images/IMG_4737-scaled.jpg.jpeg", alt: "Fishing shed construction" },
     ],
     featured: false,
     span: "normal",
@@ -1122,14 +1118,15 @@ export const ALL_PROJECTS: Project[] = [
       { label: "School", value: "Hiawanwu D.A. Primary" },
       { label: "Duration", value: "12 months" },
     ],
-    cover: `${P}/hiawanwu/Hiawanwu-D.A-Primary-6-Classroom-Block-main.webp`,
+    cover: `${SCH}/00001438-PHOTO-2026-04-28-19-07-24.webp`,
     images: [
-      { src: `${P}/hiawanwu/Hiawanwu-D.A-Primary-6-Classroom-Block-main.webp`, alt: "Hiawanwu classroom block" },
-      { src: `${P}/hiawanwu/Hiawanwu-D.A-Primary-6-Classroom-Block-thumbnail.webp`, alt: "School building overview" },
-      { src: `${P}/hiawanwu/Hiawanwu-D.A-Primary-6-Classroom-Block1.webp`, alt: "Block-work construction" },
-      { src: `${P}/hiawanwu/Hiawanwu-D.A-Primary-6-Classroom-Block2.webp`, alt: "Structural works progress" },
-      { src: `${P}/hiawanwu/Hiawanwu-D.A-Primary-6-Classroom-Block3.webp`, alt: "Roofing works" },
-      { src: `${P}/hiawanwu/Hiawanwu-D.A-Primary-6-Classroom-Block4.webp`, alt: "Completed classroom block" },
+      { src: `${SCH}/00001438-PHOTO-2026-04-28-19-07-24.webp`, alt: "School project — completed" },
+      { src: `${SCH}/00001456-PHOTO-2026-04-29-18-38-53.webp`, alt: "Classroom block overview" },
+      { src: `${SCH}/00001457-PHOTO-2026-04-29-18-38-54.webp`, alt: "Structural works" },
+      { src: `${SCH}/00001458-PHOTO-2026-04-29-18-38-54.webp`, alt: "Internal finishes" },
+      { src: `${SCH}/00001459-PHOTO-2026-04-29-18-38-54.webp`, alt: "Block-work detail" },
+      { src: `${SCH}/00001559-PHOTO-2026-05-01-21-34-46.webp`, alt: "Completed school facility" },
+      { src: `${SCH}/00001560-PHOTO-2026-05-01-21-34-46.webp`, alt: "Final handover" },
     ],
     featured: false,
     span: "normal",
@@ -1260,6 +1257,109 @@ export const ALL_PROJECTS: Project[] = [
       { src: `${P}/solarium/Solarium-by-Swami-India-Ghana-Limited9.webp`, alt: "Staircase and glazing" },
       { src: `${P}/solarium/Solarium-by-Swami-India-Ghana-Limited10.webp`, alt: "External terrace" },
       { src: `${P}/solarium/Solarium-by-Swami-India-Ghana-Limited11.webp`, alt: "Landscaping and garden" },
+    ],
+    featured: true,
+    span: "wide",
+  },
+
+  {
+    id: 31,
+    slug: "eastern-region-agyanoa-project",
+    title: "Eastern Region — Agyanoa Construction",
+    subtitle: "Civil & Building Works",
+    category: "Construction",
+    status: "completed",
+    location: "Agyanoa, Eastern Region",
+    region: "Eastern Region, Ghana",
+    year: "2025",
+    yearCompleted: "2026",
+    client: "Confidential",
+    duration: "12 months",
+    description:
+      "Construction and civil works at Agyanoa in the Eastern Region of Ghana, delivering infrastructure and building works for the local community. The project represents Macwest's growing footprint across multiple regions of the country.",
+    scope: [
+      "Site preparation and earthworks",
+      "Structural frame and block-work",
+      "Roofing and weatherproofing",
+      "Internal and external finishes",
+      "MEP services installation",
+      "External works and site clearance",
+    ],
+    highlights: [
+      { label: "Location", value: "Agyanoa, Eastern Region" },
+      { label: "Status", value: "Completed" },
+      { label: "Year", value: "2026" },
+    ],
+    cover: `${AGY}/00001442-PHOTO-2026-04-29-17-54-49.webp`,
+    images: [
+      { src: `${AGY}/00001442-PHOTO-2026-04-29-17-54-49.webp`, alt: "Agyanoa project overview" },
+      { src: `${AGY}/00000414-PHOTO-2026-03-19-19-00-29.webp`, alt: "Early works" },
+      { src: `${AGY}/00001443-PHOTO-2026-04-29-17-58-19.webp`, alt: "Construction progress" },
+      { src: `${AGY}/00001444-PHOTO-2026-04-29-17-58-29.webp`, alt: "Structural works" },
+      { src: `${AGY}/00001445-PHOTO-2026-04-29-17-58-29.webp`, alt: "Building works" },
+      { src: `${AGY}/00001482-PHOTO-2026-04-30-17-15-28.webp`, alt: "Near completion" },
+      { src: `${AGY}/00001483-PHOTO-2026-04-30-17-15-30.webp`, alt: "Final works" },
+      { src: `${AGY}/00001587-PHOTO-2026-05-04-18-08-54.webp`, alt: "Completed facility" },
+      { src: `${AGY}/00001588-PHOTO-2026-05-04-18-08-54.webp`, alt: "External works done" },
+      { src: `${AGY}/00001589-PHOTO-2026-05-04-18-08-55.webp`, alt: "Site handover" },
+      { src: `${AGY}/00001590-PHOTO-2026-05-04-18-08-55.webp`, alt: "Project completed" },
+    ],
+    featured: false,
+    span: "normal",
+  },
+
+  {
+    id: 32,
+    slug: "main-site-commercial-complex",
+    title: "Main Site — Commercial Complex",
+    subtitle: "Lounge, Main Building, Shops & Top Offices",
+    category: "Construction",
+    status: "completed",
+    location: "Ghana",
+    region: "Ghana",
+    year: "2025",
+    yearCompleted: "2026",
+    client: "Confidential",
+    duration: "14 months",
+    description:
+      "Construction of a multi-section commercial complex comprising a lounge, main building, new shops, and top-floor offices. Works covered the full structural and fitout package across all sections, delivered to a high specification.",
+    scope: [
+      "Lounge and reception area construction",
+      "Main building structural frame and finishes",
+      "New shops — shell and core and fitout",
+      "Top floor office suite construction",
+      "MEP throughout — electrical, plumbing, HVAC",
+      "External works, car parking, and signage",
+    ],
+    highlights: [
+      { label: "Sections", value: "Lounge, Building, Shops, Offices" },
+      { label: "Type", value: "Commercial Complex" },
+      { label: "Duration", value: "14 months" },
+    ],
+    cover: `${MAIN}/00001417-PHOTO-2026-04-28-18-04-33.webp`,
+    images: [
+      { src: `${MAIN}/00001417-PHOTO-2026-04-28-18-04-33.webp`, alt: "Commercial complex exterior" },
+      { src: `${MAIN}/00001418-PHOTO-2026-04-28-18-04-34.webp`, alt: "Main building works" },
+      { src: `${MAIN}/00001448-PHOTO-2026-04-29-18-35-33.webp`, alt: "Shops construction" },
+      { src: `${MAIN}/00001449-PHOTO-2026-04-29-18-35-34.webp`, alt: "Interior progress" },
+      { src: `${MAIN}/00001499-PHOTO-2026-04-30-18-31-28.webp`, alt: "Office floors" },
+      { src: `${MAIN}/00001500-PHOTO-2026-04-30-18-31-28.webp`, alt: "Top offices works" },
+      { src: `${MAIN}/00001545-PHOTO-2026-05-01-19-10-21.webp`, alt: "Lounge fitout" },
+      { src: `${MAIN}/00001546-PHOTO-2026-05-01-19-10-22.webp`, alt: "Shop fitout detail" },
+      { src: `${MAIN}/00001547-PHOTO-2026-05-01-19-10-22.webp`, alt: "Finishes and fittings" },
+      { src: `${MAIN}/00001592-PHOTO-2026-05-04-18-41-30.webp`, alt: "Near completion" },
+      { src: `${MAIN}/00001593-PHOTO-2026-05-04-18-41-30.webp`, alt: "Final finishes" },
+      { src: `${MAIN}/00001594-PHOTO-2026-05-04-18-41-31.webp`, alt: "External elevation" },
+      { src: `${MAIN}/00001605-PHOTO-2026-05-04-19-09-32.webp`, alt: "Complex overview" },
+      { src: `${MAIN}/00001606-PHOTO-2026-05-04-19-09-33.webp`, alt: "Completed complex" },
+      { src: `${MAIN}/00001615-PHOTO-2026-05-05-19-14-09.webp`, alt: "Lounge area" },
+      { src: `${MAIN}/00001616-PHOTO-2026-05-05-19-14-09.webp`, alt: "Shop fronts" },
+      { src: `${MAIN}/00001617-PHOTO-2026-05-05-19-14-10.webp`, alt: "Office entrance" },
+      { src: `${MAIN}/00001618-PHOTO-2026-05-05-19-14-10.webp`, alt: "Interior spaces" },
+      { src: `${MAIN}/00001619-PHOTO-2026-05-05-19-14-10.webp`, alt: "Corridor and circulation" },
+      { src: `${MAIN}/00001624-PHOTO-2026-05-05-19-22-42.webp`, alt: "Final site" },
+      { src: `${MAIN}/00001625-PHOTO-2026-05-05-19-22-42.webp`, alt: "Handover ready" },
+      { src: `${MAIN}/00001626-PHOTO-2026-05-05-19-22-42.webp`, alt: "Project delivered" },
     ],
     featured: true,
     span: "wide",

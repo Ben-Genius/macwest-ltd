@@ -128,14 +128,18 @@ function HorizontalStrip({
               </div>
 
               {/* Card */}
-              <div className="flex-1 relative overflow-hidden rounded-xl cursor-pointer min-h-0 max-h-[62vh]">
-                <Image
-                  src={project.cover}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  sizes="(max-width: 640px) 80vw, 32vw"
-                />
+              <div className="text-white flex-1 relative overflow-hidden rounded-xl cursor-pointer min-h-0 max-h-[62vh]">
+                {project.cover ? (
+                  <Image
+                    src={project.cover}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width: 640px) 80vw, 32vw"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-navy-800" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
                 {/* Status pill */}
