@@ -63,6 +63,7 @@ function Reveal({
   margin?: string;
 }) {
   const ref = useRef(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const isInView = useInView(ref, { once: true, margin: margin as any });
   return (
     <m.div
@@ -118,7 +119,7 @@ export function PrinciplesContent() {
 
             <Reveal variants={fadeInUp}>
               <p className="text-navy-500 text-lg sm:text-xl leading-relaxed">
-                At Macwest, our principles aren't just words on a page — they are the bedrock of our culture and the compass that guides every decision we make.
+                At Macwest, our principles aren&apos;t just words on a page — they are the bedrock of our culture and the compass that guides every decision we make.
               </p>
             </Reveal>
           </div>

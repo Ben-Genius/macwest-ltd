@@ -47,6 +47,7 @@ function Reveal({
   margin?: string;
 }) {
   const ref = useRef(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const isInView = useInView(ref, { once: true, margin: margin as any });
   return (
     <m.div
@@ -79,6 +80,7 @@ function ParallaxImage({ src, alt }: { src: string; alt: string }) {
 
 function StaggerList({ items }: { items: string[] }) {
   const ref = useRef(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const isInView = useInView(ref, { once: true, margin: "-60px" as any });
 
   return (
@@ -128,7 +130,7 @@ export function HseContent() {
 
               <Reveal variants={fadeInUp} className="mb-10">
                 <p className="text-navy-500 leading-relaxed text-lg sm:text-xl font-medium italic border-l-4 border-brand-500 pl-6">
-                  "It is the policy of MACWEST LIMITED (MACWL) to achieve and maintain a high standard of health, safety and environmental performance. Our objective is to prevent injury, ill health and minimize the environmental impact of our operations."
+                  &quot;It is the policy of MACWEST LIMITED (MACWL) to achieve and maintain a high standard of health, safety and environmental performance. Our objective is to prevent injury, ill health and minimize the environmental impact of our operations.&quot;
                 </p>
               </Reveal>
 
