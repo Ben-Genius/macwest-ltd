@@ -30,7 +30,7 @@ export function PastProjectsContent() {
     <div className="bg-white">
 
       {/* ── 1. Large centered header ─────────────────────────────── */}
-      <div className="pt-6 pb-10 text-center px-6 border-b border-navy-100">
+      <div className="pt-36 pb-10 text-center px-6 border-b border-navy-100">
         <GSAPReveal y={30} duration={1}>
           <h1
             className="font-display font-bold text-navy-950 leading-[0.92] tracking-[-0.04em] uppercase"
@@ -147,7 +147,7 @@ export function PastProjectsContent() {
             <GSAPReveal key={project.slug} delay={i * 0.04} y={16}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="group grid grid-cols-[2rem_1fr_2fr_220px] sm:grid-cols-[2rem_1fr_2fr_300px] lg:grid-cols-[2.5rem_1fr_2fr_380px] items-start gap-6 px-6 sm:px-10 lg:px-12 py-8 hover:bg-sand-50/60 transition-colors duration-200"
+                className="group grid grid-cols-[2rem_1fr_2fr_1fr] sm:grid-cols-[2rem_1fr_2fr_1fr] lg:grid-cols-[2.0rem_1fr_2fr_2fr] items-start gap-6 px-6 sm:px-10 lg:px-12 py-8 hover:bg-sand-50/60 transition-colors duration-200"
               >
                 {/* Col 1 — index, top-aligned */}
                 <span className="text-[11px] font-bold text-navy-300 tabular-nums pt-[3px]">
@@ -155,24 +155,26 @@ export function PastProjectsContent() {
                 </span>
 
                 {/* Col 2 — title + meta, top-aligned */}
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-navy-400 bg-navy-50 border border-navy-200 px-2 py-0.5 rounded-full">
-                      {project.yearCompleted ?? project.year}
-                    </span>
-                    <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-navy-400">
-                      {project.category}
-                    </span>
+                <div className="min-w-0 flex flex-col justify-between h-full">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-navy-400 bg-navy-50 border border-navy-200 px-2 py-0.5 rounded-full">
+                        {project.yearCompleted ?? project.year}
+                      </span>
+                      <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-navy-400">
+                        {project.category}
+                      </span>
+                    </div>
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-navy-950 group-hover:text-brand-600 transition-colors leading-snug">
+                      {project.title}
+                    </h3>
                   </div>
-                  <h3 className="font-display text-lg sm:text-xl font-bold text-navy-950 group-hover:text-brand-600 transition-colors leading-snug">
-                    {project.title}
-                  </h3>
-                  <p className="text-[11px] text-navy-400 mt-1">{project.location}</p>
+                  <p className="text-[11px] text-navy-400 mt-1 font-bold">{project.location}</p>
                 </div>
 
                 {/* Col 3 — description top-aligned with title, CTA below */}
-                <div className="hidden md:flex flex-col">
-                  <p className="text-[12px] text-navy-500 leading-relaxed">
+                <div className="hidden md:flex flex-col justify-between items-start h-full">
+                  <p className="text-[14px] text-navy-500 leading-relaxed">
                     {project.description}
                   </p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-bold text-navy-400 group-hover:text-brand-600 transition-colors uppercase tracking-widest">
@@ -181,7 +183,7 @@ export function PastProjectsContent() {
                 </div>
 
                 {/* Col 4 — image stretches full row height */}
-                <div className="relative overflow-hidden rounded-xl bg-navy-100 self-stretch min-h-[160px]">
+                <div className="relative overflow-hidden rounded-xl bg-navy-100 self-stretch min-h-[350px]">
                   <Image
                     src={project.cover}
                     alt={project.title}
