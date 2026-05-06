@@ -83,6 +83,7 @@ const SERVICES = [
     description:
       "Beyond construction, Macwest extends value through specialised Softworks & Augmented Services — technical and vocational training, corporate leadership development, event management, branding, media coverage, and documentary production. Blending creativity with capability.",
     tags: ["Technical Training", "Leadership Dev.", "Event Management", "Branding & Media"],
+    href: "/services/softworks-augmented",
   },
 ];
 
@@ -239,25 +240,47 @@ function ServiceRow({ service, index }: { service: (typeof SERVICES)[number]; in
         </div>
 
         {/* CTA */}
-        <m.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300, damping: 25 }}>
-          <Link
-            href={`/contact?service=${service.anchor}`}
-            className="inline-flex items-center gap-2 text-sm font-bold text-brand-600 hover:text-brand-700 transition-colors"
-          >
-            Enquire about this service
-            <m.svg
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        <div className="flex flex-wrap gap-6 items-center">
+          <m.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300, damping: 25 }}>
+            <Link
+              href={`/contact?service=${service.anchor}`}
+              className="inline-flex items-center gap-2 text-sm font-bold text-brand-600 hover:text-brand-700 transition-colors"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-            </m.svg>
-          </Link>
-        </m.div>
+              Enquire about this service
+              <m.svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+              </m.svg>
+            </Link>
+          </m.div>
+
+          {service.href && (
+            <m.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300, damping: 25 }}>
+              <Link
+                href={service.href}
+                className="inline-flex items-center gap-2 text-sm font-bold text-navy-900 hover:text-brand-600 transition-colors group"
+              >
+                Read More
+                <m.svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </m.svg>
+              </Link>
+            </m.div>
+          )}
+        </div>
       </m.div>
 
       {/* ── Image ── */}
