@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { type GalleryImage } from "@/data/gallery";
+import { Container } from "../ui";
 
 /* ── Lightbox ─────────────────────────────────────────────────── */
 
@@ -114,7 +115,7 @@ function KineticTile({
       onClick={onClick}
     >
       {/* scale(1.15) prevents edge bleed during skew */}
-      <div className="relative h-64 overflow-hidden" style={{ transform: "scale(1.15)" }}>
+      <div className="relative h-[30rem] overflow-hidden" style={{ transform: "scale(1.15)" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image.src}
@@ -156,8 +157,8 @@ export function KineticScrollGallery({ images }: { images: GalleryImage[] }) {
 
   return (
     <div className="min-h-screen bg-white py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Container size="2xl" className="mx-auto">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 px-2">
           {images.map((img, i) => (
             <KineticTile
               key={i}
@@ -168,7 +169,7 @@ export function KineticScrollGallery({ images }: { images: GalleryImage[] }) {
             />
           ))}
         </div>
-      </div>
+      </Container>
 
       <AnimatePresence>
         {lightboxIndex !== null && (

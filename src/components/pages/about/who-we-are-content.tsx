@@ -31,27 +31,27 @@ import {
 
 const STATS = [
   { value: "14+", label: "Years of excellence" },
-  { value: "3",   label: "ISO certifications" },
+  { value: "3", label: "ISO certifications" },
   { value: "100+", label: "Projects delivered" },
 ];
 
 const VISION_MARKERS = [
-  { id: "accra",        location: [5.6037,   -0.187]   as [number, number], label: "Accra, Ghana" },
-  { id: "lagos",        location: [6.5244,    3.3792]  as [number, number], label: "Lagos, Nigeria" },
-  { id: "nairobi",      location: [-1.2921,  36.8219]  as [number, number], label: "Nairobi, Kenya" },
-  { id: "johannesburg", location: [-26.2041, 28.0473]  as [number, number], label: "Johannesburg" },
-  { id: "abidjan",      location: [5.3599,   -4.0083]  as [number, number], label: "Abidjan, Côte d'Ivoire" },
-  { id: "dakar",        location: [14.7167, -17.4677]  as [number, number], label: "Dakar, Senegal" },
-  { id: "dar",          location: [-6.7924,  39.2083]  as [number, number], label: "Dar es Salaam" },
-  { id: "douala",       location: [4.0511,    9.7679]  as [number, number], label: "Douala, Cameroon" },
+  { id: "accra", location: [5.6037, -0.187] as [number, number], label: "Accra, Ghana" },
+  { id: "lagos", location: [6.5244, 3.3792] as [number, number], label: "Lagos, Nigeria" },
+  { id: "nairobi", location: [-1.2921, 36.8219] as [number, number], label: "Nairobi, Kenya" },
+  { id: "johannesburg", location: [-26.2041, 28.0473] as [number, number], label: "Johannesburg" },
+  { id: "abidjan", location: [5.3599, -4.0083] as [number, number], label: "Abidjan, Côte d'Ivoire" },
+  { id: "dakar", location: [14.7167, -17.4677] as [number, number], label: "Dakar, Senegal" },
+  { id: "dar", location: [-6.7924, 39.2083] as [number, number], label: "Dar es Salaam" },
+  { id: "douala", location: [4.0511, 9.7679] as [number, number], label: "Douala, Cameroon" },
 ];
 
 const VISION_ARCS = [
-  { id: "accra-lagos",        from: [5.6037,  -0.187]  as [number, number], to: [6.5244,    3.3792]  as [number, number] },
-  { id: "accra-abidjan",      from: [5.6037,  -0.187]  as [number, number], to: [5.3599,   -4.0083]  as [number, number] },
-  { id: "accra-nairobi",      from: [5.6037,  -0.187]  as [number, number], to: [-1.2921,  36.8219]  as [number, number] },
-  { id: "accra-johannesburg", from: [5.6037,  -0.187]  as [number, number], to: [-26.2041, 28.0473]  as [number, number] },
-  { id: "lagos-dar",          from: [6.5244,   3.3792] as [number, number], to: [-6.7924,  39.2083]  as [number, number] },
+  { id: "accra-lagos", from: [5.6037, -0.187] as [number, number], to: [6.5244, 3.3792] as [number, number] },
+  { id: "accra-abidjan", from: [5.6037, -0.187] as [number, number], to: [5.3599, -4.0083] as [number, number] },
+  { id: "accra-nairobi", from: [5.6037, -0.187] as [number, number], to: [-1.2921, 36.8219] as [number, number] },
+  { id: "accra-johannesburg", from: [5.6037, -0.187] as [number, number], to: [-26.2041, 28.0473] as [number, number] },
+  { id: "lagos-dar", from: [6.5244, 3.3792] as [number, number], to: [-6.7924, 39.2083] as [number, number] },
 ];
 
 const VISION_POINTS = [
@@ -70,26 +70,26 @@ const MISSION_POINTS = [
 
 const CSR_PILLARS = [
   { title: "Infrastructure", desc: "Building lasting structures that uplift communities" },
-  { title: "Education",      desc: "Supporting training programmes and skills development" },
+  { title: "Education", desc: "Supporting training programmes and skills development" },
   { title: "Sustainability", desc: "Environmentally responsible construction practices" },
-  { title: "Community",     desc: "Engaging and empowering local people in every project" },
+  { title: "Community", desc: "Engaging and empowering local people in every project" },
 ];
 
 /* ─── Local animation variants ─────────────────────────────────── */
 
 const clipFromLeft: Variants = {
   hidden: { clipPath: "inset(0% 100% 0% 0%)" },
-  show:   { clipPath: "inset(0% 0% 0% 0%)", transition: { duration: 1.1, ease: EASE.outExpo } },
+  show: { clipPath: "inset(0% 0% 0% 0%)", transition: { duration: 1.1, ease: EASE.outExpo } },
 };
 
 const clipFromRight: Variants = {
   hidden: { clipPath: "inset(0% 0% 0% 100%)" },
-  show:   { clipPath: "inset(0% 0% 0% 0%)", transition: { duration: 1.1, ease: EASE.outExpo } },
+  show: { clipPath: "inset(0% 0% 0% 0%)", transition: { duration: 1.1, ease: EASE.outExpo } },
 };
 
 const clipFromBottom: Variants = {
   hidden: { clipPath: "inset(100% 0% 0% 0%)", opacity: 0 },
-  show:   { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, transition: { duration: 0.85, ease: EASE.outExpo } },
+  show: { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, transition: { duration: 0.85, ease: EASE.outExpo } },
 };
 
 /* ─── Sub-components ────────────────────────────────────────────── */
@@ -265,7 +265,7 @@ function CSRPillars() {
 
 export function WhoWeAreContent() {
   const [storyExpanded, setStoryExpanded] = useState(false);
-  const [csrExpanded,   setCsrExpanded]   = useState(false);
+  const [csrExpanded, setCsrExpanded] = useState(false);
 
   return (
     <>
@@ -443,7 +443,7 @@ export function WhoWeAreContent() {
 
               <Reveal variants={clipFromLeft}>
                 <div className="aspect-[3/2.3] w-full rounded-2xl overflow-hidden relative shadow-lg">
-                  <ParallaxImage src="/images/about/our_story.JPG" alt="Macwest — our story" />
+                  <ParallaxImage src="/images/about/home.jpeg" alt="Macwest — our story" />
                 </div>
               </Reveal>
             </div>
