@@ -109,74 +109,84 @@ function HorizontalStrip({
           className="flex h-full pl-8 sm:pl-12 lg:pl-16 pr-24 pb-10 gap-4 will-change-transform"
           style={{ width: "max-content" }}
         >
-          {projects.map((project, i) => (
-            <Link
-              key={project.id}
-              href={`/projects/${project.slug}`}
-              className="flex-shrink-0 flex flex-col gap-3 group"
-              style={{ width: "clamp(300px, 36vw, 480px)" }}
-            >
-              {/* Index + divider + category */}
-              <div className="flex items-center gap-3 flex-shrink-0">
-                <span className="text-[11px] font-bold text-navy-300 tracking-widest tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="h-px flex-1 bg-navy-100 group-hover:bg-brand-400 transition-colors duration-500" />
-                <span className="text-[10px] font-bold text-navy-400 tracking-[0.14em] uppercase whitespace-nowrap">
-                  {project.category}
-                </span>
-              </div>
+          {projects.map((project, i) => {
+            const isPlaceholder = statusVariant === "active" || !project.cover;
 
-              {/* Card */}
-              <div className="text-white flex-1 relative overflow-hidden rounded-xl cursor-pointer min-h-0 max-h-[62vh]">
-                {project.cover ? (
-                  <Image
-                    src={project.cover}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes="(max-width: 640px) 80vw, 32vw"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-navy-800" />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-
-                {/* Status pill */}
-                <div className="absolute top-4 left-4">
-                  <span
-                    className={cn(
-                      "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-[0.14em]",
-                      statusVariant === "active"
-                        ? "bg-emerald-500/90 text-white"
-                        : "bg-white/15 text-white/80 backdrop-blur-sm"
-                    )}
-                  >
-                    <span
-                      className={cn(
-                        "size-1.5 rounded-full",
-                        statusVariant === "active" ? "bg-white animate-pulse" : "bg-white/60"
-                      )}
-                    />
-                    {statusVariant === "active" ? "Active" : "Delivered"}
+            return (
+              <Link
+                key={project.id}
+                href={`/projects/${project.slug}`}
+                className="flex-shrink-0 flex flex-col gap-3 group"
+                style={{ width: "clamp(300px, 36vw, 480px)" }}
+              >
+                {/* Index + divider + category */}
+                <div className="flex items-center gap-3 flex-shrink-0">
+                  <span className="text-[11px] font-bold text-navy-300 tracking-widest tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="h-px flex-1 bg-navy-500 group-hover:bg-brand-400 transition-colors duration-500" />
+                  <span className="text-[10px] font-bold text-navy-400 tracking-[0.14em] uppercase whitespace-nowrap">
+                    {project.category}
                   </span>
                 </div>
 
-                {/* Bottom text */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7 transform transition-transform duration-500 group-hover:-translate-y-2 text-white">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-1.5">
-                    {project.subtitle}
-                  </p>
-                  <h3 className="font-display text-xl sm:text-[1.4rem] font-bold text-white leading-snug">
-                    {project.title}
-                  </h3>
-                  <p className="mt-1.5 text-[12px] text-white/65 font-medium tracking-wide">
-                    {project.location} &middot; {project.yearCompleted ?? project.year}
-                  </p>
+                {/* Card */}
+                <div className="text-white flex-1 relative overflow-hidden rounded-xl bg-navy-50/50 cursor-pointer min-h-0 max-h-[62vh]">
+                  {!isPlaceholder ? (
+                    <Image
+                      src={project.cover}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      sizes="(max-width: 640px) 80vw, 32vw"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-navy-700">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-navy-300">
+                        Images coming soon
+                      </span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                  {/* Status pill */}
+                  <div className="absolute top-4 left-4">
+                    <span
+                      className={cn(
+                        "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-[0.14em]",
+                        statusVariant === "active"
+                          ? "bg-emerald-500/90 text-white"
+                          : "bg-white/15 text-white/80 backdrop-blur-sm"
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "size-1.5 rounded-full",
+                          statusVariant === "active"
+                            ? "bg-white animate-pulse"
+                            : "bg-white/60"
+                        )}
+                      />
+                      {statusVariant === "active" ? "Active" : "Delivered"}
+                    </span>
+                  </div>
+
+                  {/* Bottom text */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7 transform transition-transform duration-500 group-hover:-translate-y-2 text-white">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-1.5">
+                      {project.subtitle}
+                    </p>
+                    <h3 className="font-display text-xl sm:text-[1.4rem] font-bold text-white leading-snug">
+                      {project.title}
+                    </h3>
+                    <p className="mt-1.5 text-[12px] text-white/65 font-medium tracking-wide">
+                      {project.location} &middot; {project.yearCompleted ?? project.year}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
