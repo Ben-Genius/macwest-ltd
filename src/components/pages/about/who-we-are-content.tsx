@@ -311,7 +311,7 @@ export function WhoWeAreContent() {
 
           {/* Hero image — clip-left reveal + parallax */}
           <Reveal variants={clipFromLeft}>
-            <div className="w-full aspect-[16/7] rounded-2xl overflow-hidden relative group shadow-xl">
+            <div className="w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[16/7] rounded-2xl overflow-hidden relative group shadow-xl">
               <ParallaxImage
                 src="https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/0T6A9939.jpg?fit=2048%2C1365&ssl=1"
                 alt="Macwest Limited — flagship project"

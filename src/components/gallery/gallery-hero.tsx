@@ -90,14 +90,14 @@ export function GalleryHero() {
 
         <motion.h1
           variants={itemV}
-          className="font-display text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
+          className="font-display text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
         >
           Our work,
         </motion.h1>
 
         <motion.h1
           variants={itemV}
-          className="font-display text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
+          className="font-display text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
         >
           our <span className="text-brand-600">people</span>, our story.
         </motion.h1>
