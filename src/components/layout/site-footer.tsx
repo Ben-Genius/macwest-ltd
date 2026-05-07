@@ -44,7 +44,7 @@ export function SiteFooter({ className }: SiteFooterProps) {
 
       {/* ── Footer grid ─────────────────────────────────────────────── */}
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 pt-20 pb-12 relative z-10">
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_0.8fr_0.8fr_1.2fr]">
+        <div className="grid gap-8 lg:gap-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_0.8fr_0.8fr_1.2fr]">
 
           {/* Brand column */}
           <GSAPReveal delay={0.1} y={20}>

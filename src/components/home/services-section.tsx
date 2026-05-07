@@ -42,7 +42,7 @@ const services = [
     title: "Softworks & Augmented Services",
     description:
       "Beyond construction — technical and vocational training, corporate leadership development, event management, branding, media coverage, and documentary production.",
-    href: "/services#softworks",
+    href: "/services/softworks-augmented",
   },
 ];
 

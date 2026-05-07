@@ -139,7 +139,7 @@ export function HeroSection() {
 
       {/* ── Partner marquee ───────────────────────────────────────── */}
       <section className="relative border-t border-black/5 bg-white py-10">
-        <div className="mx-auto max-w-8xl px-12">
+        <div className="mx-auto max-w-8xl px-4 sm:px-8 lg:px-12">
           <div className="flex flex-col items-center gap-6 md:flex-row md:gap-0">
 
             {/* Left label */}

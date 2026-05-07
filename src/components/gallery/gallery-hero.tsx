@@ -11,25 +11,27 @@ import {
 
 type CollectionCard = { src: string; slug: string; title: string };
 
+const G = "/images/Galleryy";
+
 const COL_1: CollectionCard[] = [
-  { src: "/images/IMG_2760-scaled.jpg.jpeg", slug: "site-visits", title: "Site Visits" },
-  { src: "https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/1H6A4274.jpg", slug: "coastal-engagement", title: "Coastal Engagement" },
-  { src: "https://macwest.com.gh/wp-content/uploads/2025/03/8D4A2129.jpg", slug: "inter-schools-competition", title: "Inter Schools Competition" },
-  { src: "/images/DJI_20240911144011_0234_D_PARZIAIR.jpg.jpeg", slug: "handing-over-ceremony-for-astroturf", title: "Handing Over — Astroturf" },
+  { src: `${G}/Site%20visit/IMG_2760.webp`, slug: "site-visits", title: "Site Visits" },
+  { src: `${G}/Coastal%20Eng/AHANTAWEST/1H6A4274.webp`, slug: "coastal-engagement", title: "Coastal Engagement" },
+  { src: `${G}/Interschools/8D4A2135.webp`, slug: "inter-schools-competition", title: "Inter Schools Competition" },
+  { src: `${G}/Handing%20Ceremo%20Astroturf/8D4A2796.webp`, slug: "handing-over-ceremony-for-astroturf", title: "Handing Over — Astroturf" },
 ];
 
 const COL_2: CollectionCard[] = [
-  { src: "/images/0T6A0203-scaled.jpg.jpeg", slug: "staff-annual-retreats", title: "Staff Annual Retreats" },
-  { src: "/images/0T6A9136.jpg.jpeg", slug: "staff-annual-thanksgiving-service", title: "Staff Thanksgiving Service" },
-  { src: "/images/IMG_8104-scaled.jpg.jpeg", slug: "staff-board-engagement", title: "Staff-board Engagement" },
-  { src: "/images/0T6A9895.jpg.jpeg", slug: "enrico-mattei-week-celebration", title: "Enrico Mattei Week" },
+  { src: `${G}/Staff%20Annual%20Retreat/1H6A4921.webp`, slug: "staff-annual-retreats", title: "Staff Annual Retreats" },
+  { src: `${G}/Thanksgiving/2026/MGL3564.webp`, slug: "staff-annual-thanksgiving-service", title: "Staff Thanksgiving Service" },
+  { src: `${G}/Staff%20Board%20ENG/2F2A9620.webp`, slug: "staff-board-engagement", title: "Staff-board Engagement" },
+  { src: `${G}/Enrico%20Mattei%20Week%20Celeb/0T6A3460.webp`, slug: "enrico-mattei-week-celebration", title: "Enrico Mattei Week" },
 ];
 
 const COL_3: CollectionCard[] = [
-  { src: "https://i0.wp.com/macwest.com.gh/wp-content/uploads/2025/03/E53A1491-scaled.jpg", slug: "cleaning-cooking-training-by-eni-ghana", title: "ENI Ghana Training Day 1" },
-  { src: "/images/IMG_4737-scaled.jpg.jpeg", slug: "vis-training-by-eni-ghana", title: "VIS Training — ENI Ghana" },
-  { src: "/images/IMG_4738-scaled.jpg.jpeg", slug: "ldpj-community-engagement-bakanta-palace", title: "LDPJ — Bakanta Palace" },
-  { src: "/images/IMG_4741-scaled.jpg.jpeg", slug: "ldpj-community-engagement-sanzule-palace", title: "LDPJ — Sanzule Palace" },
+  { src: `${G}/Cleaning:cooking/Cleaning%20Cooking%20ENI%20day%201/E53A1438.webp`, slug: "cleaning-cooking-training-by-eni-ghana", title: "ENI Ghana Training Day 1" },
+  { src: `${G}/VIS%20Training%20by%20ENI/E53A1606.webp`, slug: "vis-training-by-eni-ghana", title: "VIS Training — ENI Ghana" },
+  { src: `${G}/Comm.Eng-Bakanta/0T6A5900.webp`, slug: "ldpj-community-engagement-bakanta-palace", title: "LDPJ — Bakanta Palace" },
+  { src: `${G}/Comm.%20Eng-Sanzule/IMG_0359.webp`, slug: "ldpj-community-engagement-sanzule-palace", title: "LDPJ — Sanzule Palace" },
 ];
 
 const containerV = {
@@ -71,7 +73,7 @@ function GalleryCard({ card }: { card: CollectionCard }) {
 
 export function GalleryHero() {
   return (
-    <div className="relative bg-white p-12">
+    <div className="relative bg-white p-2">
       {/* ── Hero text ── */}
       <motion.div
         className="relative z-[9999] -mb-16 px-6 pt-32 text-center sm:pt-40 pointer-events-none"
@@ -88,14 +90,14 @@ export function GalleryHero() {
 
         <motion.h1
           variants={itemV}
-          className="font-display text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
+          className="font-display text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
         >
           Our work,
         </motion.h1>
 
         <motion.h1
           variants={itemV}
-          className="font-display text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
+          className="font-display text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
         >
           our <span className="text-brand-600">people</span>, our story.
         </motion.h1>
@@ -127,7 +129,7 @@ export function GalleryHero() {
       />
 
       {/* ── 3-D scroll gallery ── */}
-      <ContainerScroll className="relative h-[450vh] mb-12 ">
+      <ContainerScroll className="relative h-[500vh] mb-12 ">
         <ContainerSticky className="h-svh">
           <GalleryContainer>
             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">

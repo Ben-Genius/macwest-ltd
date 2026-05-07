@@ -122,7 +122,7 @@ export function ContactSection() {
             </GSAPReveal>
 
             {/* 2×2 contact grid — each cell staggers in */}
-            <div className="grid grid-cols-2 gap-x-10 gap-y-10">
+            <div className="grid grid-cols-2 gap-x-6 sm:gap-x-10 gap-y-8 sm:gap-y-10">
               {contactGrid.map(({ label, lines, social }, i) => (
                 <GSAPReveal key={label} delay={0.28 + i * 0.09} y={16} duration={0.75}>
                   <p className="text-sm font-bold text-navy-950 mb-2">{label}</p>

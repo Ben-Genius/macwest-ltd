@@ -96,7 +96,7 @@ export function ProjectsSection() {
       className="h-screen overflow-hidden bg-sand-50 flex flex-col"
     >
       {/* Header */}
-      <div className="flex-shrink-0 flex items-start justify-between px-8 sm:px-12 lg:px-16 pt-12 pb-8">
+      <div className="flex-shrink-0 flex flex-wrap items-start justify-between gap-4 px-6 sm:px-12 lg:px-16 pt-12 pb-8">
         <div>
           <GSAPReveal delay={0.1} y={15}>
             <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-gold-600 mb-3">

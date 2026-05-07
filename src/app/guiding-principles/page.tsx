@@ -1,12 +1,18 @@
-import { PageLayout } from "@/components/pages/page-layout";
+import { PageHeader } from "@/components/layout/page-header";
 import { createPageMetadata } from "@/lib/metadata";
+import { PrinciplesContent } from "@/components/pages/principles/principles-content";
 
 export const metadata = createPageMetadata(
-  "Guiding principles",
-  "Integrity, profitability, excellence, growth, teamwork, and safety.",
+  "Guiding Principles",
+  "The core values and principles that drive Macwest Limited.",
   "/guiding-principles",
 );
 
 export default function GuidingPrinciplesPage() {
-  return <PageLayout title="Guiding principles" />;
+  return (
+    <>
+      <PageHeader title="Principles" description="Our North Star" />
+      <PrinciplesContent />
+    </>
+  );
 }

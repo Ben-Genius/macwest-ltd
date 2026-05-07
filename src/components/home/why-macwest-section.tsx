@@ -173,7 +173,7 @@ export function WhyMacwestSection() {
         </div>
 
         {/* Alternating split rows */}
-        <div className="space-y-32">
+        <div className="space-y-16 sm:space-y-24 lg:space-y-32">
           {reasons.map((reason, i) => (
             <ReasonRow key={reason.stat} reason={reason} i={i} />
           ))}

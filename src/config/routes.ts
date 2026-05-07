@@ -27,7 +27,7 @@ export const mainNav: readonly NavItem[] = [
       { label: "Housing Estates", href: "/services#housingestates" },
       { label: "MEP", href: "/services#mechanicalelectrical" },
       { label: "Procurement", href: "/services#pservice" },
-      { label: "Softworks & Augmented", href: "/services#softworks" },
+      { label: "Softworks & Augmented", href: "/services/softworks-augmented" },
       { label: "Cement Supply", href: "/services#cementsupply" },
     ],
   },

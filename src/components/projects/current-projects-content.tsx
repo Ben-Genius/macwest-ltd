@@ -136,7 +136,7 @@ export function CurrentProjectsContent() {
             <GSAPReveal key={project.slug} delay={i * 0.04} y={16}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="group grid grid-cols-[2rem_1fr_2fr_1fr] sm:grid-cols-[2rem_1fr_2fr_1fr] lg:grid-cols-[2.0rem_1fr_2fr_2fr] items-start gap-6 px-6 sm:px-10 lg:px-12 py-8 hover:bg-sand-50/60 transition-colors duration-200"
+                className="group grid grid-cols-[1.5rem_1fr_110px] md:grid-cols-[2rem_1fr_2fr_1fr] lg:grid-cols-[2rem_1fr_2fr_2fr] items-start gap-3 md:gap-6 px-4 sm:px-6 md:px-10 lg:px-12 py-6 md:py-8 hover:bg-sand-50/60 transition-colors duration-200"
               >
                 {/* Col 1 — index, top-aligned */}
                 <span className="text-[11px] font-bold text-navy-300 tabular-nums pt-[3px]">
@@ -163,7 +163,7 @@ export function CurrentProjectsContent() {
                 </div>
 
                 {/* Col 4 — image stretches to fill the full row height */}
-                <div className="relative overflow-hidden rounded-xl bg-navy-100 self-stretch min-h-[350px]">
+                <div className="relative overflow-hidden rounded-xl bg-navy-100 self-stretch min-h-[120px] md:min-h-[350px]">
                   <Image
                     src={project.cover}
                     alt={project.title}
