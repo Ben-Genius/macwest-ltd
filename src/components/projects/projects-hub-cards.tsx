@@ -68,7 +68,8 @@ function HorizontalStrip({
     <section
       ref={sectionRef}
       className={cn(
-        "h-screen overflow-hidden flex flex-col border-t border-navy-100 pt-30",
+        "overflow-hidden flex flex-col border-t border-navy-100 pt-30",
+        "h-[calc(100svh-6rem)] md:h-[calc(100svh-5rem)]",
         statusVariant === "active" ? "bg-white" : "bg-sand-50"
       )}
     >

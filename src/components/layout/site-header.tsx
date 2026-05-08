@@ -331,7 +331,7 @@ export function SiteHeader() {
             exit={{ opacity: 0, y: scrolled ? "100%" : "-100%" }}
             transition={{ duration: 0.4, ease: EASE.outExpo }}
             className={cn(
-              "fixed inset-0 z-[390] bg-white lg:hidden h-svh w-screen overflow-y-auto",
+              "fixed inset-0 z-[500] bg-white lg:hidden h-svh w-screen overflow-y-auto",
               scrolled ? "pb-32 pt-10 px-6" : "pt-32 pb-10 px-6"
             )}
           >
