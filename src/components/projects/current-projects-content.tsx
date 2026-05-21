@@ -49,13 +49,7 @@ export function CurrentProjectsContent() {
             className="group relative flex-1 overflow-hidden"
             style={{ height: "clamp(220px, 36vw, 440px)" }}
           >
-            <Image
-              src={p.cover}
-              alt={p.title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="50vw"
-            />
+            <div className="absolute inset-0 bg-navy-200 transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
             <div className="absolute bottom-4 left-4">
               <span className="text-[10px] font-bold uppercase tracking-widest text-white/80 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-full">
@@ -164,13 +158,7 @@ export function CurrentProjectsContent() {
 
                 {/* Col 4 — image stretches to fill the full row height */}
                 <div className="relative overflow-hidden rounded-xl bg-navy-100 self-stretch min-h-[120px] md:min-h-[350px]">
-                  <Image
-                    src={project.cover}
-                    alt={project.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 640px) 220px, (max-width: 1024px) 300px, 380px"
-                  />
+                  <div className="absolute inset-0 bg-navy-200 group-hover:scale-105 transition-transform duration-500" />
                 </div>
               </Link>
             </GSAPReveal>

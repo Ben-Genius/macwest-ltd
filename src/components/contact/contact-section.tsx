@@ -8,7 +8,7 @@ import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 const contactGrid = [
   {
     label: "Call Center",
-    lines: ["+233 30 000 0000", "+233 24 000 0000"],
+    lines: ["+233 24 427 0797", "+233 (0) 50 978 8332"],
   },
   {
     label: "Our Location",

@@ -60,20 +60,20 @@ export function ProjectsOverviewHero() {
 
         {/* Main title row */}
         <div className="max-w-[100rem] mx-auto px-4 sm:px-8 lg:px-12">
-          <div className="flex items-end justify-between gap-8 pt-3 pb-0">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-8 pt-6 sm:pt-3 pb-0">
 
-            {/* Giant display title — bleeds to left edge, Boffi-style */}
+            {/* Giant display title */}
             <GSAPReveal y={40} duration={1} className="flex-1 min-w-0">
               <h1
-                className="font-display font-bold text-navy-950 leading-[0.88] tracking-[-0.04em] whitespace-nowrap"
-                style={{ fontSize: "clamp(4.5rem, 13vw, 11rem)" }}
+                className="font-display font-bold text-navy-950 leading-[0.88] tracking-[-0.04em]"
+                style={{ fontSize: "clamp(3.5rem, 13vw, 11rem)" }}
               >
                 Projects
               </h1>
             </GSAPReveal>
 
             {/* Right: brand label + description */}
-            <GSAPReveal y={24} delay={0.18} className="flex-shrink-0 max-w-[260px] sm:max-w-[300px] pb-3 sm:pb-5">
+            <GSAPReveal y={24} delay={0.18} className="sm:flex-shrink-0 max-w-full sm:max-w-[260px] md:max-w-[300px] pb-0 sm:pb-3 md:pb-5">
               <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-brand-600 mb-2">
                 Macwest Portfolio
               </p>

@@ -71,12 +71,14 @@ function GalleryCard({ card }: { card: CollectionCard }) {
   );
 }
 
+const ALL_CARDS = [...COL_1, ...COL_2, ...COL_3];
+
 export function GalleryHero() {
   return (
     <div className="relative bg-white p-2">
       {/* ── Hero text ── */}
       <motion.div
-        className="relative z-[9999] -mb-16 px-6 pt-32 text-center sm:pt-40 pointer-events-none"
+        className="relative z-[9999] px-6 pt-24 text-center sm:pt-32 md:-mb-16 md:pt-40 pointer-events-none"
         variants={containerV}
         initial="hidden"
         animate="show"
@@ -128,23 +130,33 @@ export function GalleryHero() {
         }}
       />
 
-      {/* ── 3-D scroll gallery ── */}
-      <ContainerScroll className="relative h-[500vh] mb-12 ">
-        <ContainerSticky className="h-svh">
-          <GalleryContainer>
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
-              {COL_1.map((c) => <GalleryCard key={c.slug} card={c} />)}
-            </GalleryCol>
-            <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
-              {COL_2.map((c) => <GalleryCard key={c.slug} card={c} />)}
-            </GalleryCol>
-            <GalleryCol yRange={["-40%", "2%"]} className="-mt-2">
-              {COL_3.map((c) => <GalleryCard key={c.slug} card={c} />)}
-            </GalleryCol>
+      {/* ── Mobile grid (< md) ── */}
+      <div className="block md:hidden px-2 pt-10 pb-14">
+        <div className="grid grid-cols-2 gap-3">
+          {ALL_CARDS.map((c) => (
+            <GalleryCard key={c.slug} card={c} />
+          ))}
+        </div>
+      </div>
 
-          </GalleryContainer>
-        </ContainerSticky>
-      </ContainerScroll>
+      {/* ── 3-D scroll gallery (md+) ── */}
+      <div className="hidden md:block">
+        <ContainerScroll className="relative h-[500vh] mb-12">
+          <ContainerSticky className="h-svh">
+            <GalleryContainer>
+              <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
+                {COL_1.map((c) => <GalleryCard key={c.slug} card={c} />)}
+              </GalleryCol>
+              <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
+                {COL_2.map((c) => <GalleryCard key={c.slug} card={c} />)}
+              </GalleryCol>
+              <GalleryCol yRange={["-40%", "2%"]} className="-mt-2">
+                {COL_3.map((c) => <GalleryCard key={c.slug} card={c} />)}
+              </GalleryCol>
+            </GalleryContainer>
+          </ContainerSticky>
+        </ContainerScroll>
+      </div>
     </div>
   );
 }
