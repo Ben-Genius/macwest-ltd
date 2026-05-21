@@ -159,7 +159,6 @@ export function SiteFooter({ className }: SiteFooterProps) {
         </div>
       </div>
 
-      {/* ── "Let's Talk" display statement ──────────────────────────── */}
       <div className="relative z-10 border-t border-white/5">
         <GSAPReveal y={30} duration={1.1}>
           <m.div
@@ -180,16 +179,7 @@ export function SiteFooter({ className }: SiteFooterProps) {
                 Let&apos;s Collaborate
               </m.span>
 
-              {/* Arrow circle — animates on hover */}
-              <m.div
-                variants={{
-                  hovered: { scale: 1.15, backgroundColor: "oklch(42% 0.175 22)" },
-                }}
-                transition={{ type: "spring", stiffness: 260, damping: 22 }}
-                className="flex-shrink-0 mb-4 sm:mb-6 size-14 sm:size-20 rounded-full border border-white/20 bg-white/5 flex items-center justify-center"
-              >
-                <ArrowUpRight className="size-6 sm:size-9 text-white" />
-              </m.div>
+
             </Link>
 
             {/* Sub-line below the big text */}
