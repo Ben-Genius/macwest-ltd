@@ -65,7 +65,7 @@ export const ALL_PROJECTS: Project[] = [
   {
     id: 1,
     slug: "eastern-region-project-agyanoa",
-    title: "Eastern Region Project",
+    title: "Eastern Region Agyanoa",
     subtitle: "Infrastructure Development",
     category: "Construction",
     status: "active",
