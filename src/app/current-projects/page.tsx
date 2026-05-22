@@ -17,7 +17,7 @@ export default function CurrentProjectsPage() {
         description="Active sites and programmes underway."
       /> */}
       <CurrentProjectsContent />
-      <CTABandSection />
+      {/* <CTABandSection /> */}
     </>
   );
 }

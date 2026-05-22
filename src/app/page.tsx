@@ -27,7 +27,7 @@ export default function HomePage() {
       {/* <ProjectsSection /> */}
       {/* <ClientsSection /> */}
       <QHSESection />
-      <CTABandSection />
+      {/* <CTABandSection /> */}
     </>
   );
 }

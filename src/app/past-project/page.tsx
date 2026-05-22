@@ -17,7 +17,7 @@ export default function PastProjectsPage() {
         description="A track record of delivered projects across construction, civil engineering, maritime, and housing."
       /> */}
       <PastProjectsContent />
-      <CTABandSection />
+      {/* <CTABandSection /> */}
     </>
   );
 }
