@@ -35,7 +35,7 @@ export default async function ProjectDetailPage({
     <>
       <ProjectDetailHero project={project} />
       <ProjectDetailBody project={project} related={related} />
-      <CTABandSection />
+
     </>
   );
 }
