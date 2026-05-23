@@ -65,11 +65,11 @@ export const ALL_PROJECTS: Project[] = [
   {
     id: 1,
     slug: "eastern-region-project-agyanoa",
-    title: "Eastern Region Agyanoa",
+    title: "Agyano Eastern Region ",
     subtitle: "Infrastructure Development",
     category: "Construction",
     status: "active",
-    location: "Agyanoa",
+    location: "Agyanoa Eastern Region",
     region: "Eastern Region, Ghana",
     year: "2026",
     duration: "Ongoing",
@@ -83,8 +83,18 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Location", value: "Agyanoa" },
       { label: "Status", value: "In Progress" },
     ],
-    cover: AGY,
-    images: [{ src: AGY, alt: "Eastern Region Project Agyanoa" }],
+    cover: "/images/Ongoing Project/Eastern region project- Agyanoa/1.webp",
+    images: [
+      { src: "/images/Ongoing Project/Eastern region project- Agyanoa/1.webp", alt: "Eastern Region Project Agyanoa 1" },
+      { src: "/images/Ongoing Project/Eastern region project- Agyanoa/2.webp", alt: "Eastern Region Project Agyanoa 2" },
+      { src: "/images/Ongoing Project/Eastern region project- Agyanoa/3.webp", alt: "Eastern Region Project Agyanoa 3" },
+      { src: "/images/Ongoing Project/Eastern region project- Agyanoa/4.webp", alt: "Eastern Region Project Agyanoa 4" },
+      { src: "/images/Ongoing Project/Eastern region project- Agyanoa/5.webp", alt: "Eastern Region Project Agyanoa 5" },
+      { src: "/images/Ongoing Project/Eastern region project- Agyanoa/6.webp", alt: "Eastern Region Project Agyanoa 6" },
+      { src: "/images/Ongoing Project/Eastern region project- Agyanoa/7.webp", alt: "Eastern Region Project Agyanoa 7" },
+      { src: "/images/Ongoing Project/Eastern region project- Agyanoa/8.webp", alt: "Eastern Region Project Agyanoa 8" },
+      { src: "/images/Ongoing Project/Eastern region project- Agyanoa/9.webp", alt: "Eastern Region Project Agyanoa 9" }
+    ],
     featured: true,
     span: "normal",
   },
@@ -92,7 +102,7 @@ export const ALL_PROJECTS: Project[] = [
   {
     id: 2,
     slug: "anglo-senior-high-school",
-    title: "Anglo Senior High School Project",
+    title: "Anglo Senior High School ",
     subtitle: "Educational Facility Construction",
     category: "Construction",
     status: "active",
@@ -110,8 +120,12 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Sector", value: "Education" },
       { label: "Status", value: "In Progress" },
     ],
-    cover: SCH,
-    images: [{ src: SCH, alt: "Anglo Senior High School Project" }],
+    cover: "/images/Ongoing Project/Anglo Senior High School- Project/1.webp",
+    images: [
+      { src: "/images/Ongoing Project/Anglo Senior High School- Project/1.webp", alt: "Anglo Senior High School Project 1" },
+      { src: "/images/Ongoing Project/Anglo Senior High School- Project/2.webp", alt: "Anglo Senior High School Project 2" },
+      { src: "/images/Ongoing Project/Anglo Senior High School- Project/3.webp", alt: "Anglo Senior High School Project 3" }
+    ],
     featured: true,
     span: "normal",
   },
@@ -139,8 +153,13 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Units", value: "12 Classrooms" },
       { label: "Facilities", value: "Dormitory & Bungalows" },
     ],
-    cover: SCH,
-    images: [{ src: SCH, alt: "Ada Senior High School 12 Unit Classroom Block" }],
+    cover: "/images/Ongoing Project/ADA SENIOR HIGH SCHOOL/1.webp",
+    images: [
+      { src: "/images/Ongoing Project/ADA SENIOR HIGH SCHOOL/1.webp", alt: "Ada Senior High School 12 Unit Classroom Block 1" },
+      { src: "/images/Ongoing Project/ADA SENIOR HIGH SCHOOL/2.webp", alt: "Ada Senior High School 12 Unit Classroom Block 2" },
+      { src: "/images/Ongoing Project/ADA SENIOR HIGH SCHOOL/3.webp", alt: "Ada Senior High School 12 Unit Classroom Block 3" },
+      { src: "/images/Ongoing Project/ADA SENIOR HIGH SCHOOL/4.webp", alt: "Ada Senior High School 12 Unit Classroom Block 4" }
+    ],
     featured: true,
     span: "wide",
   },
@@ -166,8 +185,11 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Units", value: "24 Classrooms" },
       { label: "Sector", value: "Education" },
     ],
-    cover: SCH,
-    images: [{ src: SCH, alt: "Ada SHTS 24 Unit Classroom Block" }],
+    cover: "/images/Ongoing Project/ADA SHTS/1.webp",
+    images: [
+      { src: "/images/Ongoing Project/ADA SHTS/1.webp", alt: "Ada SHTS 24 Unit Classroom Block 1" },
+      { src: "/images/Ongoing Project/ADA SHTS/2.webp", alt: "Ada SHTS 24 Unit Classroom Block 2" }
+    ],
     featured: true,
     span: "normal",
   },
@@ -197,21 +219,216 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Location", value: "Essiama" },
       { label: "Status", value: "In Progress" },
     ],
-    cover: `${P}/market/market.webp`,
+    cover: "/images/Ongoing Project/Construction of an ultra modern market/1.webp",
     images: [
-      { src: `${P}/market/market.webp`, alt: "Essiama Market complex overview" },
-      { src: `${P}/market/Market-and-bus-terminal.webp`, alt: "Market and bus terminal" },
-      { src: `${P}/market/WhatsApp-Image-2026-02-18-at-4.24.48-PM-market.webp`, alt: "Construction progress" },
-      { src: `${P}/market/WhatsApp-Image-2026-02-18-at-4.24.49-PM-Market-terminal.webp`, alt: "Terminal works" },
-      { src: `${P}/market/WhatsApp-Image-2026-02-18-at-4.24.50-PM-market-terminal.webp`, alt: "Site works ongoing" },
+      { src: "/images/Ongoing Project/Construction of an ultra modern market/1.webp", alt: "Essiama Market complex overview 1" },
+      { src: "/images/Ongoing Project/Construction of an ultra modern market/2.webp", alt: "Essiama Market complex overview 2" },
+      { src: "/images/Ongoing Project/Construction of an ultra modern market/3.webp", alt: "Essiama Market complex overview 3" },
+      { src: "/images/Ongoing Project/Construction of an ultra modern market/4.webp", alt: "Essiama Market complex overview 4" },
+      { src: "/images/Ongoing Project/Construction of an ultra modern market/5.webp", alt: "Essiama Market complex overview 5" }
     ],
     featured: true,
     span: "wide",
   },
 
+  {
+    id: 6,
+    slug: "24hr-economy-market",
+    title: "24hr Economy Market",
+    subtitle: "Modern Market Infrastructure",
+    category: "Construction",
+    status: "active",
+    location: "Ghana",
+    region: "Ghana",
+    year: "2026",
+    duration: "Ongoing",
+    description:
+      "Construction of a modern market facility designed to support Ghana's 24-hour economy initiative, providing extended trading hours and infrastructure for round-the-clock commercial activity.",
+    scope: [
+      "Market stalls and trading bays",
+      "Sanitation and drainage infrastructure",
+      "Lighting and security systems",
+      "Paved circulation and parking",
+    ],
+    highlights: [
+      { label: "Project", value: "24hr Economy Market" },
+      { label: "Status", value: "In Progress" },
+    ],
+    cover: "",
+    images: [],
+    featured: true,
+    span: "normal",
+  },
+
+  {
+    id: 7,
+    slug: "goil-fuel-station-facelift",
+    title: "Goil Fuel Station Facelift",
+    subtitle: "Service Station Refurbishment",
+    category: "Construction",
+    status: "active",
+    location: "Ghana",
+    region: "Ghana",
+    year: "2026",
+    client: "Goil",
+    duration: "Ongoing",
+    description:
+      "Refurbishment and modernisation works for a Goil fuel station, updating the forecourt, canopy, retail building, and supporting facilities to current brand standards.",
+    scope: [
+      "Forecourt resurfacing and works",
+      "Canopy refurbishment and signage",
+      "Retail building upgrade",
+      "Electrical and lighting works",
+    ],
+    highlights: [
+      { label: "Client", value: "Goil" },
+      { label: "Project", value: "Station Facelift" },
+      { label: "Status", value: "In Progress" },
+    ],
+    cover: "",
+    images: [],
+    featured: true,
+    span: "normal",
+  },
+
+  {
+    id: 8,
+    slug: "remodeling-4-bedroom-house-ayinase",
+    title: "Remodeling of 4 Bedroom House",
+    subtitle: "Residential Renovation — Ayinase",
+    category: "Construction",
+    status: "active",
+    location: "Ayinase",
+    region: "Western Region, Ghana",
+    year: "2026",
+    duration: "Ongoing",
+    description:
+      "Full remodeling of a four-bedroom residential house at Ayinase — structural alterations, internal finishes, MEP upgrades, and external works to deliver a refreshed, contemporary family home.",
+    scope: [
+      "Structural alterations and repairs",
+      "Internal replastering and finishes",
+      "MEP upgrades — electrical, plumbing",
+      "Roofing and external works",
+    ],
+    highlights: [
+      { label: "Type", value: "4 Bedroom House" },
+      { label: "Location", value: "Ayinase" },
+      { label: "Status", value: "In Progress" },
+    ],
+    cover: "",
+    images: [],
+    featured: true,
+    span: "normal",
+  },
+
   // ══════════════════════════════════════════════════════════════════
   // COMPLETED
   // ══════════════════════════════════════════════════════════════════
+
+  {
+    id: 33,
+    slug: "cable-trench-duct-at-orf-plant",
+    title: "Cable Trench Duct at ORF Plant",
+    subtitle: "Industrial Infrastructure",
+    category: "Civil Engineering",
+    status: "completed",
+    location: "Ghana",
+    region: "Ghana",
+    year: "2026",
+    duration: "Completed",
+    description: "Construction of cable trench duct infrastructure at the ORF Plant.",
+    scope: ["Civil Engineering", "Infrastructure Development"],
+    highlights: [{ label: "Project", value: "Cable Trench Duct" }],
+    cover: "/images/Completed Project/Cable Trench Duct at ORF Plant/1.jpeg",
+    images: [
+      { src: "/images/Completed Project/Cable Trench Duct at ORF Plant/1.jpeg", alt: "Cable Trench Duct at ORF Plant 1" },
+      { src: "/images/Completed Project/Cable Trench Duct at ORF Plant/2.jpeg", alt: "Cable Trench Duct at ORF Plant 2" },
+      { src: "/images/Completed Project/Cable Trench Duct at ORF Plant/3.jpeg", alt: "Cable Trench Duct at ORF Plant 3" },
+      { src: "/images/Completed Project/Cable Trench Duct at ORF Plant/4.jpeg", alt: "Cable Trench Duct at ORF Plant 4" },
+      { src: "/images/Completed Project/Cable Trench Duct at ORF Plant/5.jpeg", alt: "Cable Trench Duct at ORF Plant 5" }
+    ],
+    featured: true,
+    span: "normal",
+  },
+
+  {
+    id: 34,
+    slug: "construction-of-6-units-classroom-block-at-nass",
+    title: "Construction of 6 units classroom block at NASS",
+    subtitle: "Educational Facility",
+    category: "Construction",
+    status: "completed",
+    location: "Ghana",
+    region: "Ghana",
+    year: "2026",
+    duration: "Completed",
+    description: "Construction of 6 units classroom block at NASS.",
+    scope: ["Classroom construction", "Educational infrastructure"],
+    highlights: [{ label: "Sector", value: "Education" }],
+    cover: "/images/Completed Project/Construction of 6 units classroom block at NASS/1.jpeg",
+    images: [
+      { src: "/images/Completed Project/Construction of 6 units classroom block at NASS/1.jpeg", alt: "Construction of 6 units classroom block at NASS 1" },
+      { src: "/images/Completed Project/Construction of 6 units classroom block at NASS/2.jpeg", alt: "Construction of 6 units classroom block at NASS 2" },
+      { src: "/images/Completed Project/Construction of 6 units classroom block at NASS/3.jpeg", alt: "Construction of 6 units classroom block at NASS 3" },
+      { src: "/images/Completed Project/Construction of 6 units classroom block at NASS/4.jpeg", alt: "Construction of 6 units classroom block at NASS 4" },
+      { src: "/images/Completed Project/Construction of 6 units classroom block at NASS/5.jpeg", alt: "Construction of 6 units classroom block at NASS 5" },
+      { src: "/images/Completed Project/Construction of 6 units classroom block at NASS/6.jpeg", alt: "Construction of 6 units classroom block at NASS 6" }
+    ],
+    featured: true,
+    span: "normal",
+  },
+
+  {
+    id: 35,
+    slug: "sanzule-washroom",
+    title: "Sanzule Washroom",
+    subtitle: "Sanitation Facility",
+    category: "Civil Engineering",
+    status: "completed",
+    location: "Sanzule",
+    region: "Western Region, Ghana",
+    year: "2026",
+    duration: "Completed",
+    description: "Construction of washroom facilities at Sanzule.",
+    scope: ["Sanitation", "Plumbing"],
+    highlights: [{ label: "Facility", value: "Washroom" }],
+    cover: "/images/Completed Project/Sanzule Washroom/1.jpeg",
+    images: [
+      { src: "/images/Completed Project/Sanzule Washroom/1.jpeg", alt: "Sanzule Washroom 1" },
+      { src: "/images/Completed Project/Sanzule Washroom/2.jpeg", alt: "Sanzule Washroom 2" },
+      { src: "/images/Completed Project/Sanzule Washroom/3.jpeg", alt: "Sanzule Washroom 3" },
+      { src: "/images/Completed Project/Sanzule Washroom/4.jpeg", alt: "Sanzule Washroom 4" }
+    ],
+    featured: true,
+    span: "normal",
+  },
+
+  {
+    id: 36,
+    slug: "atuabo-fishing-shed",
+    title: "Atuabo Fishing Shed",
+    subtitle: "Community Infrastructure",
+    category: "Construction",
+    status: "completed",
+    location: "Atuabo",
+    region: "Western Region, Ghana",
+    year: "2026",
+    duration: "Completed",
+    description: "Construction of fishing shed for the Atuabo community.",
+    scope: ["Shed construction", "Community infrastructure"],
+    highlights: [{ label: "Sector", value: "Fisheries" }],
+    cover: "/images/Completed Project/Atuabo Fishing Shed/2.jpeg",
+    images: [
+      { src: "/images/Completed Project/Atuabo Fishing Shed/1.jpeg", alt: "Atuabo Fishing Shed 1" },
+      { src: "/images/Completed Project/Atuabo Fishing Shed/2.jpeg", alt: "Atuabo Fishing Shed 2" },
+      { src: "/images/Completed Project/Atuabo Fishing Shed/3.jpeg", alt: "Atuabo Fishing Shed 3" },
+      { src: "/images/Completed Project/Atuabo Fishing Shed/4.jpeg", alt: "Atuabo Fishing Shed 4" },
+      { src: "/images/Completed Project/Atuabo Fishing Shed/5.jpeg", alt: "Atuabo Fishing Shed 5" },
+      { src: "/images/Completed Project/Atuabo Fishing Shed/6.jpeg", alt: "Atuabo Fishing Shed 6" }
+    ],
+    featured: true,
+    span: "normal",
+  },
 
   {
     id: 9,
@@ -1103,7 +1320,19 @@ export const ALL_PROJECTS: Project[] = [
 ];
 
 export const ACTIVE_PROJECTS = ALL_PROJECTS.filter((p) => p.status === "active");
-export const COMPLETED_PROJECTS = ALL_PROJECTS.filter((p) => p.status === "completed");
+export const COMPLETED_PROJECTS = ALL_PROJECTS.filter((p) => p.status === "completed").sort((a, b) => {
+  const aHasImages = a.images && a.images.length > 0 ? 1 : 0;
+  const bHasImages = b.images && b.images.length > 0 ? 1 : 0;
+  if (aHasImages !== bHasImages) {
+    return bHasImages - aHasImages;
+  }
+  const aYear = parseInt(a.yearCompleted || a.year || "0");
+  const bYear = parseInt(b.yearCompleted || b.year || "0");
+  if (aYear !== bYear) {
+    return bYear - aYear;
+  }
+  return b.id - a.id;
+});
 export const FEATURED_PROJECTS = ALL_PROJECTS.filter((p) => p.featured);
 
 export function getProject(slug: string): Project | undefined {

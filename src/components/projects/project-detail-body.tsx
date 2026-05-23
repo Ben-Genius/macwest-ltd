@@ -22,7 +22,7 @@ interface ProjectDetailBodyProps {
 
 export function ProjectDetailBody({ project, related }: ProjectDetailBodyProps) {
   return (
-    <>
+    <div className="bg-white">
       {/* ── Description + scope ──────────────────────────────────────── */}
       <section className="bg-white py-16 sm:py-24 border-b border-navy-100">
         <div className="max-w-[100rem] mx-auto px-6 sm:px-10 lg:px-16">
@@ -82,7 +82,7 @@ export function ProjectDetailBody({ project, related }: ProjectDetailBodyProps) 
 
       {/* ── Boffi-style gallery — full bleed, asymmetric ─────────────── */}
       {project.images.length > 0 && (
-        <section className="bg-white py-16 sm:py-20">
+        <section className=" max-w-[100rem] mx-auto py-16 sm:py-20">
           {/* Section label — inside padding */}
           <GSAPReveal y={14} className="px-6 sm:px-10 lg:px-16 mb-8">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-navy-400">
@@ -203,6 +203,6 @@ export function ProjectDetailBody({ project, related }: ProjectDetailBodyProps) 
       )}
 
 
-    </>
+    </div>
   );
 }

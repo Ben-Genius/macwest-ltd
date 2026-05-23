@@ -111,7 +111,7 @@ function HorizontalStrip({
           style={{ width: "max-content" }}
         >
           {projects.map((project, i) => {
-            const isPlaceholder = statusVariant === "active" || !project.cover;
+            const isPlaceholder = !project.cover;
 
             return (
               <Link
