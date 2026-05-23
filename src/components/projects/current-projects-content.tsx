@@ -46,10 +46,19 @@ export function CurrentProjectsContent() {
           <Link
             key={p.slug}
             href={`/projects/${p.slug}`}
-            className="group relative flex-1 overflow-hidden"
+            className="group relative flex-1 overflow-hidden bg-navy-200"
             style={{ height: "clamp(220px, 36vw, 440px)" }}
           >
-            <div className="absolute inset-0 bg-navy-200 transition-transform duration-700 group-hover:scale-105" />
+            {p.cover && (
+              <Image
+                src={p.cover}
+                alt={p.title}
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
+            )}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
             <div className="absolute bottom-4 left-4">
               <span className="text-[10px] font-bold uppercase tracking-widest text-white/80 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-full">
@@ -79,7 +88,7 @@ export function CurrentProjectsContent() {
         <div className="flex flex-wrap gap-3">
           {[
             { v: String(ACTIVE_PROJECTS.length), l: "Active sites" },
-            { v: String(new Set(ACTIVE_PROJECTS.map((p) => p.region)).size), l: "Regions" },
+            // { v: String(new Set(ACTIVE_PROJECTS.map((p) => p.region)).size), l: "Regions" },
             { v: String(new Set(ACTIVE_PROJECTS.map((p) => p.category)).size), l: "Sectors" },
           ].map((s) => (
             <div key={s.l} className="text-right">
@@ -158,7 +167,17 @@ export function CurrentProjectsContent() {
 
                 {/* Col 4 — image stretches to fill the full row height */}
                 <div className="relative overflow-hidden rounded-xl bg-navy-100 self-stretch min-h-[120px] md:min-h-[350px]">
-                  <div className="absolute inset-0 bg-navy-200 group-hover:scale-105 transition-transform duration-500" />
+                  {project.cover ? (
+                    <Image
+                      src={project.cover}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 768px) 110px, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-navy-200 group-hover:scale-105 transition-transform duration-500" />
+                  )}
                 </div>
               </Link>
             </GSAPReveal>
