@@ -90,6 +90,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geist.variable} ${inter.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
     >
       <body className="min-h-screen antialiased">
         <AppProviders>

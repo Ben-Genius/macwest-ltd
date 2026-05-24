@@ -43,7 +43,9 @@ function HorizontalStrip({
     const track = trackRef.current;
     if (!section || !track) return;
 
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 640px)", () => {
       const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
 
       gsap.to(track, {
@@ -59,22 +61,23 @@ function HorizontalStrip({
           invalidateOnRefresh: true,
         },
       });
-    }, section);
+    });
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
       className={cn(
-        "overflow-hidden flex flex-col border-t border-navy-100 pt-30",
-        "h-[calc(100svh-6rem)] md:h-[calc(100svh-5rem)]",
+        "overflow-hidden flex flex-col border-t border-navy-100",
+        "sm:pt-30",
+        "sm:h-[calc(100svh-6rem)] md:h-[calc(100svh-5rem)]",
         statusVariant === "active" ? "bg-white" : "bg-sand-50"
       )}
     >
       {/* Header */}
-      <div className="flex-shrink-0 flex flex-wrap items-start justify-between gap-4 px-6 sm:px-12 lg:px-16 pt-12 pb-8">
+      <div className="flex-shrink-0 flex flex-col sm:flex-row sm:flex-wrap items-start sm:justify-between gap-4 px-5 sm:px-12 lg:px-16 pt-8 sm:pt-12 pb-6 sm:pb-8">
         <div>
           <GSAPReveal delay={0.05} y={14}>
             <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-brand-600 mb-3">
@@ -93,7 +96,7 @@ function HorizontalStrip({
           </GSAPReveal>
         </div>
 
-        <GSAPReveal delay={0.25} y={14} className="mt-3">
+        <GSAPReveal delay={0.25} y={14} className="sm:mt-3">
           <Link
             href={viewMoreHref}
             className="inline-flex items-center gap-2 text-[12px] font-bold text-white bg-brand-600 hover:bg-brand-700 transition-colors px-5 py-3 rounded-xl shadow-sm"
@@ -103,12 +106,16 @@ function HorizontalStrip({
         </GSAPReveal>
       </div>
 
-      {/* Horizontal scrolling track */}
-      <div className="flex-1 overflow-hidden min-h-0">
+      {/* Scrolling track — vertical stack on mobile only, horizontal pinned on sm+ */}
+      <div className="sm:flex-1 sm:overflow-hidden sm:min-h-0">
         <div
           ref={trackRef}
-          className="flex h-full pl-8 sm:pl-12 lg:pl-16 pr-24 pb-10 gap-4 will-change-transform"
-          style={{ width: "max-content" }}
+          className={cn(
+            "flex flex-col sm:flex-row sm:h-full",
+            "px-5 sm:pl-12 sm:pr-24 lg:pl-16",
+            "pb-10 gap-6 sm:gap-4 will-change-transform",
+            "w-full sm:w-max"
+          )}
         >
           {projects.map((project, i) => {
             const isPlaceholder = !project.cover;
@@ -117,8 +124,7 @@ function HorizontalStrip({
               <Link
                 key={project.id}
                 href={`/projects/${project.slug}`}
-                className="flex-shrink-0 flex flex-col gap-3 group"
-                style={{ width: "clamp(300px, 36vw, 480px)" }}
+                className="w-full sm:w-[clamp(300px,36vw,480px)] sm:flex-shrink-0 flex flex-col gap-3 group"
               >
                 {/* Index + divider + category */}
                 <div className="flex items-center gap-3 flex-shrink-0">
@@ -132,14 +138,14 @@ function HorizontalStrip({
                 </div>
 
                 {/* Card */}
-                <div className="text-white flex-1 relative overflow-hidden rounded-xl bg-navy-50/50 cursor-pointer min-h-0 max-h-[62vh]">
+                <div className="text-white relative overflow-hidden rounded-xl bg-navy-50/50 cursor-pointer h-[60vw] min-h-[260px] max-h-[420px] sm:h-auto sm:flex-1 sm:min-h-0 sm:max-h-[62vh]">
                   {!isPlaceholder ? (
                     <Image
                       src={project.cover}
                       alt={project.title}
                       fill
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      sizes="(max-width: 640px) 80vw, 32vw"
+                      sizes="(max-width: 640px) 100vw, 32vw"
                     />
                   ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-navy-700">
@@ -173,7 +179,7 @@ function HorizontalStrip({
                   </div>
 
                   {/* Bottom text */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7 transform transition-transform duration-500 group-hover:-translate-y-2 text-white">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7 transform transition-transform duration-500 group-hover:-translate-y-2 text-white">
                     <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-1.5">
                       {project.subtitle}
                     </p>
