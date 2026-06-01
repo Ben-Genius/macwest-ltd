@@ -297,13 +297,13 @@ export function WhoWeAreContent() {
           <div className="max-w-full w-full mb-14">
             <GSAPStaggerText
               text="We're a proudly Ghanaian-owned company meeting the evolving demand for modern civil engineering and construction."
-              className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-[3.5rem] font-display font-bold leading-[1.12] tracking-tight text-navy-900 justify-center"
+              className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold leading-[1.12] tracking-tight text-navy-900 justify-center"
               y={55}
               duration={0.95}
               stagger={0.03}
             />
             <Reveal variants={clipFromBottom} margin="-20px">
-              <p className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-[3.5rem] font-display font-bold leading-[1.12] tracking-tight text-navy-300 mt-1">
+              <p className="text-center text-3xl sm:text-2xl md:text-2xl lg:text-[1.5rem] font-display font-bold leading-[1.12] tracking-tight text-navy-300 mt-1">
                 Built on integrity, driven by excellence since 2011.
               </p>
             </Reveal>

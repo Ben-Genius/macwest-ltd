@@ -21,7 +21,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <CertificationsSection />
-      <ServicesSection />
+      {/* <ServicesSection /> */}
       <VisionParallaxSection />
       {/* <WhyMacwestSection /> */}
       {/* <ProjectsSection /> */}

@@ -165,22 +165,7 @@ export function SiteFooter({ className }: SiteFooterProps) {
             whileHover="hovered"
             className="group block"
           >
-            <Link
-              href="/contact"
-              className="flex items-end justify-between px-4 sm:px-8 lg:px-12 pt-6 pb-2 overflow-hidden"
-            >
-              {/* Giant text */}
-              <m.span
-                variants={{ hovered: { x: 6 } }}
-                transition={{ type: "spring", stiffness: 200, damping: 28 }}
-                className="font-display font-bold text-white leading-[0.88] tracking-[-0.04em] select-none"
-                style={{ fontSize: "clamp(4.5rem, 14vw, 11rem)" }}
-              >
-                Let&apos;s Collaborate
-              </m.span>
 
-
-            </Link>
 
             {/* Sub-line below the big text */}
             <div className="flex items-start justify-between px-4 sm:px-8 lg:px-12 pb-8 pt-1">

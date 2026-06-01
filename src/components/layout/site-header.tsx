@@ -283,13 +283,7 @@ export function SiteHeader() {
                     <div className="w-px h-4 bg-navy-100 mx-1" />
                   </>
                 )}
-                <Link
-                  href="/about-us"
-                  className="flex items-center px-2 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider text-navy-500 hover:text-brand-600 hover:bg-sand-50 transition-all group/link"
-                >
-                  {!scrolled && <span className="mr-1">About Us</span>}
-                  <ArrowRight className={cn("size-3 opacity-50 transition-transform", !scrolled && "group-hover/link:translate-x-0.5")} />
-                </Link>
+
               </div>
 
               {/* Mobile menu toggle */}

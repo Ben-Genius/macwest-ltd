@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components/layout/page-header";
 import { createPageMetadata } from "@/lib/metadata";
 import { ServicesContent } from "@/components/pages/services/services-content";
 
@@ -8,5 +9,10 @@ export const metadata = createPageMetadata(
 );
 
 export default function ServicesPage() {
-  return <ServicesContent />;
+  return (
+    <>
+      <PageHeader title="Services" description="Certified construction, civil engineering, housing, MEP, procurement, cement supply, and augmented services." />
+      <ServicesContent />
+    </>
+  );
 }

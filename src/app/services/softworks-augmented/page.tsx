@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components/layout/page-header";
 import { createPageMetadata } from "@/lib/metadata";
 import { SoftworksAugmentedContent } from "@/components/pages/services/softworks-augmented-content";
 
@@ -8,5 +9,10 @@ export const metadata = createPageMetadata(
 );
 
 export default function SoftworksAugmentedPage() {
-  return <SoftworksAugmentedContent />;
+  return (
+    <>
+      <PageHeader title="Softworks & Augmented Services" description="Beyond construction, Macwest provides specialised training, leadership development, event management, branding, and media production." />
+      <SoftworksAugmentedContent />
+    </>
+  );
 }
