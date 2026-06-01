@@ -12,10 +12,10 @@ export const metadata = createPageMetadata(
 export default function PastProjectsPage() {
   return (
     <>
-      {/* <PageHeader
+      <PageHeader
         title="Completed Projects"
         description="A track record of delivered projects across construction, civil engineering, maritime, and housing."
-      /> */}
+      />
       <PastProjectsContent />
       {/* <CTABandSection /> */}
     </>

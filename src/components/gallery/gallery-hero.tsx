@@ -76,49 +76,7 @@ const ALL_CARDS = [...COL_1, ...COL_2, ...COL_3];
 export function GalleryHero() {
   return (
     <div className="relative bg-white p-2">
-      {/* ── Hero text ── */}
-      <motion.div
-        className="relative z-[9999] px-6 pt-24 text-center sm:pt-32 md:-mb-16 md:pt-40 pointer-events-none"
-        variants={containerV}
-        initial="hidden"
-        animate="show"
-      >
-        <motion.p
-          variants={itemV}
-          className="mb-4 text-[11px] font-bold uppercase tracking-[0.3em] text-gold-600"
-        >
-          Macwest Limited
-        </motion.p>
 
-        <motion.h1
-          variants={itemV}
-          className="font-display text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
-        >
-          Our work,
-        </motion.h1>
-
-        <motion.h1
-          variants={itemV}
-          className="font-display text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-[5.5rem]"
-        >
-          our <span className="text-brand-600">people</span>, our story.
-        </motion.h1>
-
-        <motion.p
-          variants={itemV}
-          className="mx-auto mt-5 max-w-md text-base leading-relaxed text-navy-500"
-        >
-          A visual record of projects, community engagements, and team moments
-          from across Ghana.
-        </motion.p>
-
-        <motion.p
-          variants={itemV}
-          className="mt-6 text-[11px] font-bold uppercase tracking-[0.24em] text-navy-300"
-        >
-          Scroll to explore 13 collections ↓
-        </motion.p>
-      </motion.div>
 
       {/* ── Subtle brand glow ── */}
       <div

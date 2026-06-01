@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components/layout/page-header";
 import { GalleryHero } from "@/components/gallery/gallery-hero";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -8,5 +9,10 @@ export const metadata = createPageMetadata(
 );
 
 export default function GalleryPage() {
-  return <GalleryHero />;
+  return (
+    <>
+      <PageHeader title="Gallery" description="Our work, our people, our story." />
+      <GalleryHero />
+    </>
+  );
 }

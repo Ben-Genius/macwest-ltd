@@ -1,4 +1,4 @@
-import { ContactHero } from "@/components/contact/contact-hero";
+import { PageHeader } from "@/components/layout/page-header";
 import { ContactSection } from "@/components/contact/contact-section";
 import { WorldMapSection } from "@/components/contact/world-map-section";
 import { createPageMetadata } from "@/lib/metadata";
@@ -12,7 +12,7 @@ export const metadata = createPageMetadata(
 export default function ContactPage() {
   return (
     <>
-      <ContactHero />
+      <PageHeader title="Contact" description="Office locations, phone, email, and project enquiries." />
       <ContactSection />
       <WorldMapSection />
     </>
