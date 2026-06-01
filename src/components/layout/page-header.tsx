@@ -16,11 +16,11 @@ export function PageHeader({ title, description }: PageHeaderProps) {
           <div className="mb-4 flex items-center space-x-2">
             <div className="h-1 w-12 bg-brand-600 mt-12" />
           </div>
-          <Heading size="display-xl" as="h1" className="text-navy-900" >
+          <Heading size="display-md" as="h1" className="text-navy-900" >
             {title}
           </Heading>
           {description && (
-            <p className="mt-6 text-xl text-brand-600 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 ease-out fill-mode-both">
+            <p className="mt-6 text-md text-brand-600 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 ease-out fill-mode-both">
               {description}
             </p>
           )}
