@@ -17,23 +17,23 @@ const clients = [
   "Anglogold Ashanti",
 ];
 
-function MarqueeTrack({ reverse = false }: { reverse?: boolean }) {
-  return (
-    <div
-      className={`flex items-center gap-12 animate-marquee${reverse ? "-reverse" : ""} whitespace-nowrap`}
-      aria-hidden={reverse}
-    >
-      {[...clients, ...clients].map((client, i) => (
-        <span
-          key={`${client}-${i}`}
-          className="text-sm font-semibold text-sand-500 hover:text-navy-700 transition-colors duration-200 cursor-default px-2"
-        >
-          {client}
-        </span>
-      ))}
-    </div>
-  );
-}
+// function MarqueeTrack({ reverse = false }: { reverse?: boolean }) {
+//   return (
+//     <div
+//       className={`flex items-center gap-12 animate-marquee${reverse ? "-reverse" : ""} whitespace-nowrap`}
+//       aria-hidden={reverse}
+//     >
+//       {[...clients, ...clients].map((client, i) => (
+//         <span
+//           key={`${client}-${i}`}
+//           className="text-sm font-semibold text-sand-500 hover:text-navy-700 transition-colors duration-200 cursor-default px-2"
+//         >
+//           {client}
+//         </span>
+//       ))}
+//     </div>
+//   );
+// }
 
 export function ClientsSection() {
   return (

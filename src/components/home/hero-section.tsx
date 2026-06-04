@@ -33,12 +33,12 @@ const certBadges = [
   { icon: Globe, text: "ISO 14001:2015" },
 ];
 
-const stats = [
-  { value: "14+", label: "Years", description: "Engineering excellence" },
-  { value: "ISO³", label: "Certified", description: "9001 · 14001 · 45001" },
-  { value: "50+", label: "Projects", description: "Completed across Ghana" },
-  { value: "2011", label: "Established", description: "Incorporated May 2011" },
-];
+// const stats = [
+//   { value: "14+", label: "Years", description: "Engineering excellence" },
+//   { value: "ISO³", label: "Certified", description: "9001 · 14001 · 45001" },
+//   { value: "50+", label: "Projects", description: "Completed across Ghana" },
+//   { value: "2011", label: "Established", description: "Incorporated May 2011" },
+// ];
 
 export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
