@@ -29,13 +29,10 @@ export default async function ProjectDetailPage({
   const project = getProject(slug);
   if (!project) notFound();
 
-  const related = getRelatedProjects(slug, 3);
-
   return (
     <>
       <ProjectDetailHero project={project} />
-      <ProjectDetailBody project={project} related={related} />
-
+      <ProjectDetailBody project={project} />
     </>
   );
 }

@@ -1,10 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
-import { ProjectCard } from "./project-card";
 import type { Project } from "@/data/projects";
 
 function Sparkle({ className }: { className?: string }) {
@@ -17,10 +15,9 @@ function Sparkle({ className }: { className?: string }) {
 
 interface ProjectDetailBodyProps {
   project: Project;
-  related: Project[];
 }
 
-export function ProjectDetailBody({ project, related }: ProjectDetailBodyProps) {
+export function ProjectDetailBody({ project }: ProjectDetailBodyProps) {
   return (
     <div className="bg-white">
       {/* ── Description + scope ──────────────────────────────────────── */}

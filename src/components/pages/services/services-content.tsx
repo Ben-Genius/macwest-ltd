@@ -10,7 +10,6 @@ import { m, useInView, useScroll, useTransform } from "framer-motion";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
-import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { cn } from "@/lib/utils";
 import { fadeInLeft, fadeInRight, fadeInUp, scaleIn, staggerContainer, EASE } from "@/lib/animations";
 

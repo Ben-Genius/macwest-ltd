@@ -7,8 +7,8 @@ import { m, AnimatePresence, useInView } from "framer-motion";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
-import { fadeInUp, scaleIn, staggerContainer, EASE } from "@/lib/animations";
-import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { fadeInUp, scaleIn } from "@/lib/animations";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ─── Data ──────────────────────────────────────────────────────── */
 

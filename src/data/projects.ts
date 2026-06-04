@@ -50,10 +50,10 @@ export type Project = {
 
 const P = "/images/projects/projects"; // shorthand
 const PP = "/images/projects/pastProject"; // real project photos
-const AGY = `${PP}/1. Eastern Region (Agyanoa) - Complete Activities`;
-const SHEA = `${PP}/2. Shea Farm Project - Complete Activities`;
-const SCH = `${PP}/4. School Project - Complete Activities`;
-const MAIN = `${PP}/5. Main Site (Lounge/Main Building/New Shops/Top Offices) - Complete Activities`;
+// const AGY = `${PP}/1. Eastern Region (Agyanoa) - Complete Activities`;
+// const SHEA = `${PP}/2. Shea Farm Project - Complete Activities`;
+// const SCH = `${PP}/4. School Project - Complete Activities`;
+// const MAIN = `${PP}/5. Main Site (Lounge/Main Building/New Shops/Top Offices) - Complete Activities`;
 
 export const ALL_PROJECTS: Project[] = [
 
