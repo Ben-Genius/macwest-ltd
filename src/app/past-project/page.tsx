@@ -1,7 +1,7 @@
 import { createPageMetadata } from "@/lib/metadata";
 import { PageHeader } from "@/components/layout/page-header";
 import { PastProjectsContent } from "@/components/projects/past-projects-content";
-import { CTABandSection } from "@/components/home/cta-band-section";
+// import { CTABandSection } from "@/components/home/cta-band-section";
 
 export const metadata = createPageMetadata(
   "Completed Projects",

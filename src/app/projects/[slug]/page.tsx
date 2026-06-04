@@ -3,7 +3,7 @@ import { ALL_PROJECTS, getProject, getRelatedProjects } from "@/data/projects";
 import { createPageMetadata } from "@/lib/metadata";
 import { ProjectDetailHero } from "@/components/projects/project-detail-hero";
 import { ProjectDetailBody } from "@/components/projects/project-detail-body";
-import { CTABandSection } from "@/components/home/cta-band-section";
+// import { CTABandSection } from "@/components/home/cta-band-section";
 
 export function generateStaticParams() {
   return ALL_PROJECTS.map((p) => ({ slug: p.slug }));

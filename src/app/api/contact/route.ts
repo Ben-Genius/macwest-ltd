@@ -119,6 +119,9 @@ ${message}
         port,
         secure: port === 465,
         auth: { user, pass },
+        tls: {
+          rejectUnauthorized: false,
+        },
       });
 
       await transporter.sendMail({
@@ -146,10 +149,10 @@ ${message}
         message: "SMTP configuration not active. Inquiry compiled and logged to console.",
       });
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error handling contact form submission:", error);
     return NextResponse.json(
-      { error: "Failed to compile or submit contact inquiry." },
+      { error: "Failed to compile or submit contact inquiry.", details: error.message || error },
       { status: 500 }
     );
   }
