@@ -41,7 +41,7 @@ export const mainNav: readonly NavItem[] = [
   },
   // { label: "Partners", href: "/partners" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Contact", href: "/contact" },
+  // { label: "Contact", href: "/contact" },
 ] as const;
 
 export const secondaryRoutes = [

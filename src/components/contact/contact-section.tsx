@@ -1,7 +1,7 @@
 "use client";
-
-import { useState } from "react";
-import { CheckCircle2, AlertCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 
@@ -65,19 +65,39 @@ const socialLinks = [
   },
 ];
 
+const SERVICE_OPTIONS = [
+  { value: "general", label: "General Inquiry" },
+  { value: "civilconst", label: "Civil Construction" },
+  { value: "housingestates", label: "Housing Estates" },
+  { value: "concreteorks", label: "Concrete Works" },
+  { value: "mechanicalelectrical", label: "Mechanical, Electrical & Plumbing" },
+  { value: "cementsupply", label: "Ghacem Cement Supply" },
+  { value: "pservice", label: "Procurement Services" },
+  { value: "softworks", label: "Softworks & Augmented Services" },
+];
+
 type Status = "idle" | "sending" | "sent" | "error";
 
 export function ContactSection() {
+  const searchParams = useSearchParams();
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({
     fullName: "",
     email: "",
     subject: "",
     message: "",
+    service: "general",
   });
 
+  useEffect(() => {
+    const serviceParam = searchParams.get("service");
+    if (serviceParam && SERVICE_OPTIONS.some((opt) => opt.value === serviceParam)) {
+      setForm((prev) => ({ ...prev, service: serviceParam }));
+    }
+  }, [searchParams]);
+
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
@@ -85,9 +105,24 @@ export function ContactSection() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("sending");
-    /* Wire to /api/contact when backend is ready */
-    await new Promise((r) => setTimeout(r, 1200));
-    setStatus("sent");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (response.ok) {
+        setStatus("sent");
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus("error");
+    }
   }
 
   return (
@@ -175,7 +210,7 @@ export function ContactSection() {
                   <button
                     onClick={() => {
                       setStatus("idle");
-                      setForm({ fullName: "", email: "", subject: "", message: "" });
+                      setForm({ fullName: "", email: "", subject: "", message: "", service: "general" });
                     }}
                     className="mt-2 text-xs font-semibold text-brand-600 hover:text-brand-700 underline-offset-2 hover:underline"
                   >
@@ -184,21 +219,54 @@ export function ContactSection() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-0">
-                  {(["fullName", "email", "subject"] as const).map((field, i) => (
-                    <GSAPReveal key={field} delay={0.38 + i * 0.08} y={12} duration={0.6}>
-                      <UnderlineField
-                        label={field === "fullName" ? "Full name" : field.charAt(0).toUpperCase() + field.slice(1)}
-                        name={field}
-                        type={field === "email" ? "email" : "text"}
-                        placeholder={field === "fullName" ? "Full name" : field.charAt(0).toUpperCase() + field.slice(1)}
-                        value={form[field]}
-                        onChange={handleChange}
-                        required
-                      />
-                    </GSAPReveal>
-                  ))}
+                  <GSAPReveal delay={0.38} y={12} duration={0.6}>
+                    <UnderlineField
+                      label="Full name"
+                      name="fullName"
+                      type="text"
+                      placeholder="Full name"
+                      value={form.fullName}
+                      onChange={handleChange}
+                      required
+                    />
+                  </GSAPReveal>
+
+                  <GSAPReveal delay={0.46} y={12} duration={0.6}>
+                    <UnderlineField
+                      label="Email"
+                      name="email"
+                      type="email"
+                      placeholder="Email"
+                      value={form.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </GSAPReveal>
+
+                  <GSAPReveal delay={0.54} y={12} duration={0.6}>
+                    <UnderlineSelect
+                      label="Service Type"
+                      name="service"
+                      options={SERVICE_OPTIONS}
+                      value={form.service}
+                      onChange={handleChange}
+                      required
+                    />
+                  </GSAPReveal>
 
                   <GSAPReveal delay={0.62} y={12} duration={0.6}>
+                    <UnderlineField
+                      label="Subject"
+                      name="subject"
+                      type="text"
+                      placeholder="Subject"
+                      value={form.subject}
+                      onChange={handleChange}
+                      required
+                    />
+                  </GSAPReveal>
+
+                  <GSAPReveal delay={0.7} y={12} duration={0.6}>
                     <div className="border-b border-navy-200 py-4">
                       <textarea
                         name="message"
@@ -219,7 +287,7 @@ export function ContactSection() {
                     </div>
                   )}
 
-                  <GSAPReveal delay={0.7} y={12} duration={0.6}>
+                  <GSAPReveal delay={0.78} y={12} duration={0.6}>
                     <div className="pt-8">
                       <button
                         type="submit"
@@ -277,3 +345,44 @@ function UnderlineField({ label, name, type = "text", placeholder, value, onChan
     </div>
   );
 }
+
+/* ── Underline-style select ────────────────────────────────── */
+
+interface UnderlineSelectProps {
+  label: string;
+  name: string;
+  options: { value: string; label: string }[];
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  required?: boolean;
+}
+
+function UnderlineSelect({ label, name, options, value, onChange, required }: UnderlineSelectProps) {
+  return (
+    <div className="border-b border-navy-200 py-4 flex flex-col gap-1.5">
+      <label htmlFor={name} className="text-xs font-semibold text-navy-400">
+        {label}
+      </label>
+      <div className="relative flex items-center">
+        <select
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          required={required}
+          className="w-full bg-transparent text-sm text-navy-900 focus:outline-none border-none outline-none focus:ring-0 cursor-pointer appearance-none pr-8 py-0.5"
+        >
+          {options.map((opt) => (
+            <option key={opt.value} value={opt.value} className="bg-white text-navy-900">
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        <div className="absolute right-0 pointer-events-none text-navy-400">
+          <ChevronDown size={16} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
