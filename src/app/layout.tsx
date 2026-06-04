@@ -6,6 +6,7 @@ import { AppProviders } from "@/components/providers/app-providers";
 import { SiteShell } from "@/components/layout/site-shell";
 import { siteConfig } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 
 const inter = localFont({
@@ -86,6 +87,7 @@ export default function RootLayout({
         <AppProviders>
           <SiteShell>{children}</SiteShell>
           <Analytics />
+          <SpeedInsights />
         </AppProviders>
       </body>
     </html>
