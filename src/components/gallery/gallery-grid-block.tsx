@@ -132,7 +132,6 @@ export function GalleryGridBlock({ images }: GalleryGridBlockProps) {
                 >
                   <div className="relative aspect-square overflow-hidden">
                     <motion.img
-                      /* eslint-disable-next-line @next/next/no-img-element */
                       src={image.src}
                       alt={image.alt}
                       className="h-full w-full object-cover"
@@ -222,7 +221,6 @@ export function GalleryGridBlock({ images }: GalleryGridBlockProps) {
               {/* Image */}
               <motion.img
                 key={selectedImage}
-                /* eslint-disable-next-line @next/next/no-img-element */
                 src={selectedImageData.src}
                 alt={selectedImageData.alt}
                 className="max-h-[80vh] w-auto rounded-xl shadow-2xl"

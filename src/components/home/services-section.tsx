@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { m, useScroll, useTransform, useInView } from "framer-motion";
-import { HardHat, Zap, Building2, Layers3, Package, Sparkles, ArrowRight, ServerCrashIcon } from "lucide-react";
+import { HardHat, Zap, Building2, Layers3, Package, ArrowRight, ServerCrashIcon } from "lucide-react";
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 import { GSAPStaggerText } from "@/components/ui/gsap-stagger-text";
 

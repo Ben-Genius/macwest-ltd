@@ -2,38 +2,38 @@
 
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 
-const clients = [
-  "Government of Ghana",
-  "World Bank",
-  "GIIF",
-  "Ghana Water Company",
-  "Accra Metropolitan Assembly",
-  "Ministry of Roads",
-  "COCOBOD",
-  "Ghana Ports & Harbours Authority",
-  "Tullow Oil",
-  "GOIL",
-  "Stanbic Bank",
-  "Anglogold Ashanti",
-];
+// const clients = [
+//   "Government of Ghana",
+//   "World Bank",
+//   "GIIF",
+//   "Ghana Water Company",
+//   "Accra Metropolitan Assembly",
+//   "Ministry of Roads",
+//   "COCOBOD",
+//   "Ghana Ports & Harbours Authority",
+//   "Tullow Oil",
+//   "GOIL",
+//   "Stanbic Bank",
+//   "Anglogold Ashanti",
+// ];
 
-function MarqueeTrack({ reverse = false }: { reverse?: boolean }) {
-  return (
-    <div
-      className={`flex items-center gap-12 animate-marquee${reverse ? "-reverse" : ""} whitespace-nowrap`}
-      aria-hidden={reverse}
-    >
-      {[...clients, ...clients].map((client, i) => (
-        <span
-          key={`${client}-${i}`}
-          className="text-sm font-semibold text-sand-500 hover:text-navy-700 transition-colors duration-200 cursor-default px-2"
-        >
-          {client}
-        </span>
-      ))}
-    </div>
-  );
-}
+// function MarqueeTrack({ reverse = false }: { reverse?: boolean }) {
+//   return (
+//     <div
+//       className={`flex items-center gap-12 animate-marquee${reverse ? "-reverse" : ""} whitespace-nowrap`}
+//       aria-hidden={reverse}
+//     >
+//       {[...clients, ...clients].map((client, i) => (
+//         <span
+//           key={`${client}-${i}`}
+//           className="text-sm font-semibold text-sand-500 hover:text-navy-700 transition-colors duration-200 cursor-default px-2"
+//         >
+//           {client}
+//         </span>
+//       ))}
+//     </div>
+//   );
+// }
 
 export function ClientsSection() {
   return (

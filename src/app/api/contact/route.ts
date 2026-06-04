@@ -148,8 +148,9 @@ ${message}
     }
   } catch (error) {
     console.error("Error handling contact form submission:", error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: "Failed to compile or submit contact inquiry." },
+      { error: "Failed to compile or submit contact inquiry.", details: errorMessage },
       { status: 500 }
     );
   }

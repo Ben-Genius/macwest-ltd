@@ -71,7 +71,6 @@ function Lightbox({
       <AnimatePresence mode="wait">
         <motion.img
           key={index}
-          /* eslint-disable-next-line @next/next/no-img-element */
           src={images[index].src}
           alt={images[index].alt}
           className="max-h-[85vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
