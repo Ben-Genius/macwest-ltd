@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   ContainerScroll,
   ContainerSticky,
@@ -33,19 +32,6 @@ const COL_3: CollectionCard[] = [
   { src: `${G}/Comm.Eng-Bakanta/0T6A5900.webp`, slug: "ldpj-community-engagement-bakanta-palace", title: "LDPJ — Bakanta Palace" },
   { src: `${G}/Comm.%20Eng-Sanzule/IMG_0359.webp`, slug: "ldpj-community-engagement-sanzule-palace", title: "LDPJ — Sanzule Palace" },
 ];
-
-const containerV = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
-};
-const itemV = {
-  hidden: { opacity: 0, y: 14 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  },
-};
 
 function GalleryCard({ card }: { card: CollectionCard }) {
   return (
