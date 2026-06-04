@@ -2,20 +2,20 @@
 
 import { GSAPReveal } from "@/components/ui/gsap-reveal";
 
-const clients = [
-  "Government of Ghana",
-  "World Bank",
-  "GIIF",
-  "Ghana Water Company",
-  "Accra Metropolitan Assembly",
-  "Ministry of Roads",
-  "COCOBOD",
-  "Ghana Ports & Harbours Authority",
-  "Tullow Oil",
-  "GOIL",
-  "Stanbic Bank",
-  "Anglogold Ashanti",
-];
+// const clients = [
+//   "Government of Ghana",
+//   "World Bank",
+//   "GIIF",
+//   "Ghana Water Company",
+//   "Accra Metropolitan Assembly",
+//   "Ministry of Roads",
+//   "COCOBOD",
+//   "Ghana Ports & Harbours Authority",
+//   "Tullow Oil",
+//   "GOIL",
+//   "Stanbic Bank",
+//   "Anglogold Ashanti",
+// ];
 
 // function MarqueeTrack({ reverse = false }: { reverse?: boolean }) {
 //   return (

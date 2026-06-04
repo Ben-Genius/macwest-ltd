@@ -115,6 +115,7 @@ function KineticTile({
     >
       {/* scale(1.15) prevents edge bleed during skew */}
       <div className="relative h-[30rem] overflow-hidden" style={{ transform: "scale(1.15)" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image.src}
           alt={image.alt}

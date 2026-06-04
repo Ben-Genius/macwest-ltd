@@ -146,10 +146,11 @@ ${message}
         message: "SMTP configuration not active. Inquiry compiled and logged to console.",
       });
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error handling contact form submission:", error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: "Failed to compile or submit contact inquiry.", details: error.message || error },
+      { error: "Failed to compile or submit contact inquiry.", details: errorMessage },
       { status: 500 }
     );
   }

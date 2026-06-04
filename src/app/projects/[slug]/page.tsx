@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { ALL_PROJECTS, getProject, getRelatedProjects } from "@/data/projects";
+import { ALL_PROJECTS, getProject } from "@/data/projects";
 import { createPageMetadata } from "@/lib/metadata";
 import { ProjectDetailHero } from "@/components/projects/project-detail-hero";
 import { ProjectDetailBody } from "@/components/projects/project-detail-body";
