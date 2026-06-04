@@ -100,8 +100,8 @@ export const ALL_PROJECTS: Project[] = [
 
   {
     id: 2,
-    slug: "anglo-senior-high-school",
-    title: "Anglo Senior High School ",
+    slug: "anloga-senior-high-school",
+    title: "Anloga Senior High School ",
     subtitle: "Educational Facility Construction",
     category: "Construction",
     status: "active",
@@ -110,7 +110,7 @@ export const ALL_PROJECTS: Project[] = [
     year: "2026",
     duration: "Ongoing",
     description:
-      "Construction and development works for the Anglo Senior High School to improve educational infrastructure.",
+      "Construction and development works for the  Anloga Senior High School to improve educational infrastructure.",
     scope: [
       "Classroom construction",
       "Facility upgrades",
@@ -119,11 +119,11 @@ export const ALL_PROJECTS: Project[] = [
       { label: "Sector", value: "Education" },
       { label: "Status", value: "In Progress" },
     ],
-    cover: "/images/Ongoing Project/Anglo Senior High School- Project/1.webp",
+    cover: "/images/Ongoing Project/Anloga Senior High School- Project/1.webp",
     images: [
-      { src: "/images/Ongoing Project/Anglo Senior High School- Project/1.webp", alt: "Anglo Senior High School Project 1" },
-      { src: "/images/Ongoing Project/Anglo Senior High School- Project/2.webp", alt: "Anglo Senior High School Project 2" },
-      { src: "/images/Ongoing Project/Anglo Senior High School- Project/3.webp", alt: "Anglo Senior High School Project 3" }
+      { src: "/images/Ongoing Project/Anloga Senior High School- Project/1.webp", alt: "Anloga Senior High School Project 1" },
+      { src: "/images/Ongoing Project/Anloga Senior High School- Project/2.webp", alt: "Anloga Senior High School Project 2" },
+      { src: "/images/Ongoing Project/Anloga Senior High School- Project/3.webp", alt: "Anloga Senior High School Project 3" }
     ],
     featured: true,
     span: "normal",
